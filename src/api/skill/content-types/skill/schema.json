@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skills",
+  "info": {
+    "singularName": "skill",
+    "pluralName": "skills",
+    "displayName": "skills",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "skill_level": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::skill-level.skill-level"
+    },
+    "skill_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::skill-type.skill-type"
+    }
+  }
+}

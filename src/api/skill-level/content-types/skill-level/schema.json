@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skill_levels",
+  "info": {
+    "singularName": "skill-level",
+    "pluralName": "skill-levels",
+    "displayName": "skill_level",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "glossary_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::glossary-item.glossary-item",
+      "inversedBy": "skill_levels"
+    }
+  }
+}

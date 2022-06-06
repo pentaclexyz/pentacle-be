@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "projects",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "coingecko_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "ticker": {
+      "type": "string"
+    },
+    "website_url": {
+      "type": "string"
+    },
+    "webapp_url": {
+      "type": "string"
+    },
+    "twitter_url": {
+      "type": "string"
+    },
+    "token_image_url": {
+      "type": "string"
+    },
+    "contract_url": {
+      "type": "string"
+    },
+    "coingecko_url": {
+      "type": "string"
+    },
+    "llama_url": {
+      "type": "string"
+    },
+    "dune_url": {
+      "type": "string"
+    },
+    "rekt_url": {
+      "type": "string"
+    },
+    "whitepaper_url": {
+      "type": "string"
+    },
+    "github_url": {
+      "type": "string"
+    },
+    "docs_url": {
+      "type": "string"
+    },
+    "discord_url": {
+      "type": "string"
+    },
+    "telegram_url": {
+      "type": "string"
+    },
+    "medium_url": {
+      "type": "string"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::categorie.categorie"
+    }
+  }
+}
