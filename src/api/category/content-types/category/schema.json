@@ -2,9 +2,10 @@
   "kind": "collectionType",
   "collectionName": "categories",
   "info": {
-    "singularName": "categorie",
+    "singularName": "category",
     "pluralName": "categories",
-    "displayName": "categories"
+    "displayName": "categories",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,10 @@
     },
     "description": {
       "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }

@@ -37,11 +37,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::tag.tag"
-    },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::categorie.categorie"
     }
   }
 }

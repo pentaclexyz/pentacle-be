@@ -27,6 +27,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::skill-level.skill-level"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }
