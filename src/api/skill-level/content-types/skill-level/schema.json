@@ -14,12 +14,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "glossary_items": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::glossary-item.glossary-item",
-      "inversedBy": "skill_levels"
     }
   }
 }

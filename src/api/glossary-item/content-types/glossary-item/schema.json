@@ -4,8 +4,7 @@
   "info": {
     "singularName": "glossary-item",
     "pluralName": "glossary-items",
-    "displayName": "glossary_items",
-    "description": ""
+    "displayName": "glossary_items"
   },
   "options": {
     "draftAndPublish": true
@@ -22,21 +21,10 @@
       "type": "text"
     },
     "risk": {
-      "type": "text"
+      "type": "string"
     },
     "reward": {
-      "type": "text"
-    },
-    "skill_levels": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::skill-level.skill-level",
-      "mappedBy": "glossary_items"
-    },
-    "tag": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tag.tag"
+      "type": "string"
     }
   }
 }
