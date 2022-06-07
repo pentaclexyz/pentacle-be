@@ -18,12 +18,6 @@
     "description": {
       "type": "text"
     },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "tags"
-    },
     "articles": {
       "type": "relation",
       "relation": "manyToMany",
