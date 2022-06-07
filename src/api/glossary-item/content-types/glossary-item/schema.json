@@ -4,7 +4,8 @@
   "info": {
     "singularName": "glossary-item",
     "pluralName": "glossary-items",
-    "displayName": "glossary_items"
+    "displayName": "glossary_items",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,6 +26,17 @@
     },
     "reward": {
       "type": "string"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "glossary_item"
     }
   }
 }
