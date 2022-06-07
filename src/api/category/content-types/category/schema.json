@@ -27,6 +27,12 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "inversedBy": "categories"
+    },
+    "glossary_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::glossary-item.glossary-item",
+      "inversedBy": "categories"
     }
   }
 }

@@ -27,16 +27,22 @@
     "reward": {
       "type": "string"
     },
-    "category": {
+    "categories": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "glossary_items"
     },
     "tags": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tag.tag",
       "mappedBy": "glossary_item"
+    },
+    "skill_level": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::skill-level.skill-level"
     }
   }
 }
