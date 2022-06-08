@@ -33,6 +33,12 @@
       "relation": "manyToMany",
       "target": "api::glossary-item.glossary-item",
       "inversedBy": "categories"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "category"
     }
   }
 }
