@@ -43,6 +43,9 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "articles"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

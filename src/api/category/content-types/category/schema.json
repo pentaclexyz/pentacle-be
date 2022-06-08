@@ -26,7 +26,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
-      "inversedBy": "categories"
+      "mappedBy": "categories"
     },
     "glossary_items": {
       "type": "relation",
