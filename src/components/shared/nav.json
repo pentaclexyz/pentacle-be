@@ -1,5 +1,5 @@
 {
-  "collectionName": "components_menu_items",
+  "collectionName": "components_shared_nav",
   "info": {
     "displayName": "Shared.nav",
     "icon": "apple-alt",
@@ -7,10 +7,10 @@
   },
   "options": {},
   "attributes": {
-    "title": {
+    "navTitle": {
       "type": "string"
     },
-    "categories": {
+    "navCategories": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category"

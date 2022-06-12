@@ -37,7 +37,7 @@
     "defaultNav": {
       "type": "component",
       "repeatable": true,
-      "component": "shared.items"
+      "component": "shared.nav"
     }
   }
 }
