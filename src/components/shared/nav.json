@@ -10,10 +10,10 @@
     "navTitle": {
       "type": "string"
     },
-    "navCategories": {
+    "section": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::category.category"
+      "relation": "oneToOne",
+      "target": "api::section.section"
     }
   }
 }
