@@ -69,16 +69,22 @@
     "medium_url": {
       "type": "string"
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "projects"
-    },
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
+      "inversedBy": "projects"
+    },
+    "sections": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::section.section",
+      "inversedBy": "projects"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
       "inversedBy": "projects"
     }
   }

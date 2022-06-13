@@ -1,0 +1,14 @@
+{
+  "collectionName": "cexes",
+  "info": {
+    "name": "cex",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false,
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {}
+}

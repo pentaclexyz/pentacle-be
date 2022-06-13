@@ -27,6 +27,12 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "sections"
     }
   }
 }
