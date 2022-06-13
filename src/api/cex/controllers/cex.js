@@ -3,7 +3,7 @@ module.exports = {
   async index(ctx, next) {
     const entries = await strapi.db.query('api::project.project').findMany({
       where: {
-        category: {
+        categories: {
             name: {
               $contains: 'cex'
           },
