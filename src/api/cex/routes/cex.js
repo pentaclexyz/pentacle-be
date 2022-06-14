@@ -2,7 +2,7 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/cex',
+      path: '/section/trading/cex',
       handler: 'cex.index'
     }
   ]
