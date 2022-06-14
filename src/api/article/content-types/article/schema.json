@@ -52,6 +52,12 @@
       "relation": "manyToMany",
       "target": "api::person.person",
       "mappedBy": "articles"
+    },
+    "sections": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::section.section",
+      "inversedBy": "articles"
     }
   }
 }
