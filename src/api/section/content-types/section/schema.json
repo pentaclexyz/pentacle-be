@@ -18,27 +18,25 @@
     "description": {
       "type": "text"
     },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "sections"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name"
-    },
-    "projects": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::project.project",
-      "inversedBy": "sections"
     },
     "articles": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
       "inversedBy": "sections"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
     }
   }
 }

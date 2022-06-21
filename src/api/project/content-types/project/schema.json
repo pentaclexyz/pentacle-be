@@ -75,17 +75,26 @@
       "target": "api::tag.tag",
       "inversedBy": "projects"
     },
-    "sections": {
+    "category": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::section.section",
-      "inversedBy": "projects"
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "section": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::section.section"
+    },
+    "test": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::test.test"
     },
     "categories": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::category.category",
-      "inversedBy": "projects"
+      "mappedBy": "project"
     }
   }
 }

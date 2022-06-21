@@ -4,7 +4,7 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "categories",
+    "displayName": "category",
     "description": ""
   },
   "options": {
@@ -34,17 +34,11 @@
       "target": "api::glossary-item.glossary-item",
       "inversedBy": "categories"
     },
-    "projects": {
+    "project": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::project.project",
-      "mappedBy": "categories"
-    },
-    "sections": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::section.section",
-      "mappedBy": "categories"
+      "inversedBy": "categories"
     }
   }
 }

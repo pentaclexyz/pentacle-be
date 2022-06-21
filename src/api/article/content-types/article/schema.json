@@ -57,7 +57,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::section.section",
-      "inversedBy": "articles"
+      "mappedBy": "articles"
     }
   }
 }
