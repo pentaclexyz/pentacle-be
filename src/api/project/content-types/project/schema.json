@@ -95,6 +95,10 @@
       "relation": "oneToMany",
       "target": "api::category.category",
       "mappedBy": "project"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }
