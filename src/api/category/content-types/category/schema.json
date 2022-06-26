@@ -34,9 +34,9 @@
       "target": "api::glossary-item.glossary-item",
       "inversedBy": "categories"
     },
-    "project": {
+    "projects": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::project.project",
       "inversedBy": "categories"
     },
