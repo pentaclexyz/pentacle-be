@@ -110,7 +110,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::chain.chain",
-      "inversedBy": "projects"
+      "mappedBy": "projects"
     }
   }
 }

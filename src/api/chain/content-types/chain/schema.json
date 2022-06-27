@@ -4,7 +4,8 @@
   "info": {
     "singularName": "chain",
     "pluralName": "chains",
-    "displayName": "Chain"
+    "displayName": "Chain",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,6 +25,16 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
+      "inversedBy": "chains"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
       "inversedBy": "chains"
     }
   }
