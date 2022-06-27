@@ -30,11 +30,15 @@
       "target": "api::project.project",
       "mappedBy": "tags"
     },
-    "glossary_item": {
+    "glossary_items": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::glossary-item.glossary-item",
       "inversedBy": "tags"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }
