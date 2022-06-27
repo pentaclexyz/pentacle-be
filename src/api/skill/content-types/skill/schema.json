@@ -27,11 +27,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::skill-type.skill-type"
-    },
-    "author": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::author.author"
     }
   }
 }
