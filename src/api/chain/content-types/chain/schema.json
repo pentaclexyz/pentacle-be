@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chains",
+  "info": {
+    "singularName": "chain",
+    "pluralName": "chains",
+    "displayName": "Chain"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "ticker": {
+      "type": "string"
+    },
+    "coingecko_id": {
+      "type": "string"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "chains"
+    }
+  }
+}

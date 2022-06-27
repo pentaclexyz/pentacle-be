@@ -105,6 +105,12 @@
       "relation": "manyToMany",
       "target": "api::section.section",
       "inversedBy": "projects"
+    },
+    "chains": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::chain.chain",
+      "inversedBy": "projects"
     }
   }
 }
