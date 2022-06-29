@@ -1,0 +1,62 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "homepage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "trading": {
+      "displayName": "cardLarge",
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "education": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "developer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "resources": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "daos": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "nfts": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "explained": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "skills": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    },
+    "solana": {
+      "type": "component",
+      "repeatable": false,
+      "component": "features.card-large"
+    }
+  }
+}

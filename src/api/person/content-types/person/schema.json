@@ -33,6 +33,21 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "inversedBy": "people"
+    },
+    "github": {
+      "type": "string"
+    },
+    "glossary_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::glossary-item.glossary-item",
+      "inversedBy": "people"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "inversedBy": "people"
     }
   }
 }
