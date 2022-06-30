@@ -4,4 +4,10 @@ module.exports = ({ env }) => ({
   app: {
     keys: env.array("APP_KEYS"),
   },
+  settings: {
+    cache: {
+      enabled: true,
+      maxAge: 300000,
+    },
+  },
 });
