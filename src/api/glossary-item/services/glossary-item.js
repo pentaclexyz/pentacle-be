@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * glossary-item service.
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+const { createCoreService } = require("@strapi/strapi").factories;
 
-module.exports = createCoreService('api::glossary-item.glossary-item');
+module.exports = createCoreService("api::glossary-item.glossary-item");

@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  *  chain controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = createCoreController('api::chain.chain');
+module.exports = createCoreController("api::chain.chain");

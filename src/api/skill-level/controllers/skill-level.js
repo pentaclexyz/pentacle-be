@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  *  skill-level controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = createCoreController('api::skill-level.skill-level');
+module.exports = createCoreController("api::skill-level.skill-level");

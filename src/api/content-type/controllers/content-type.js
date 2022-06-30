@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  *  content-type controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = createCoreController('api::content-type.content-type');
+module.exports = createCoreController("api::content-type.content-type");
