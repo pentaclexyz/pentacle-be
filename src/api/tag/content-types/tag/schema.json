@@ -40,6 +40,12 @@
       "type": "uid",
       "targetField": "name",
       "required": false
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "inversedBy": "tags"
     }
   }
 }

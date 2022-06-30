@@ -16,14 +16,14 @@
     "link": {
       "type": "string"
     },
-    "section": {
+    "sections": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::section.section"
     },
-    "category": {
+    "categories": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::category.category"
     },
     "tags": {
@@ -31,9 +31,9 @@
       "relation": "oneToMany",
       "target": "api::tag.tag"
     },
-    "skill_level": {
+    "skill_levels": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::skill-level.skill-level"
     }
   }

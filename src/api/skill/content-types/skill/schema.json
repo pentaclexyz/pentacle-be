@@ -33,6 +33,12 @@
       "relation": "manyToMany",
       "target": "api::person.person",
       "inversedBy": "skills"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "skills"
     }
   }
 }
