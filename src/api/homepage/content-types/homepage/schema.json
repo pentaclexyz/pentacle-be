@@ -15,7 +15,7 @@
     "homeFeatures": {
       "type": "component",
       "repeatable": true,
-      "component": "features.card-large"
+      "component": "shared.card-large"
     },
     "categories": {
       "type": "relation",
