@@ -4,7 +4,8 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "events"
+    "displayName": "event",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

@@ -45,7 +45,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::skill.skill",
-      "inversedBy": "tags"
+      "mappedBy": "tags"
     }
   }
 }
