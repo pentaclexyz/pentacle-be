@@ -1,3 +1,5 @@
+// @ts-ignore
+
 export default {
   config: {
     locales: [
