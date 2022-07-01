@@ -85,11 +85,6 @@
       "relation": "oneToOne",
       "target": "api::section.section"
     },
-    "test": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::test.test"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name"

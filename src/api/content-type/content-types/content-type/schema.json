@@ -4,7 +4,8 @@
   "info": {
     "singularName": "content-type",
     "pluralName": "content-types",
-    "displayName": "content_types"
+    "displayName": "content_types",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,10 @@
     },
     "description": {
       "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }
