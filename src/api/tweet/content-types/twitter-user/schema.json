@@ -19,10 +19,10 @@
         "type": "string"
       },
       "profile_image_url": {
-        "type": "string"
+        "type": "text"
       },
       "description": {
-        "type": "string"
+        "type": "text"
       },
       "verified": {
         "type": "boolean"

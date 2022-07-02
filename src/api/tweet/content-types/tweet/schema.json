@@ -16,7 +16,7 @@
       "type": "string"
     },
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "created_at": {
       "type": "string"
