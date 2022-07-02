@@ -17,6 +17,7 @@
     "node-fetch": "^3.2.6",
     "pg": "^8.7.3",
     "pg-connection-string": "^2.5.0",
+    "strapi-middleware-cache": "^2.1.7",
     "strapi-plugin-import-export-content": "^0.4.2"
   },
   "author": {
