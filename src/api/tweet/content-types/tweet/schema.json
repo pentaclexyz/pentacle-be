@@ -18,9 +18,6 @@
     "text": {
       "type": "text"
     },
-    "created_at": {
-      "type": "string"
-    },
     "author_id": {
       "type": "string"
     }
