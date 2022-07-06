@@ -16,6 +16,11 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
+    path: "/fave/removeFave",
+    handler: "api::fave.fave.removeFave",
+  },
+  {
+    method: "GET",
     path: "/fave/getByOwner",
     handler: "api::fave.fave.getByOwner",
   },
