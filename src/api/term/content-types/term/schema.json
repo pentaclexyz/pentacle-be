@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "abouts",
+  "collectionName": "terms",
   "info": {
-    "singularName": "about",
-    "pluralName": "abouts",
-    "displayName": "About",
-    "description": ""
+    "singularName": "term",
+    "pluralName": "terms",
+    "displayName": "Terms"
   },
   "options": {
     "draftAndPublish": true
