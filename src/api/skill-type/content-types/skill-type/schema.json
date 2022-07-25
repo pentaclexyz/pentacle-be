@@ -18,6 +18,12 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "inversedBy": "skill_types"
     }
   }
 }

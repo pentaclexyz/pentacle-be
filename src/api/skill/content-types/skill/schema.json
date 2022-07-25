@@ -18,15 +18,17 @@
     "text": {
       "type": "text"
     },
-    "skill_level": {
+    "skill_levels": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::skill-level.skill-level"
+      "relation": "manyToMany",
+      "target": "api::skill-level.skill-level",
+      "inversedBy": "skills"
     },
-    "skill_type": {
+    "skill_types": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::skill-type.skill-type"
+      "relation": "manyToMany",
+      "target": "api::skill-type.skill-type",
+      "inversedBy": "skills"
     },
     "people": {
       "type": "relation",
