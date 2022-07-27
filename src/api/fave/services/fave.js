@@ -14,7 +14,7 @@ module.exports = createCoreService("api::fave.fave", ({ strapi }) => ({
         { filters: { item_id, owner, signature } }
       );
       if (previousFave) {
-        return { sucess: false };
+        return { success: false };
       }
       const data = {
         owner,
@@ -26,7 +26,7 @@ module.exports = createCoreService("api::fave.fave", ({ strapi }) => ({
       });
       return { success: true, data, db_entry };
     }
-    return { sucess: false };
+    return { success: false };
   },
   async removeFave({ owner, item_id, signature }) {
     const signatureOwner = ethers.utils.verifyMessage(item_id, signature);
@@ -45,12 +45,12 @@ module.exports = createCoreService("api::fave.fave", ({ strapi }) => ({
         await strapi.service("api::fave.fave").delete(uuid);
         return { success: true, data };
       }
-      return { sucess: false };
+      return { success: false };
     }
-    return { sucess: false };
+    return { success: false };
   },
   async getByOwner({ owner, signature }) {
-    const msg = "welcome to pentacle";
+    const msg = "Connect your wallet to save items to your favourites";
     const signatureOwner = ethers.utils.verifyMessage(msg, signature);
     if (signatureOwner === owner) {
       const previousFaves = await strapi.entityService.findMany(
@@ -59,6 +59,6 @@ module.exports = createCoreService("api::fave.fave", ({ strapi }) => ({
       );
       return previousFaves;
     }
-    return { sucess: false };
+    return { success: false };
   },
 }));
