@@ -17,12 +17,12 @@
     "@strapi/strapi": "4.1.11",
     "ethers": "^5.6.9",
     "node-fetch": "^3.2.6",
-    "pg": "^8.7.3",
+    "pg": "^8.0.3",
     "pg-connection-string": "^2.5.0",
     "strapi-middleware-cache": "^2.1.7"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "A Strapi developer and Pentacle"
   },
   "strapi": {
     "uuid": "f3becaa1-5693-489f-8f73-9fbef1dc657c"
