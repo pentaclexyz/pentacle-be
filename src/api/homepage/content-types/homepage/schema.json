@@ -16,6 +16,16 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.card-large"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill.skill"
+    },
+    "glossary_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::glossary-item.glossary-item"
     }
   }
 }
