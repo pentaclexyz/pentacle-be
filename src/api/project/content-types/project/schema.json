@@ -106,6 +106,12 @@
       "relation": "manyToMany",
       "target": "api::chain.chain",
       "mappedBy": "projects"
+    },
+    "people": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::person.person",
+      "inversedBy": "projects"
     }
   }
 }
