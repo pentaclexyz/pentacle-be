@@ -33,10 +33,11 @@
       "target": "api::category.category",
       "mappedBy": "glossary_items"
     },
-    "skill_level": {
+    "skill_levels": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::skill-level.skill-level"
+      "relation": "manyToMany",
+      "target": "api::skill-level.skill-level",
+      "inversedBy": "glossary_items"
     },
     "tags": {
       "type": "relation",

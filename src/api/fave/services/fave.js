@@ -50,7 +50,7 @@ module.exports = createCoreService("api::fave.fave", ({ strapi }) => ({
     return { sucess: false };
   },
   async getByOwner({ owner, signature }) {
-    const msg = "welcome to pentacle";
+    const msg = "sign in to save your faves. in beta";
     const signatureOwner = ethers.utils.verifyMessage(msg, signature);
     if (signatureOwner === owner) {
       const previousFaves = await strapi.entityService.findMany(
