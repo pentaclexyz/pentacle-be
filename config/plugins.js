@@ -1,7 +1,4 @@
 module.exports = ({ env }) => ({
-  'import-export-entries': {
-    enabled: true,
-  },
     'users-permissions': {
       config: {
       jwtSecret: env('JWT_SECRET'),
