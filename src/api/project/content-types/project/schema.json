@@ -75,16 +75,6 @@
       "target": "api::tag.tag",
       "inversedBy": "projects"
     },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
-    "section": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::section.section"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name"
