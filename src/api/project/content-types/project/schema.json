@@ -103,17 +103,17 @@
       "target": "api::person.person",
       "inversedBy": "projects"
     },
-    "project_investor": {
+    "has_investor": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "project_invested_in"
+      "inversedBy": "has_investment"
     },
-    "project_invested_in": {
+    "has_investment": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "project_investor"
+      "inversedBy": "has_investor"
     }
   }
 }
