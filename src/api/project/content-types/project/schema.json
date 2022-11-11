@@ -112,6 +112,18 @@
       "relation": "manyToMany",
       "target": "api::person.person",
       "inversedBy": "projects"
+    },
+    "project_investor": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "project_invested_in"
+    },
+    "project_invested_in": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "project_investor"
     }
   }
 }
