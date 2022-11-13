@@ -64,7 +64,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "people"
+      "mappedBy": "people"
     }
   }
 }

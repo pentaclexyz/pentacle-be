@@ -75,16 +75,6 @@
       "target": "api::tag.tag",
       "inversedBy": "projects"
     },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
-    "section": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::section.section"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name"
@@ -112,6 +102,18 @@
       "relation": "manyToMany",
       "target": "api::person.person",
       "inversedBy": "projects"
+    },
+    "has_investor": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "has_investment"
+    },
+    "has_investment": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "has_investor"
     }
   }
 }

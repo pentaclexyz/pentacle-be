@@ -38,7 +38,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "categories"
+      "mappedBy": "categories"
     },
     "sections": {
       "type": "relation",
