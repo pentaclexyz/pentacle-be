@@ -65,6 +65,12 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "mappedBy": "people"
+    },
+    "has_investment": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "has_investor_person"
     }
   }
 }

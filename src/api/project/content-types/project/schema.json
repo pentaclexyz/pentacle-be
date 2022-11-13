@@ -114,6 +114,12 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "inversedBy": "has_investor"
+    },
+    "has_investor_person": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::person.person",
+      "inversedBy": "has_investment"
     }
   }
 }
