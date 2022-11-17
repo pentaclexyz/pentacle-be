@@ -26,6 +26,16 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::glossary-item.glossary-item"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    },
+    "skill_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill-type.skill-type"
     }
   }
 }

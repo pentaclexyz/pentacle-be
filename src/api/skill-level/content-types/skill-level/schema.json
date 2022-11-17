@@ -4,7 +4,7 @@
   "info": {
     "singularName": "skill-level",
     "pluralName": "skill-levels",
-    "displayName": "skill_levels",
+    "displayName": "skill_level",
     "description": ""
   },
   "options": {
@@ -29,6 +29,18 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::glossary-item.glossary-item",
+      "inversedBy": "skill_levels"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "skill_levels"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
       "inversedBy": "skill_levels"
     }
   }

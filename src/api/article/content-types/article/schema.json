@@ -64,6 +64,12 @@
       "relation": "manyToMany",
       "target": "api::chain.chain",
       "inversedBy": "articles"
+    },
+    "skill_levels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill-level.skill-level",
+      "inversedBy": "articles"
     }
   }
 }

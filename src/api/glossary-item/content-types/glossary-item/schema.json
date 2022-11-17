@@ -37,7 +37,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::skill-level.skill-level",
-      "inversedBy": "glossary_items"
+      "mappedBy": "glossary_items"
     },
     "tags": {
       "type": "relation",
@@ -54,6 +54,12 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "skill_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill-type.skill-type",
+      "inversedBy": "glossary_items"
     }
   }
 }
