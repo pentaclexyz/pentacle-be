@@ -10,12 +10,22 @@ const qs = require("qs");
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
-  async process({ req, res, params }) {
-    const tweet_id = params.id;
-    const { tweet, author } = await strapi
-      .service("api::tweet.tweet")
-      .process({ tweet_id });
+  async getPinnedTweetId({ params }) {
+    const username = params.id;
 
-    return { tweet, author };
+    const data = await strapi
+      .service("api::tweet.tweet")
+      .getPinnedTweetIdByUsername(username);
+
+    return data;
+  },
+  async getProfileImage({ params }) {
+    const username = params.id;
+
+    const data = await strapi
+      .service("api::tweet.tweet")
+      .getProfileImageByUsername(username);
+
+    return data;
   },
 }));

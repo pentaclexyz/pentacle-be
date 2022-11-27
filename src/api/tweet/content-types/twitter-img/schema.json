@@ -1,0 +1,26 @@
+{
+    "kind": "collectionType",
+    "collectionName": "twitter-imgs",
+    "info": {
+      "singularName": "twitter-img",
+      "pluralName": "twitter-imgs",
+      "displayName": "twitter-img",
+      "description": "Opengraph twitter-img like twitter-imgs"
+    },
+    "options": {
+      "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+      "url": {
+        "type": "string"
+      },
+      "twitter_user_id": {
+        "type": "string"
+      },
+      "twitter_handle": {
+        "type": "string"
+      }
+    }
+  }
+  

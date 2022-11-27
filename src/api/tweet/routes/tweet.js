@@ -11,8 +11,19 @@ const { customRouter } = require("../../../util/custom-router");
 const myExtraRoutes = [
   {
     method: "GET",
-    path: "/tweet/process/:id",
-    handler: "api::tweet.tweet.process",
+    path: "/tweet/pinned_id/:id",
+    handler: "api::tweet.tweet.getPinnedTweetId",
+    config: {
+      auth: false,
+    }
+  },
+  {
+    method: "GET",
+    path: "/tweet/profile_image/:id",
+    handler: "api::tweet.tweet.getProfileImage",
+    config: {
+      auth: false,
+    }
   },
 ];
 

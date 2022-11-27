@@ -8,105 +8,66 @@ const { createCoreService } = require("@strapi/strapi").factories;
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const authorParams = qs.stringify({
-  "user.fields": "name,profile_image_url,description",
+const query = qs.stringify({
+  "user.fields": "profile_image_url",
+  expansions: "pinned_tweet_id",
 });
 
 module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
-  async process({ tweet_id }) {
-    const [previousTweet] = await strapi.entityService.findMany(
-      "api::tweet.tweet",
-      { filters: { tweet_id } }
-    );
-
-    if (previousTweet) {
-      const [previousAuthor] = await strapi.entityService.findMany(
-        "api::tweet.twitter-user",
-        { filters: { twitter_user_id: previousTweet.author_id } }
-      );
-      if (previousAuthor) {
-        return { tweet: previousTweet, author: previousAuthor };
-      } else {
-        const tweetParams = qs.stringify({
-          ids: tweet_id,
-          //   expansions: "attachments.media_keys",
-          "tweet.fields": "created_at,author_id",
-        });
-        const { data } = await fetch(
-          "https://api.twitter.com/2/tweets?" + tweetParams.toString(),
-          { headers: { Authorization: `Bearer ${process.env.TWITTER_BEARER}` } }
-        ).then((res) => res.json());
-        const [{ id: _tweet_id, ...tweetResult }] = data;
-        const author_id = tweetResult.author_id;
-        const res = await fetch(
-          `https://api.twitter.com/2/users/${author_id}?${authorParams.toString()}` +
-            {
-              headers: {
-                Authorization: `Bearer ${process.env.TWITTER_BEARER}`,
-              },
-            }
-        ).then((res) => res.json());
-        const  {
-          data: { id: authorId, ...authorResult },
-        }= res;
-
-        const updatedAuthor = {
-          twitter_user_id: `${author_id}`,
-          ...authorResult,
-        };
-        await strapi
-          .service("api::tweet.twitter-user")
-          .create({ data: updatedAuthor });
-        return { tweet: previousTweet, author: updatedAuthor };
-      }
-    }
-
-    const tweetParams = qs.stringify({
-      ids: tweet_id,
-      //   expansions: "attachments.media_keys",
-      "tweet.fields": "created_at,author_id",
-    });
+  async getUserTwitterInfo(username) {
     const { data } = await fetch(
-      "https://api.twitter.com/2/tweets?" + tweetParams.toString(),
-      { headers: { Authorization: `Bearer ${process.env.TWITTER_BEARER}` } }
+      `https://api.twitter.com/2/users/by?usernames=${username}&${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
+        },
+      }
     ).then((res) => res.json());
-    const [{ id: _tweet_id, ...tweetResult }] = data;
-    const author_id = tweetResult.author_id;
 
-    const [previousAuthor] = await strapi.entityService.findMany(
-      "api::tweet.twitter-user",
-      { filters: { twitter_user_id: author_id } }
-    );
-    const updatedTweet = {
-      ...tweetResult,
-      tweet_id: `${tweet_id}`,
-      twitter_user_id: `${author_id}`,
-    };
+    return data;
+  },
 
-    await strapi.service("api::tweet.tweet").create({ data: updatedTweet });
+  async getPinnedTweetIdByUsername(userName) {
+    const twitterInfo = await this.getUserTwitterInfo(userName);
+    const pinnedTweetId = twitterInfo[0].pinned_tweet_id;
 
-    if (previousAuthor) {
-      return { author: previousAuthor, updatedTweet };
+    if (!pinnedTweetId) return null;
+
+    return pinnedTweetId;
+  },
+  async getProfileImageByUsername(userName) {
+    try {
+      const previousImg = (
+        await strapi
+          .service("api::tweet.twitter-img")
+          .find({ filters: { twitter_handle: userName } })
+      ).results;
+      if (!previousImg[0]?.url) {
+        const twitterInfo = await this.getUserTwitterInfo(userName);
+        if (!twitterInfo || !twitterInfo[0]) {
+          console.log(`could not fetch for ${userName}`);
+          return { avatar: "" };
+        }
+        const profileImageUrl = twitterInfo[0].profile_image_url;
+
+        if (!profileImageUrl) return null;
+
+        await strapi.entityService.create("api::tweet.twitter-img", {
+          data: {
+            url: twitterInfo[0].profile_image_url.replace("_normal", "_bigger"),
+            twitter_user_id: twitterInfo[0].id,
+            twitter_handle: userName,
+          },
+        });
+
+        return { avatar: profileImageUrl };
+      } else {
+        return { avatar: previousImg[0].url };
+      }
+    } catch (e) {
+      console.log(`could not fetch for ${userName}`);
+      console.log(e);
+      return { avatar: "" };
     }
-    const {
-      data: { id: _authorId, ...authorResult },
-    } = await fetch(
-      "https://api.twitter.com/2/users/" +
-        author_id +
-        "?" +
-        authorParams.toString(),
-      { headers: { Authorization: `Bearer ${process.env.TWITTER_BEARER}` } }
-    ).then((res) => res.json());
-
-    const updatedAuthor = { twitter_user_id: `${author_id}`, ...authorResult };
-
-    await strapi
-      .service("api::tweet.twitter-user")
-      .create({ data: updatedAuthor });
-
-    return {
-      author: updatedAuthor,
-      tweet: updatedTweet,
-    };
   },
 }));
