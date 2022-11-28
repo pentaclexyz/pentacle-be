@@ -41,6 +41,11 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.card-large"
+    },
+    "skill_levels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill-level.skill-level"
     }
   }
 }
