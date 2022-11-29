@@ -27,6 +27,38 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     return data;
   },
 
+  async getTwitterBanner(username) {
+    const previousEntry = await strapi
+      .service("api::tweet.twitter-banner")
+      .find({ filters: { twitter_handle: username } });
+
+
+    if (!previousEntry?.results[0]?.profile_banner_url) {
+      const { profile_banner_url } = await fetch(
+        `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
+          },
+        }
+      ).then((res) => {
+        console.log(`API returned :${res.status}: ${res.statusText}`);
+        return res.json();
+      });
+      await strapi.entityService.create("api::tweet.twitter-banner", {
+        data: {
+          profile_banner_url,
+          twitter_handle: username,
+        },
+      });
+      return { profile_banner_url };
+    } else {
+      return {
+        profile_banner_url: previousEntry.results[0].profile_banner_url || null,
+      };
+    }
+  },
+
   async getPinnedTweetIdByUsername(userName) {
     const twitterInfo = await this.getUserTwitterInfo(userName);
     const pinnedTweetId = twitterInfo[0].pinned_tweet_id;

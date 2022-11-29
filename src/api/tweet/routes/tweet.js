@@ -25,6 +25,14 @@ const myExtraRoutes = [
       auth: false,
     }
   },
+  {
+    method: "GET",
+    path: "/tweet/twitter_banner/:id",
+    handler: "api::tweet.tweet.getTwitterBanner",
+    config: {
+      auth: false,
+    }
+  }
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);

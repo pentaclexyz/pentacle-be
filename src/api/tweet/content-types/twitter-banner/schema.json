@@ -1,0 +1,23 @@
+{
+    "kind": "collectionType",
+    "collectionName": "twitter-banners",
+    "info": {
+      "singularName": "twitter-banner",
+      "pluralName": "twitter-banners",
+      "displayName": "twitter-banner",
+      "description": "Opengraph twitter-banner like twitter-banners"
+    },
+    "options": {
+      "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+      "twitter_handle": {
+        "type": "string"
+      },
+      "profile_banner_url": {
+        "type": "string"
+      }
+    }
+  }
+  

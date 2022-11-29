@@ -28,4 +28,13 @@ module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
 
     return data;
   },
+  async getTwitterBanner({ params }) {
+    const username = params.id;
+
+    const data = await strapi
+      .service("api::tweet.tweet")
+      .getTwitterBanner(username);
+
+    return data;
+  },
 }));
