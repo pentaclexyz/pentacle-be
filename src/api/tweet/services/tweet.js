@@ -10,7 +10,6 @@ const fetch = (...args) =>
 
 const query = qs.stringify({
   "user.fields": "profile_image_url",
-  expansions: "pinned_tweet_id",
 });
 
 module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
@@ -22,7 +21,10 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
           Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
         },
       }
-    ).then((res) => res.json());
+    ).then((res) => {
+      console.log(`request to twitter API, status: ${res.status}: ${res.statusText}`)
+      return res.json()
+    });
 
     return data;
   },
@@ -61,11 +63,14 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
 
   async getPinnedTweetIdByUsername(userName) {
     const twitterInfo = await this.getUserTwitterInfo(userName);
+
+    if (!twitterInfo) return { pinnedTweetId: '' };
+
     const pinnedTweetId = twitterInfo[0].pinned_tweet_id;
 
-    if (!pinnedTweetId) return null;
+    if (!pinnedTweetId) return { pinnedTweetId: '' };
 
-    return pinnedTweetId;
+    return { pinnedTweetId };
   },
   async getProfileImageByUsername(userName) {
     try {

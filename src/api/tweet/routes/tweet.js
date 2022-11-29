@@ -12,7 +12,7 @@ const myExtraRoutes = [
   {
     method: "GET",
     path: "/tweet/pinned_id/:id",
-    handler: "api::tweet.tweet.getPinnedTweetId",
+    handler: "api::tweet.pinned-tweet.getPinnedTweetId",
     config: {
       auth: false,
     }
