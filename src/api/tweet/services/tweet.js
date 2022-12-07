@@ -32,7 +32,6 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       .service("api::tweet.twitter-banner")
       .find({ filters: { twitter_handle: username } });
 
-
     if (!previousEntry?.results[0]?.profile_banner_url) {
       const { profile_banner_url } = await fetch(
         `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
@@ -94,6 +93,32 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
 
         return { avatar: profileImageUrl };
       } else {
+        const res = await fetch(previousImg[0].url, { method: "HEAD" });
+        if (res.status !== 200) {
+          const twitterInfo = await this.getUserTwitterInfo(userName);
+          if (!twitterInfo || !twitterInfo[0]) {
+            console.log(`could not fetch for ${userName}`);
+            return { avatar: "" };
+          }
+          const profileImageUrl = twitterInfo[0].profile_image_url.replace(
+            "_normal",
+            "_bigger"
+          );
+ 
+          await strapi.entityService.update(
+            "api::tweet.twitter-img",
+            previousImg[0].id,
+            {
+              data: {
+                url: profileImageUrl,
+                twitter_user_id: twitterInfo[0].id,
+                twitter_handle: userName,
+              },
+            }
+          );
+
+          return { avatar: profileImageUrl };
+        }
         return { avatar: previousImg[0].url };
       }
     } catch (e) {
