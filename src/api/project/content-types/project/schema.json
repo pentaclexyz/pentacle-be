@@ -126,6 +126,18 @@
       "relation": "manyToMany",
       "target": "api::skill-level.skill-level",
       "inversedBy": "projects"
+    },
+    "governance_url": {
+      "type": "string"
+    },
+    "jobs_url": {
+      "type": "string"
+    },
+    "defisafety_id": {
+      "type": "string"
+    },
+    "llama_id": {
+      "type": "string"
     }
   }
 }
