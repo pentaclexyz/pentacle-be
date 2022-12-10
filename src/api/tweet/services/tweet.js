@@ -52,28 +52,6 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       });
       return { profile_banner_url };
     } else {
-       const res = await fetch(previousEntry.results[0].profile_banner_url, { method: "HEAD" });
-        if (res.status !== 200) {
-          const { profile_banner_url } = await fetch(
-            `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
-            {
-              headers: {
-                Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
-              },
-            }
-          ).then((res) => {
-            console.log(`API returned :${res.status}: ${res.statusText}`);
-            return res.json();
-          });
-
-          await strapi.entityService.update("api::tweet.twitter-banner", previousEntry[0].id ,{
-            data: {
-              profile_banner_url,
-              twitter_handle: username,
-            },
-          });
-          return { profile_banner_url };
-        }
       return {
         profile_banner_url: previousEntry.results[0].profile_banner_url || null,
       };
