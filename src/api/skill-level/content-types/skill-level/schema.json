@@ -35,7 +35,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "mappedBy": "skill_levels"
+      "inversedBy": "skill_levels"
     },
     "articles": {
       "type": "relation",
