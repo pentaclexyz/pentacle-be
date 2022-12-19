@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "governance-proposals",
+  "info": {
+    "singularName": "governance-proposal",
+    "pluralName": "governance-proposals",
+    "displayName": "governance-proposal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "end_date": {
+      "type": "string"
+    },
+    "governance_url": {
+      "type": "string"
+    },
+    "snapshot_id": {
+      "type": "string"
+    }
+  }
+}
