@@ -63,7 +63,7 @@ module.exports = createCoreService(
       return data.proposals;
     },
     async refreshData() {
-      console.log(`Starting gov data refresh!`)
+      console.log(`Starting gov data refresh!`);
       const found = (
         await strapi
           .service("api::project.project")
@@ -85,10 +85,12 @@ module.exports = createCoreService(
 
           if (!previousEntries.length) {
             console.log(`creating ${proposal.id}`);
+            const { id, ...otherProps } = proposal;
             await strapi.entityService.create(
               "api::governance-proposal.governance-proposal",
               {
                 data: {
+                  ...otherProps,
                   governance_url: proposal.space.id,
                   title: proposal.title,
                   end_date: `${proposal.end}`,
@@ -99,11 +101,13 @@ module.exports = createCoreService(
             );
           } else {
             console.log(`updating ${proposal.id}`);
+            const { id, ...otherProps } = proposal;
             await strapi.entityService.update(
               "api::governance-proposal.governance-proposal",
               previousEntries[0].id,
               {
                 data: {
+                  ...otherProps,
                   governance_url: proposal.space.id,
                   title: proposal.title,
                   end_date: `${proposal.end}`,
@@ -115,7 +119,7 @@ module.exports = createCoreService(
           }
         }
       }
-      console.log(`Done doing gov data refresh!`)
+      console.log(`Done doing gov data refresh!`);
       return { success: true };
     },
     async getOrderedByEndDate() {
@@ -124,8 +128,9 @@ module.exports = createCoreService(
       const previousEntries = await strapi.db
         .query("api::governance-proposal.governance-proposal")
         .findMany();
+
       const ordered = previousEntries.sort(
-        (a, b) => distance(+a.end_date, now) - distance(+b.end_date, now)
+        (a, b) => distance(a.end, now) - distance(b.end, now)
       );
       const ret = [];
       ordered.forEach((item) => {

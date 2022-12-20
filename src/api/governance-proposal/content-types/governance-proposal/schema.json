@@ -18,11 +18,26 @@
     "state": {
       "type": "string"
     },
-    "end_date": {
-      "type": "string"
+    "end": {
+      "type": "integer"
+    },
+    "start": {
+      "type": "integer"
     },
     "governance_url": {
       "type": "string"
+    },
+    "choices": {
+      "type": "json"
+    },
+    "scores": {
+      "type": "json"
+    },
+    "scores_total": {
+      "type": "float"
+    },
+    "body": {
+      "type": "text"
     },
     "snapshot_id": {
       "type": "string"
