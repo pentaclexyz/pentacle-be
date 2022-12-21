@@ -2305,6 +2305,17 @@
     lodash "4.17.21"
     yup "0.32.9"
 
+"@strapi/utils@^4.5.2":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.5.4.tgz#f601fb0d1feee8882a91eb90265137ce0614fa63"
+  integrity sha512-LtARhACDp//kJ5My+oQeuFYOCdtxP8BMwVHlqEf1jdT6GnAbqNNCrN85nevZ1mJuZ5BCkQjlwb1wWLGn2GHdDQ==
+  dependencies:
+    "@sindresorhus/slugify" "1.1.0"
+    date-fns "2.29.2"
+    http-errors "1.8.1"
+    lodash "4.17.21"
+    yup "0.32.9"
+
 "@szmarczak/http-timer@^4.0.5":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-4.0.6.tgz#b4a914bb62e7c272d4e5989fe4440f812ab1d807"
@@ -4140,6 +4151,13 @@ cross-env@^7.0.3:
   integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
   dependencies:
     cross-spawn "^7.0.1"
+
+cross-fetch@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
+  integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
+  dependencies:
+    node-fetch "2.6.7"
 
 cross-spawn@^6.0.0:
   version "6.0.5"
@@ -7382,6 +7400,13 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==
 
+meilisearch@^0.30.0:
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.30.0.tgz#707f9a6b07440c496b965379616e084f112160ae"
+  integrity sha512-3y1hALOwTDpquYar+gDREqRasFPWKxkWAhk6h+RF+nKObPVf9N77wcTNvukGwOKbxRyJnKge0OPgAB1BkB9VVw==
+  dependencies:
+    cross-fetch "^3.1.5"
+
 memfs@^3.4.1, memfs@^3.4.3:
   version "3.4.11"
   resolved "https://registry.yarnpkg.com/memfs/-/memfs-3.4.11.tgz#3a34837ade675825d805a2c135e88cefe5e53aaf"
@@ -9945,6 +9970,14 @@ strapi-plugin-import-export-entries@^1.16.1:
     monaco-editor "0.33.0"
     monaco-editor-webpack-plugin "7.0.1"
     react-singleton-hook "3.3.0"
+
+strapi-plugin-meilisearch@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-meilisearch/-/strapi-plugin-meilisearch-0.8.2.tgz#5e76765bffcdf1427d348744d4c0c44f22ee0869"
+  integrity sha512-UMEtV7CcNmX0sC/4wgM04/szPDeEtI7CAERFNvxN3mpJpLXqm+UxyVAtboXQUqgONg6WndyY+isNCFeJ4iiaig==
+  dependencies:
+    "@strapi/utils" "^4.5.2"
+    meilisearch "^0.30.0"
 
 stream-browserify@^3.0.0:
   version "3.0.0"

@@ -21,7 +21,8 @@
     "pg": "^8.4.0",
     "pg-connection-string": "^2.5.0",
     "strapi-middleware-cache": "^2.1.7",
-    "strapi-plugin-import-export-entries": "^1.16.1"
+    "strapi-plugin-import-export-entries": "^1.16.1",
+    "strapi-plugin-meilisearch": "^0.8.2"
   },
   "author": {
     "name": "A Strapi developer and Pentacle"
