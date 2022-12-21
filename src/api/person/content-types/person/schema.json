@@ -71,6 +71,12 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "inversedBy": "has_investor_person"
+    },
+    "subject_expert_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subject-expert-type.subject-expert-type",
+      "inversedBy": "people"
     }
   }
 }

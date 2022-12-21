@@ -153,6 +153,12 @@
     },
     "contributors_url": {
       "type": "string"
+    },
+    "treasury_wallets": {
+      "displayName": "treasury_wallet",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.treasury-wallet"
     }
   }
 }

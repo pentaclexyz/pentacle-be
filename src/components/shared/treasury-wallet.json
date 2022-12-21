@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_treasury_wallets",
+  "info": {
+    "displayName": "treasury_wallet",
+    "icon": "apple-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "wallet_address": {
+      "type": "string"
+    }
+  }
+}
