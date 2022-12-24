@@ -3,6 +3,9 @@ module.exports = {
         await strapi
             .service("api::governance-proposal.governance-proposal")
             .refreshData();
-    },
+        await strapi
+            .service("api::treasury-account.treasury-account")
+            .refreshData();
+    }
   };
    

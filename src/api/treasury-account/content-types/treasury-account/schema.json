@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "treasury-accounts",
+  "info": {
+    "singularName": "treasury-account",
+    "pluralName": "treasury-accounts",
+    "displayName": "treasury-account",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "wallet_address": {
+      "type": "string"
+    },
+    "data": {
+      "type": "json"
+    }
+  }
+}
