@@ -58,7 +58,8 @@ module.exports = createCoreService(
         "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72", // ENS
         "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32", // LDO
         "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84", // stETH
-        
+        "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984", // UNI
+
       ];
       // Get token balances
       const balances = await alchemy.core.getTokenBalances(
