@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_audits",
+  "info": {
+    "displayName": "audits",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "auditor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    },
+    "audit_url": {
+      "type": "string"
+    }
+  }
+}
