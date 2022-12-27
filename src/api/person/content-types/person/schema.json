@@ -70,7 +70,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "mappedBy": "has_investor_person"
+      "inversedBy": "has_investor_person"
     },
     "subject_expert_types": {
       "type": "relation",
