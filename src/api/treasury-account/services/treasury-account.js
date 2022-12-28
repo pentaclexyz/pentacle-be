@@ -63,7 +63,6 @@ module.exports = createCoreService(
         /* yvCurve-3pool */ "0x84E13785B5a27879921D6F685f041421C7F482dA",
         /* yvCurve-YFIETH */ "0x790a60024bC3aea28385b60480f15a0771f26D09",
         /* yvUSDC */ "0xa354F35829Ae975e850e23e9615b11Da1B3dC4DE",
-
       ];
       // Get token balances
       const balances = await alchemy.core.getTokenBalances(
