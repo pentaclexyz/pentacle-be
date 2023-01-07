@@ -37,7 +37,7 @@
       "relation": "oneToMany",
       "target": "api::skill-type.skill-type"
     },
-    "homeProjects": {
+    "homeCollections": {
       "type": "component",
       "repeatable": true,
       "component": "shared.card-large"

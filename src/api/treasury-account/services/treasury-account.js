@@ -117,6 +117,17 @@ module.exports = createCoreService(
         "0x790a60024bC3aea28385b60480f15a0771f26D09",
         "0xa354F35829Ae975e850e23e9615b11Da1B3dC4DE",
         "0xb9ef770b6a5e12e45983c5d80545258aa38f3b78",
+        "0x6399c842dd2be3de30bf99bc7d1bbf6fa3650e70",
+        "0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0",
+        "0x875773784Af8135eA0ef43b5a374AaD105c5D39e",
+        "0x73968b9a57c6e53d41345fd57a6e6ae27d6cdb2f",
+        "0x62b9c7356a2dc64a1969e19c23e4f579f9810aa7",
+        "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+        "0x2e9d63788249371f1dfc918a52f8d799f4a38c94",
+        "0x99d8a9c45b2eca8864373a26d1459e3dff1e17f3",
+        "0x0100546f2cd4c9d97f798ffc9755e47865ff7ee6",
+        "0x090185f2135308bad17527004364ebcc2d37e5f6",
+        "0x5afe3855358e112b5647b952709e6165e1c1eeee",
       ];
       // Get token balances
       const balances = await alchemy.core.getTokenBalances(
