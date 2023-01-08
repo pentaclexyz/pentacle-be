@@ -186,6 +186,42 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "inversedBy": "has_audited"
+    },
+    "risk_manager_for": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "risk_managed_by"
+    },
+    "risk_managed_by": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "risk_manager_for"
+    },
+    "powers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "powered_by"
+    },
+    "powered_by": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "powers"
+    },
+    "child_projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "parent_projects"
+    },
+    "parent_projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "child_projects"
     }
   }
 }
