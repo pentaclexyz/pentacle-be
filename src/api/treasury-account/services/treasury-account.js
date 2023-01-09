@@ -128,6 +128,8 @@ module.exports = createCoreService(
         "0x0100546f2cd4c9d97f798ffc9755e47865ff7ee6",
         "0x090185f2135308bad17527004364ebcc2d37e5f6",
         "0x5afe3855358e112b5647b952709e6165e1c1eeee",
+        "0x4691937a7508860f876c9c0a2a617e7d9e945d4b", // woo
+        "0x72377f31e30a405282b522d588aebbea202b4f23", // varen
       ];
       // Get token balances
       const balances = await alchemy.core.getTokenBalances(
