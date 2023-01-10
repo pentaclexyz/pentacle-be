@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_project_risk_urls",
+  "info": {
+    "displayName": "risk_urls",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "risk_url": {
+      "type": "string"
+    }
+  }
+}

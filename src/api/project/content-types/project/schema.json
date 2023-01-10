@@ -222,6 +222,12 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "inversedBy": "child_projects"
+    },
+    "risk_urls": {
+      "displayName": "risk_urls",
+      "type": "component",
+      "repeatable": true,
+      "component": "project.risk-urls"
     }
   }
 }
