@@ -25,5 +25,14 @@ module.exports = createCoreController(
 
       return data;
     },
+    async resolveEns({ params }) {
+      const { wallet_address } = params;
+
+      const data = await strapi
+        .service("api::treasury-account.treasury-account")
+        .resolveEns(wallet_address);
+
+      return data;
+    },
   })
 );

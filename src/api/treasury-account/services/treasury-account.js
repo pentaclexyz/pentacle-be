@@ -27,6 +27,16 @@ module.exports = createCoreService(
 
       return previousEntries;
     },
+    async resolveEns(wallet_address) {
+      const ensContractAddress = "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85";
+      const nfts = await alchemy.nft.getNftsForOwner(wallet_address, {
+        contractAddresses: [ensContractAddress],
+      });
+      if (nfts.ownedNfts.length) {
+        return nfts.ownedNfts[0];
+      }
+      return {}
+    },
     async fetchDataForAddress(wallet_address) {
       const contracts = [
         // see treasury tokens sheet for contract names

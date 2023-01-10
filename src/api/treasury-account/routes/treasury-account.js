@@ -23,6 +23,14 @@ const myExtraRoutes = [
     config: {
       auth: false,
     }
+  },
+  {
+    method: "GET",
+    path: "/treasury-account/resolve-ens/:wallet_address",
+    handler: "api::treasury-account.treasury-account.resolveEns",
+    config: {
+      auth: false,
+    }
   }
 ];
 
