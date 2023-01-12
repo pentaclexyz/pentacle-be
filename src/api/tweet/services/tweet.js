@@ -8,14 +8,24 @@ const { createCoreService } = require("@strapi/strapi").factories;
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const query = qs.stringify({
-  "user.fields": "profile_image_url",
-  expansions: "pinned_tweet_id",
-});
+function sliceIntoChunks(arr, chunkSize) {
+  const res = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    res.push(chunk);
+  }
+  return res;
+}
+
+const getHandleFromTwitterUrl = (str = "") =>
+  (str || "")
+    .replace("https://twitter.com/", "")
+    .replace("http://twitter.com/", "")
+    .replace("https://www.twitter.com/", "");
 
 module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
-  async getUserTwitterInfo(username) {
-    const { data } = await fetch(
+  async getUserTwitterInfo(username, query) {
+    const { data, errors } = await fetch(
       `https://api.twitter.com/2/users/by?usernames=${username}&${query}`,
       {
         headers: {
@@ -23,6 +33,10 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
         },
       }
     ).then((res) => res.json());
+
+    if (errors) {
+      console.error(errors);
+    }
 
     return data;
   },
@@ -52,28 +66,34 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       });
       return { profile_banner_url };
     } else {
-       const res = await fetch(previousEntry.results[0].profile_banner_url, { method: "HEAD" });
-        if (res.status !== 200) {
-          const { profile_banner_url } = await fetch(
-            `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
-            {
-              headers: {
-                Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
-              },
-            }
-          ).then((res) => {
-            console.log(`API returned :${res.status}: ${res.statusText}`);
-            return res.json();
-          });
+      const res = await fetch(previousEntry.results[0].profile_banner_url, {
+        method: "HEAD",
+      });
+      if (res.status !== 200) {
+        const { profile_banner_url } = await fetch(
+          `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
+            },
+          }
+        ).then((res) => {
+          console.log(`API returned :${res.status}: ${res.statusText}`);
+          return res.json();
+        });
 
-          await strapi.entityService.update("api::tweet.twitter-banner", previousEntry.results[0].id ,{
+        await strapi.entityService.update(
+          "api::tweet.twitter-banner",
+          previousEntry.results[0].id,
+          {
             data: {
               profile_banner_url,
               twitter_handle: username,
             },
-          });
-          return { profile_banner_url };
-        }
+          }
+        );
+        return { profile_banner_url };
+      }
       return {
         profile_banner_url: previousEntry.results[0].profile_banner_url || null,
       };
@@ -81,72 +101,98 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
   },
 
   async getPinnedTweetIdByUsername(userName) {
-    const twitterInfo = await this.getUserTwitterInfo(userName);
+    const query = qs.stringify({
+      expansions: "pinned_tweet_id",
+    });
+    const twitterInfo = await this.getUserTwitterInfo(userName, query);
     const pinnedTweetId = twitterInfo[0].pinned_tweet_id;
 
     if (!pinnedTweetId) return null;
 
     return pinnedTweetId;
   },
-  async getProfileImageByUsername(userName) {
-    try {
-      const previousImg = (
-        await strapi
-          .service("api::tweet.twitter-img")
-          .find({ filters: { twitter_handle: userName } })
-      ).results;
-      if (!previousImg[0]?.url) {
-        const twitterInfo = await this.getUserTwitterInfo(userName);
-        if (!twitterInfo || !twitterInfo[0]) {
-          console.log(`could not fetch for ${userName}`);
-          return { avatar: "" };
-        }
-        const profileImageUrl = twitterInfo[0].profile_image_url;
+  async getAndSetAllImages() {
+    const projects = await strapi.db.query("api::project.project").findMany();
+    const people = await strapi.db.query("api::person.person").findMany();
+    const chunkedProjects = sliceIntoChunks(projects, 100);
+    const chunkedPeople = sliceIntoChunks(people, 100);
+    for (const chunk of chunkedProjects) {
+      // console.log(`fetching twitter pfp for ${project.name}`);
+      const names = chunk
+        .map((item) =>
+          getHandleFromTwitterUrl(item.twitter_url).replaceAll("/", "")
+        )
+        .filter((d) => d)
+        .join(",");
+      console.log(names);
 
-        if (!profileImageUrl) return null;
+      const query = qs.stringify({
+        "user.fields": "profile_image_url",
+      });
+      const twitterInfos = await this.getUserTwitterInfo(names, query);
 
-        await strapi.entityService.create("api::tweet.twitter-img", {
-          data: {
-            url: twitterInfo[0].profile_image_url.replace("_normal", "_bigger"),
-            twitter_user_id: twitterInfo[0].id,
-            twitter_handle: userName,
-          },
-        });
+      for (const info of twitterInfos) {
+        const projects = (
+          await strapi.service("api::project.project").find({
+            filters: { twitter_url: `https://twitter.com/${info.username}` },
+          })
+        ).results;
 
-        return { avatar: profileImageUrl };
-      } else {
-        const res = await fetch(previousImg[0].url, { method: "HEAD" });
-        if (res.status !== 200) {
-          const twitterInfo = await this.getUserTwitterInfo(userName);
-          if (!twitterInfo || !twitterInfo[0]) {
-            console.log(`could not fetch for ${userName}`);
-            return { avatar: "" };
-          }
-          const profileImageUrl = twitterInfo[0].profile_image_url.replace(
+        for (const project of projects) {
+          const profileImageUrl = info.profile_image_url.replace(
             "_normal",
             "_bigger"
           );
- 
+
           await strapi.entityService.update(
-            "api::tweet.twitter-img",
-            previousImg[0].id,
+            "api::project.project",
+            project.id,
             {
               data: {
-                url: profileImageUrl,
-                twitter_user_id: twitterInfo[0].id,
-                twitter_handle: userName,
+                ...project,
+                avatar: profileImageUrl,
               },
             }
           );
-
-          return { avatar: profileImageUrl };
         }
-        return { avatar: previousImg[0].url };
       }
-    } catch (e) {
-      console.log(`could not fetch for ${userName}`);
-      console.log(e);
-      return { avatar: "" };
+    }
+    for (const chunk of chunkedPeople) {
+      // console.log(`fetching twitter pfp for ${project.name}`);
+      const names = chunk
+        .map((item) =>
+          getHandleFromTwitterUrl(item.twitter).replaceAll("/", "")
+        )
+        .filter((d) => d)
+        .join(",");
+
+      const query = qs.stringify({
+        "user.fields": "profile_image_url",
+      });
+      // await this.getProfileImageByUsername(names);
+      const twitterInfos = await this.getUserTwitterInfo(names, query);
+
+      for (const info of twitterInfos) {
+        const people = (
+          await strapi.service("api::person.person").find({
+            filters: { twitter: `https://twitter.com/${info.username}` },
+          })
+        ).results;
+
+        for (const person of people) {
+          const profileImageUrl = info.profile_image_url.replace(
+            "_normal",
+            "_bigger"
+          );
+
+          await strapi.entityService.update("api::person.person", person.id, {
+            data: {
+              ...person,
+              avatar: profileImageUrl,
+            },
+          });
+        }
+      }
     }
   },
 }));
