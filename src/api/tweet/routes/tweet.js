@@ -19,16 +19,16 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
-    path: "/tweet/twitter_banner/:id",
-    handler: "api::tweet.tweet.getTwitterBanner",
+    path: "/tweet/profile_image/:id",
+    handler: "api::tweet.tweet.getProfileImage",
     config: {
       auth: false,
     }
   },
   {
     method: "GET",
-    path: "/tweet/get-and-set-all-images",
-    handler: "api::tweet.tweet.getAndSetAllImages",
+    path: "/tweet/twitter_banner/:id",
+    handler: "api::tweet.tweet.getTwitterBanner",
     config: {
       auth: false,
     }
