@@ -25,7 +25,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::person.person",
-      "inversedBy": "subject_expert_types"
+      "mappedBy": "subject_expert_types"
     }
   }
 }

@@ -116,7 +116,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::person.person",
-      "inversedBy": "has_investment"
+      "mappedBy": "has_investment"
     },
     "skill_levels": {
       "type": "relation",

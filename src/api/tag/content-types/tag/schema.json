@@ -46,6 +46,12 @@
       "relation": "manyToMany",
       "target": "api::skill.skill",
       "mappedBy": "tags"
+    },
+    "people": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::person.person",
+      "inversedBy": "tags"
     }
   }
 }
