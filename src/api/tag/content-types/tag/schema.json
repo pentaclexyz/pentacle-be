@@ -53,17 +53,17 @@
       "target": "api::person.person",
       "inversedBy": "tags"
     },
-    "tags": {
+    "related_to": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
-      "inversedBy": "tag"
+      "inversedBy": "inbound_relation"
     },
-    "tag": {
+    "inbound_relation": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
-      "inversedBy": "tags"
+      "inversedBy": "related_to"
     }
   }
 }
