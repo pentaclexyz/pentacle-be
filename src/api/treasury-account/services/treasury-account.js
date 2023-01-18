@@ -27,6 +27,13 @@ module.exports = createCoreService(
 
       return previousEntries;
     },
+    async getAll() {
+      const previousEntries = await strapi.db
+        .query("api::treasury-account.treasury-account")
+        .findMany();
+
+      return previousEntries;
+    },
     async resolveEns(wallet_address) {
       const ensContractAddress = "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85";
       const nfts = await alchemy.nft.getNftsForOwner(wallet_address, {
@@ -140,6 +147,7 @@ module.exports = createCoreService(
         "0x5afe3855358e112b5647b952709e6165e1c1eeee",
         "0x4691937a7508860f876c9c0a2a617e7d9e945d4b", // woo
         "0x72377f31e30a405282b522d588aebbea202b4f23", // varen
+        "0xcafe001067cdef266afb7eb5a286dcfd277f3de5", // PSP
       ];
       // Get token balances
       const balances = await alchemy.core.getTokenBalances(

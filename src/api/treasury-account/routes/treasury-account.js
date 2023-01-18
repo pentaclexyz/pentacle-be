@@ -18,6 +18,14 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
+    path: "/treasury-account/get-all",
+    handler: "api::treasury-account.treasury-account.getAll",
+    config: {
+      auth: false,
+    }
+  },
+  {
+    method: "GET",
     path: "/treasury-account/get-by-wallet/:wallet_address",
     handler: "api::treasury-account.treasury-account.getByWallet",
     config: {

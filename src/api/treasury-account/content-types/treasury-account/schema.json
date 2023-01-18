@@ -7,9 +7,7 @@
     "displayName": "treasury-account",
     "description": ""
   },
-  "options": {
-    "draftAndPublish": true
-  },
+  "options": {},
   "pluginOptions": {},
   "attributes": {
     "wallet_address": {
