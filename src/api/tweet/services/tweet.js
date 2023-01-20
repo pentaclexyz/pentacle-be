@@ -44,13 +44,16 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
         console.log(`API returned :${res.status}: ${res.statusText}`);
         return res.json();
       });
-      await strapi.entityService.create("api::tweet.twitter-banner", {
-        data: {
-          profile_banner_url,
-          twitter_handle: username,
-        },
-      });
-      return { profile_banner_url };
+      if (profile_banner_url) {
+        await strapi.entityService.create("api::tweet.twitter-banner", {
+          data: {
+            profile_banner_url,
+            twitter_handle: username,
+          },
+        });
+        return { profile_banner_url };
+      }
+      return { profile_banner_url: '' };
     } else {
        const res = await fetch(previousEntry.results[0].profile_banner_url, { method: "HEAD" });
         if (res.status !== 200) {
