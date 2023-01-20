@@ -19,26 +19,21 @@ module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
 
     return data;
   },
+  async getProfileImage({ params }) {
+    const username = params.id;
+
+    const data = await strapi
+      .service("api::tweet.tweet")
+      .getProfileImageByUsername(username);
+
+    return data;
+  },
   async getTwitterBanner({ params }) {
     const username = params.id;
 
     const data = await strapi
       .service("api::tweet.tweet")
       .getTwitterBanner(username);
-
-    return data;
-  },
-  async getAndSetAllImages() {
-    const data = await strapi
-      .service("api::tweet.tweet")
-      .getAndSetAllImages();
-
-    return data;
-  },
-  async allToLowercase() {
-    const data = await strapi
-      .service("api::tweet.tweet")
-      .allToLowercase();
 
     return data;
   },

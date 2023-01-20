@@ -50,7 +50,15 @@
       "mappedBy": "people"
     },
     "avatar": {
-      "type": "string"
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "projects": {
       "type": "relation",
