@@ -50,15 +50,7 @@
       "mappedBy": "people"
     },
     "avatar": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "type": "string"
     },
     "projects": {
       "type": "relation",
@@ -83,6 +75,9 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "inversedBy": "people"
+    },
+    "twitter_img": {
+      "type": "string"
     }
   }
 }

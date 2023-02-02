@@ -16,7 +16,7 @@ module.exports = createCoreService("api::person.person", ({ strapi }) => ({
         .service("api::tweet.tweet")
         .getUserTwitterInfo(twitterHandle);
 
-      newUser.avatar.url = twitterData[0].profile_image_url;
+      newUser.twitter_img = twitterData[0].profile_image_url;
     }
 
     return newUser;

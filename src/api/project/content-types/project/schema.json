@@ -15,6 +15,9 @@
     "name": {
       "type": "string"
     },
+    "avatar": {
+      "type": "string"
+    },
     "coingecko_id": {
       "type": "string"
     },
@@ -228,6 +231,9 @@
       "type": "component",
       "repeatable": true,
       "component": "project.risk-urls"
+    },
+    "twitter_img": {
+      "type": "string"
     }
   }
 }
