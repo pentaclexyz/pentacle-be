@@ -16,8 +16,7 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  async bootstrap({ strapi }) {
-
+  bootstrap({ strapi }) {
     strapi.db.lifecycles.subscribe({
       async beforeCreate(event) {
         if (event.model.singularName === "person") {
@@ -29,9 +28,5 @@ module.exports = {
         }
       },
     });
-    
-    await strapi
-      .service("api::defi-safety-report.defi-safety-report")
-      .fetchReports();
   },
 };
