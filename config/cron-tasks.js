@@ -7,6 +7,11 @@ module.exports = {
       .service("api::treasury-account.treasury-account")
       .refreshData();
   },
+  "0 1 * * *": async ({ strapi }) => {
+    await strapi
+      .service("api::defi-safety-report.defi-safety-report")
+      .fetchReports();
+  },
   "0 8 * * *": async ({ strapi }) => {
     await strapi.service("api::tweet.tweet").getAndSetAllImages();
   },
