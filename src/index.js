@@ -21,11 +21,11 @@ module.exports = {
     strapi.db.lifecycles.subscribe({
       async beforeCreate(event) {
         if (event.model.singularName === "person") {
-          event.params.data.twitter = event.params.data.twitter.toLowerCase();
+          event.params.data.twitter = event.params.data?.twitter?.toLowerCase();
         }
         if (event.model.singularName === "project") {
           event.params.data.twitter_url =
-            event.params.data.twitter_url.toLowerCase();
+            event.params.data?.twitter_url?.toLowerCase();
         }
       },
     });
