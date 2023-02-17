@@ -234,6 +234,9 @@
     },
     "twitter_img": {
       "type": "string"
+    },
+    "mirror_url": {
+      "type": "string"
     }
   }
 }
