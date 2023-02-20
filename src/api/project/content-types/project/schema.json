@@ -237,6 +237,9 @@
     },
     "mirror_url": {
       "type": "string"
+    },
+    "banner": {
+      "type": "string"
     }
   }
 }
