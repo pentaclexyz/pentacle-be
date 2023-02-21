@@ -7,7 +7,7 @@ module.exports = ({ env }) => ({
     connection: {
       host: env("DATABASE_HOST", "127.0.0.1"),
       port: env.int("DATABASE_PORT", 5432),
-      database: env("DATABASE_NAME", "pentacle_cms_staging"),
+      database: env("DATABASE_NAME", "pentacle-26"),
       ssl: env.bool("DATABASE_SSL", false),
     },
   },
