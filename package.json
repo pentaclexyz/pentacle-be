@@ -25,6 +25,10 @@
     "strapi-plugin-import-export-entries": "^1.16.1",
     "strapi-plugin-meilisearch": "^0.8.2"
   },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
   "author": {
     "name": "A Strapi developer and Pentacle"
   },
