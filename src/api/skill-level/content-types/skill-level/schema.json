@@ -42,6 +42,9 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "inversedBy": "skill_levels"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }
