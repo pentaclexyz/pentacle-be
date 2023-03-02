@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "twitter-list",
+  "info": {
+    "singularName": "twitter-list",
+    "pluralName": "twitter-lists",
+    "displayName": "twitter-list",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "screen_name": {
+      "type": "string"
+    },
+    "lists": {
+      "type": "json"
+    },
+    "timestamp": {
+      "type": "biginteger"
+    }
+  }
+}

@@ -40,6 +40,14 @@ const myExtraRoutes = [
     config: {
       auth: false,
     }
+  },
+  {
+    method: "GET",
+    path: "/tweet/twitter_lists/:screen_name",
+    handler: "api::tweet.twitter-list.getLists",
+    config: {
+      auth: false,
+    }
   }
 ];
 
