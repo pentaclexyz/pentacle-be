@@ -149,5 +149,14 @@ module.exports = createCoreService(
       }
       return ret;
     },
+    async getByGovernanceUrl({ governance_url }) {
+      const data = await strapi.db
+        .query("api::governance-proposal.governance-proposal")
+        .findMany({
+          where: { governance_url }
+        });
+
+      return data;   
+    }
   })
 );

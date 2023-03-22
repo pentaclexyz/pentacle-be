@@ -24,6 +24,11 @@ const myExtraRoutes = [
     config: {
       auth: false,
     }
+  },
+  {
+    method: "GET",
+    path: "/governance-proposal/getByGovernanceUrl/:governance_url",
+    handler: "api::governance-proposal.governance-proposal.getByGovernanceUrl"
   }
 ];
 

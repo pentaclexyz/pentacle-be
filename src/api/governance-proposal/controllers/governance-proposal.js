@@ -23,5 +23,13 @@ module.exports = createCoreController(
 
       return data;
     },
+    async getByGovernanceUrl({ params }) {
+      const { governance_url } = params;
+      const data = await strapi
+        .service("api::governance-proposal.governance-proposal")
+        .getByGovernanceUrl({ governance_url });
+
+      return data;
+    },
   })
 );
