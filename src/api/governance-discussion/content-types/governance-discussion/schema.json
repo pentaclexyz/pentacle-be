@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "governance-discussions",
+  "info": {
+    "singularName": "governance-discussion",
+    "pluralName": "governance-discussions",
+    "displayName": "governance-discussion",
+    "description": ""
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "project_slug": {
+      "type": "string"
+    },
+    "discussions": {
+      "type": "json"
+    }
+  }
+}

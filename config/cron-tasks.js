@@ -6,6 +6,9 @@ module.exports = {
     await strapi
       .service("api::treasury-account.treasury-account")
       .refreshData();
+    await strapi
+      .service("api::governance-discussion.governance-discussion")
+      .refreshData();
   },
   "0 1 * * *": async ({ strapi }) => {
     await strapi
