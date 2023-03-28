@@ -7,6 +7,9 @@
     "displayName": "governance-discussion",
     "description": ""
   },
+  "options": {
+    "draftAndPublish": false
+  },
   "pluginOptions": {},
   "attributes": {
     "project_slug": {
