@@ -28,10 +28,10 @@ module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
 
     return data;
   },
-  async getAndSetAllImages() {
+  async getAndSetAllProfiles() {
     const data = await strapi
       .service("api::tweet.tweet")
-      .getAndSetAllImages();
+      .getAndSetAllProfiles();
 
     return data;
   },

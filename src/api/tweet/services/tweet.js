@@ -144,7 +144,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
 
     return { success: true };
   },
-  async getAndSetAllImages() {
+  async getAndSetAllProfiles() {
     const query = qs.stringify({
       "user.fields": "profile_image_url",
     });
@@ -202,7 +202,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
         .join(",");
 
       const query = qs.stringify({
-        "user.fields": "profile_image_url",
+        "user.fields": "profile_image_url,description",
       });
       // await this.getProfileImageByUsername(names);
       const twitterInfos = await this.getUserTwitterInfo(names, query);
@@ -226,6 +226,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
             data: {
               ...person,
               twitter_img: profileImageUrl,
+              bio: info.description
             },
           });
         }

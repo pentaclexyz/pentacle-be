@@ -16,6 +16,6 @@ module.exports = {
       .fetchReports();
   },
   "0 8 * * *": async ({ strapi }) => {
-    await strapi.service("api::tweet.tweet").getAndSetAllImages();
+    await strapi.service("api::tweet.tweet").getAndSetAllProfiles();
   },
 };

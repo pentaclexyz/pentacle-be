@@ -28,7 +28,7 @@ const myExtraRoutes = [
   {
     method: "GET",
     path: "/tweet/get-and-set-all-images",
-    handler: "api::tweet.tweet.getAndSetAllImages",
+    handler: "api::tweet.tweet.getAndSetAllProfiles",
     config: {
       auth: false,
     }
