@@ -1,5 +1,6 @@
 "use strict";
 const { Alchemy, Network } = require("alchemy-sdk");
+const ethers = require("ethers");
 
 /**
  * article service.
@@ -35,14 +36,16 @@ module.exports = createCoreService(
       return previousEntries;
     },
     async resolveEns(wallet_address) {
-      const ensContractAddress = "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85";
-      const nfts = await alchemy.nft.getNftsForOwner(wallet_address, {
-        contractAddresses: [ensContractAddress],
-      });
-      if (nfts.ownedNfts.length) {
-        return nfts.ownedNfts[0];
+      try {
+        const provider = new ethers.providers.JsonRpcProvider(
+          process.env.RPC_ENDPOINT
+        );
+        const name = await provider.lookupAddress(wallet_address);
+        return { title: name };
+      } catch (e) {
+        console.error(e);
+        return { error: true };
       }
-      return {}
     },
     async fetchDataForAddress(wallet_address) {
       const contracts = [
