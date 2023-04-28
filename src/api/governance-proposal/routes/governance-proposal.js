@@ -19,7 +19,7 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
-    path: "/governance-proposal/get_ordered_by_date",
+    path: "/governance-proposal/get-ordered-by-date",
     handler: "api::governance-proposal.governance-proposal.getOrderedByEndDate",
     config: {
       auth: false,
@@ -27,9 +27,14 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
+    path: "/governance-proposal/get-by-governance-url/:governance_url",
+    handler: "api::governance-proposal.governance-proposal.getByGovernanceUrl"
+  },
+  {
+    method: "GET",
     path: "/governance-proposal/getByGovernanceUrl/:governance_url",
     handler: "api::governance-proposal.governance-proposal.getByGovernanceUrl"
-  }
+  },
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);
