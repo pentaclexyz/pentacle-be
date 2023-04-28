@@ -15,6 +15,9 @@
     },
     "data": {
       "type": "json"
+    },
+    "network": {
+      "type": "string"
     }
   }
 }

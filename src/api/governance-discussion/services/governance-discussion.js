@@ -9,6 +9,8 @@ const { createCoreService } = require("@strapi/strapi").factories;
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
+const excludeList = ["keep3r-network", "akropolis"];
+
 module.exports = createCoreService(
   "api::governance-discussion.governance-discussion",
   ({ strapi }) => ({
@@ -29,43 +31,45 @@ module.exports = createCoreService(
 
       for (const project of found) {
         try {
-          const discussions = await this.getProjectDiscussions({
-            discourse_url: project.discourse_url,
-          });
-
-          const relevantDiscussions = discussions.topic_list.topics.slice(0, 5);
-
-          const previousEntries = await strapi.db
-            .query("api::governance-discussion.governance-discussion")
-            .findMany({
-              where: {
-                project_slug: project.slug,
-              },
+          if (!excludeList.includes(project.slug)) {
+            const discussions = await this.getProjectDiscussions({
+              discourse_url: project.discourse_url,
             });
-
-          if (!previousEntries.length) {
-            console.log(`creating discussions for ${project.slug}`);
-            await strapi.entityService.create(
-              "api::governance-discussion.governance-discussion",
-              {
-                data: {
+  
+            const relevantDiscussions = discussions.topic_list.topics.slice(0, 5);
+  
+            const previousEntries = await strapi.db
+              .query("api::governance-discussion.governance-discussion")
+              .findMany({
+                where: {
                   project_slug: project.slug,
-                  discussions: relevantDiscussions,
                 },
-              }
-            );
-          } else {
-            console.log(`updating discussions for ${project.slug}`);
-            await strapi.entityService.update(
-              "api::governance-discussion.governance-discussion",
-              previousEntries[0].id,
-              {
-                data: {
-                  project_slug: project.slug,
-                  discussions: relevantDiscussions,
-                },
-              }
-            );
+              });
+  
+            if (!previousEntries.length) {
+              console.log(`creating discussions for ${project.slug}`);
+              await strapi.entityService.create(
+                "api::governance-discussion.governance-discussion",
+                {
+                  data: {
+                    project_slug: project.slug,
+                    discussions: relevantDiscussions,
+                  },
+                }
+              );
+            } else {
+              console.log(`updating discussions for ${project.slug}`);
+              await strapi.entityService.update(
+                "api::governance-discussion.governance-discussion",
+                previousEntries[0].id,
+                {
+                  data: {
+                    project_slug: project.slug,
+                    discussions: relevantDiscussions,
+                  },
+                }
+              );
+            }
           }
         } catch (e) {
           console.log(`Error in ${project.slug}`);
@@ -76,6 +80,9 @@ module.exports = createCoreService(
       return { success: true };
     },
     async byProjectSlug({ slug }) {
+      if (excludeList.includes(slug)) {
+        return [];
+      }
       const discussions = await strapi.db
         .query("api::governance-discussion.governance-discussion")
         .findMany({

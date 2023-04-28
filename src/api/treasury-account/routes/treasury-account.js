@@ -13,7 +13,15 @@ const myExtraRoutes = [
     path: "/treasury-account/refresh",
     handler: "api::treasury-account.treasury-account.refreshData",
     config: {
-      auth: false,
+      
+    }
+  },
+  {
+    method: "GET",
+    path: "/treasury-account/refresh-single/:wallet_address",
+    handler: "api::treasury-account.treasury-account.refreshSingle",
+    config: {
+      
     }
   },
   {
@@ -21,7 +29,7 @@ const myExtraRoutes = [
     path: "/treasury-account/get-all",
     handler: "api::treasury-account.treasury-account.getAll",
     config: {
-      auth: false,
+      
     }
   },
   {
@@ -29,7 +37,7 @@ const myExtraRoutes = [
     path: "/treasury-account/get-by-wallet/:wallet_address",
     handler: "api::treasury-account.treasury-account.getByWallet",
     config: {
-      auth: false,
+      
     }
   },
   {
@@ -37,7 +45,7 @@ const myExtraRoutes = [
     path: "/treasury-account/resolve-ens/:wallet_address",
     handler: "api::treasury-account.treasury-account.resolveEns",
     config: {
-      auth: false,
+      
     }
   }
 ];

@@ -16,6 +16,14 @@ module.exports = createCoreController(
 
       return data;
     },
+    async refreshSingle({ params }) {
+      const { wallet_address } = params;
+      const data = await strapi
+        .service("api::treasury-account.treasury-account")
+        .refreshSingle(wallet_address);
+
+      return data;
+    },
     async getByWallet({ params }) {
       const { wallet_address } = params;
 
