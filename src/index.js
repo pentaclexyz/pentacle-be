@@ -12,7 +12,7 @@ module.exports = {
       .plugin("documentation")
       .service("override")
       // TODO: update list
-      .excludeFromGeneration(["defi-safety-report"]);
+      // .excludeFromGeneration(["defi-safety-report"]);
   },
 
   /**

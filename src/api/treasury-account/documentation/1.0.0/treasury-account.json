@@ -80,7 +80,7 @@
         {
           "name": "pagination[withCount]",
           "in": "query",
-          "description": "Return page/pageSize (default: true)",
+          "description": "Retun page/pageSize (default: true)",
           "deprecated": false,
           "required": false,
           "schema": {
@@ -157,16 +157,6 @@
             "type": "object"
           },
           "style": "deepObject"
-        },
-        {
-          "name": "locale",
-          "in": "query",
-          "description": "Locale to apply",
-          "deprecated": false,
-          "required": false,
-          "schema": {
-            "type": "string"
-          }
         }
       ],
       "operationId": "get/treasury-accounts"
@@ -573,6 +563,88 @@
       ],
       "parameters": [],
       "operationId": "get/treasury-account/refresh"
+    }
+  },
+  "/treasury-account/refresh-single/{wallet_address}": {
+    "get": {
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TreasuryAccountResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "403": {
+          "description": "Forbidden",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal Server Error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        }
+      },
+      "tags": [
+        "Treasury-account"
+      ],
+      "parameters": [
+        {
+          "name": "wallet_address",
+          "in": "path",
+          "description": "",
+          "deprecated": false,
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
+      "operationId": "get/treasury-account/refresh-single/{wallet_address}"
     }
   },
   "/treasury-account/get-all": {
