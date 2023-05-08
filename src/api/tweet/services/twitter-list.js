@@ -40,7 +40,7 @@ module.exports = createCoreService("api::tweet.twitter-list", ({ strapi }) => ({
     if (found.length && now - DAY_IN_MS > +found[0].timestamp) {
       const lists = await fetchLists({ screen_name });
       if (!lists.error) {
-        for (const list of lists.lists) {
+        if (!lists.error && lists.lists?.length) {
           const members = await fetchListMembers({ list_id: list.id_str });
           list.members = members.users.map(
             ({ profile_image_url, screen_name, id_str, description }) => ({
@@ -64,7 +64,7 @@ module.exports = createCoreService("api::tweet.twitter-list", ({ strapi }) => ({
     }
     if (!found.length) {
       const lists = await fetchLists({ screen_name });
-      if (!lists.error) {
+      if (!lists.error && lists.lists?.length) {
         for (const list of lists.lists) {
           const members = await fetchListMembers({ list_id: list.id_str });
           list.members = members.users.map(

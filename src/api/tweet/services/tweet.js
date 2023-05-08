@@ -164,31 +164,33 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
 
       const twitterInfos = await this.getUserTwitterInfo(names, query);
 
-      for (const info of twitterInfos) {
-        const projects = (
-          await strapi.service("api::project.project").find({
-            filters: {
-              twitter_url: `https://twitter.com/${info.username.toLowerCase()}`,
-            },
-          })
-        ).results;
-
-        for (const project of projects) {
-          const profileImageUrl = info.profile_image_url.replace(
-            "_normal",
-            "_bigger"
-          );
-
-          await strapi.entityService.update(
-            "api::project.project",
-            project.id,
-            {
-              data: {
-                ...project,
-                twitter_img: profileImageUrl,
+      if (twitterInfos?.length) {
+        for (const info of twitterInfos) {
+          const projects = (
+            await strapi.service("api::project.project").find({
+              filters: {
+                twitter_url: `https://twitter.com/${info.username.toLowerCase()}`,
               },
-            }
-          );
+            })
+          ).results;
+  
+          for (const project of projects) {
+            const profileImageUrl = info.profile_image_url.replace(
+              "_normal",
+              "_bigger"
+            );
+  
+            await strapi.entityService.update(
+              "api::project.project",
+              project.id,
+              {
+                data: {
+                  ...project,
+                  twitter_img: profileImageUrl,
+                },
+              }
+            );
+          }
         }
       }
     }
@@ -207,28 +209,30 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       // await this.getProfileImageByUsername(names);
       const twitterInfos = await this.getUserTwitterInfo(names, query);
 
-      for (const info of twitterInfos) {
-        const people = (
-          await strapi.service("api::person.person").find({
-            filters: {
-              twitter: `https://twitter.com/${info.username.toLowerCase()}`,
-            },
-          })
-        ).results;
-
-        for (const person of people) {
-          const profileImageUrl = info.profile_image_url.replace(
-            "_normal",
-            "_bigger"
-          );
-
-          await strapi.entityService.update("api::person.person", person.id, {
-            data: {
-              ...person,
-              twitter_img: profileImageUrl,
-              bio: info.description
-            },
-          });
+      if (twitterInfos?.length) {
+        for (const info of twitterInfos) {
+          const people = (
+            await strapi.service("api::person.person").find({
+              filters: {
+                twitter: `https://twitter.com/${info.username.toLowerCase()}`,
+              },
+            })
+          ).results;
+  
+          for (const person of people) {
+            const profileImageUrl = info.profile_image_url.replace(
+              "_normal",
+              "_bigger"
+            );
+  
+            await strapi.entityService.update("api::person.person", person.id, {
+              data: {
+                ...person,
+                twitter_img: profileImageUrl,
+                bio: info.description
+              },
+            });
+          }
         }
       }
     }
