@@ -7,6 +7,21 @@ const qs = require("qs");
 const { createCoreService } = require("@strapi/strapi").factories;
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fs = require("fs"); // Built-in filesystem package for Node.js
+const { join } = require("path");
+if (!String.prototype.replaceAll) {
+  String.prototype.replaceAll = function (str, newStr) {
+    // If a regex pattern
+    if (
+      Object.prototype.toString.call(str).toLowerCase() === "[object regexp]"
+    ) {
+      return this.replace(str, newStr);
+    }
+
+    // If a string
+    return this.replace(new RegExp(str, "g"), newStr);
+  };
+}
 
 function sliceIntoChunks(arr, chunkSize) {
   const res = [];
@@ -144,6 +159,36 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
 
     return { success: true };
   },
+  async saveAllTwitterPfps() {
+    const projects = await strapi.db.query("api::project.project").findMany();
+    const people = await strapi.db.query("api::person.person").findMany();
+    for (const project of projects) {
+      if (project.twitter_img) {
+        await fetch(project.twitter_img.replace("_normal", "_bigger")).then(
+          (res) =>
+            res.body.pipe(
+              fs.createWriteStream(
+                join(process.cwd(), '../', `/images/projects/${project.slug}.png`)
+              )
+            )
+        );
+      }
+    }
+    for (const person of people) {
+      if (person.twitter_img) {
+        await fetch(person.twitter_img.replace("_normal", "_bigger")).then(
+          (res) =>
+            res.body.pipe(
+              fs.createWriteStream(
+                join(process.cwd(), '../', `/images/people/${person.slug}.png`)
+              )
+            )
+        );
+      }
+    }
+
+    return { success: true };
+  },
   async getAndSetAllProfiles() {
     const query = qs.stringify({
       "user.fields": "profile_image_url",
@@ -173,13 +218,13 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
               },
             })
           ).results;
-  
+
           for (const project of projects) {
             const profileImageUrl = info.profile_image_url.replace(
               "_normal",
               "_bigger"
             );
-  
+
             await strapi.entityService.update(
               "api::project.project",
               project.id,
@@ -218,18 +263,18 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
               },
             })
           ).results;
-  
+
           for (const person of people) {
             const profileImageUrl = info.profile_image_url.replace(
               "_normal",
               "_bigger"
             );
-  
+
             await strapi.entityService.update("api::person.person", person.id, {
               data: {
                 ...person,
                 twitter_img: profileImageUrl,
-                bio: info.description
+                bio: info.description,
               },
             });
           }

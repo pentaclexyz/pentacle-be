@@ -27,6 +27,14 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
+    path: "/tweet/save-all-twitter-pfps",
+    handler: "api::tweet.tweet.saveAllTwitterPfps",
+    config: {
+      auth: false,
+    }
+  },
+  {
+    method: "GET",
     path: "/tweet/get-and-set-all-images",
     handler: "api::tweet.tweet.getAndSetAllProfiles",
     config: {

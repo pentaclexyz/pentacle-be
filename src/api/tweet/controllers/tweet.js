@@ -35,6 +35,13 @@ module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
 
     return data;
   },
+  async saveAllTwitterPfps() {
+    const data = await strapi
+      .service("api::tweet.tweet")
+      .saveAllTwitterPfps();
+
+    return data;
+  },
   async allToLowercase() {
     const data = await strapi
       .service("api::tweet.tweet")
