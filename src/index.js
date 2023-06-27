@@ -32,6 +32,8 @@ module.exports = {
           event.params.data.twitter_url =
             event.params.data?.twitter_url?.toLowerCase();
         }
+
+        event.params.data.slug = event.params.data.slug?.toLowerCase();
       },
     });
 
