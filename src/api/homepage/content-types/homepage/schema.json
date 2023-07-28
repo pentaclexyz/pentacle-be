@@ -36,6 +36,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::skill-level.skill-level"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
     }
   }
 }
