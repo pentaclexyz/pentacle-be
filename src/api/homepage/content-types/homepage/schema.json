@@ -17,7 +17,7 @@
       "repeatable": true,
       "component": "shared.card-large"
     },
-    "projects": {
+    "defi": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project.project"
@@ -43,6 +43,21 @@
       "target": "api::tag.tag"
     },
     "nfts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    },
+    "social": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    },
+    "developer": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    },
+    "resources": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project.project"
