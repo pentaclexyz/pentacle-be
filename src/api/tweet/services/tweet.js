@@ -168,7 +168,11 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
           (res) =>
             res.body.pipe(
               fs.createWriteStream(
-                join(process.cwd(), '../', `/images/projects/${project.slug}.png`)
+                join(
+                  process.cwd(),
+                  "../",
+                  `/images/projects/${project.slug}.png`
+                )
               )
             )
         );
@@ -180,13 +184,42 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
           (res) =>
             res.body.pipe(
               fs.createWriteStream(
-                join(process.cwd(), '../', `/images/people/${person.slug}.png`)
+                join(process.cwd(), "../", `/images/people/${person.slug}.png`)
               )
             )
         );
       }
     }
 
+    return { success: true };
+  },
+  async syncProfileBanners() {
+    const projects = await strapi.db.query("api::project.project").findMany();
+    const people = await strapi.db.query("api::person.person").findMany();
+    for (const project of projects) {
+      const handle = getHandleFromTwitterUrl(project.twitter_url).replaceAll(
+        "/",
+        ""
+      );
+      const { profile_banner_url } = await this.getTwitterBanner(handle);
+      strapi.entityService.update("api::project.project", project.id, {
+        data: {
+          twitter_banner: profile_banner_url,
+        },
+      });
+    }
+    for (const person of people) {
+      const handle = getHandleFromTwitterUrl(person.twitter).replaceAll(
+        "/",
+        ""
+      );
+      const { profile_banner_url } = await this.getTwitterBanner(handle);
+      strapi.entityService.update("api::person.person", person.id, {
+        data: {
+          twitter_banner: profile_banner_url,
+        },
+      });
+    }
     return { success: true };
   },
   async getAndSetAllProfiles() {

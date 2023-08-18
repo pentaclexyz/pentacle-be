@@ -17,5 +17,6 @@ module.exports = {
   },
   "0 8 * * *": async ({ strapi }) => {
     await strapi.service("api::tweet.tweet").getAndSetAllProfiles();
+    await strapi.service("api::tweet.tweet").syncProfileBanners();
   },
 };

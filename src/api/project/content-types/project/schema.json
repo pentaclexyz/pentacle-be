@@ -238,7 +238,7 @@
     "mirror_url": {
       "type": "string"
     },
-    "banner": {
+    "twitter_banner": {
       "type": "string"
     }
   }

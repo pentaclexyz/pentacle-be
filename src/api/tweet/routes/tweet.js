@@ -11,6 +11,14 @@ const { customRouter } = require("../../../util/custom-router");
 const myExtraRoutes = [
   {
     method: "GET",
+    path: "/tweet/sync-profile-banners",
+    handler: "api::tweet.tweet.syncProfileBanners",
+    config: {
+      auth: false,
+    }
+  },
+  {
+    method: "GET",
     path: "/tweet/pinned_id/:id",
     handler: "api::tweet.tweet.getPinnedTweetId",
     config: {
@@ -56,7 +64,8 @@ const myExtraRoutes = [
     config: {
       auth: false,
     }
-  }
+  },
+  
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);
