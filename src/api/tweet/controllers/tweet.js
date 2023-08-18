@@ -49,4 +49,11 @@ module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
 
     return data;
   },
+  async syncProfileBanners() {
+    const data = await strapi
+      .service("api::tweet.tweet")
+      .syncProfileBanners();
+
+    return data;
+  },
 }));

@@ -78,6 +78,9 @@
     },
     "twitter_img": {
       "type": "string"
+    },
+    "twitter_banner" : {
+      "type": "string"
     }
   }
 }
