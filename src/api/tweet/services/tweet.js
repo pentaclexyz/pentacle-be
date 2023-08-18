@@ -197,6 +197,9 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     const projects = await strapi.db.query("api::project.project").findMany();
     const people = await strapi.db.query("api::person.person").findMany();
     for (const project of projects) {
+      if (!project.twitter_url) {
+        continue
+      }
       const handle = getHandleFromTwitterUrl(project.twitter_url).replaceAll(
         "/",
         ""
@@ -209,6 +212,9 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       });
     }
     for (const person of people) {
+      if (!person.twitter) {
+        continue
+      }
       const handle = getHandleFromTwitterUrl(person.twitter).replaceAll(
         "/",
         ""
