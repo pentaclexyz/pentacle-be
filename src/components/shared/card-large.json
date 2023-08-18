@@ -37,14 +37,7 @@
       "target": "api::skill-level.skill-level"
     },
     "bg_image": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      "type": "string"
     }
   }
 }
