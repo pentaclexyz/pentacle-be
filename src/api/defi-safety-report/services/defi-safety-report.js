@@ -22,10 +22,20 @@ module.exports = createCoreService(
         const previousEntry = await strapi
           .service("api::defi-safety-report.defi-safety-report")
           .find({ filters: { defiSafetyId: `${_id}` } });
-
         if (!previousEntry.results.length) {
           await strapi.entityService.create(
             "api::defi-safety-report.defi-safety-report",
+            {
+              data: {
+                defiSafetyId: `${_id}`,
+                ...report,
+              },
+            }
+          );
+        } else {
+          await strapi.entityService.update(
+            "api::defi-safety-report.defi-safety-report",
+            previousEntry.results[0].id,
             {
               data: {
                 defiSafetyId: `${_id}`,
