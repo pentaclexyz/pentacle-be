@@ -64,6 +64,12 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "ecosystem_projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "tag"
     }
   }
 }
