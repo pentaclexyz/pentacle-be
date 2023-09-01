@@ -38,6 +38,23 @@ const getHandleFromTwitterUrl = (str = "") =>
     .replace("http://twitter.com/", "")
     .replace("https://www.twitter.com/", "");
 
+const checkTwitterImages = async (entity) => {
+  const { twitter_banner, twitter_img } = entity;
+  if (!twitter_banner || !twitter_img) {
+    return true;
+  }
+  const bannerRes = await fetch(twitter_banner, {
+    method: "HEAD",
+  });
+  const pfpRes = await fetch(twitter_img, {
+    method: "HEAD",
+  });
+  if (bannerRes.status !== 200 || pfpRes.status !== 200) {
+    return true;
+  }
+  return false;
+};
+
 module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
   async getUserTwitterInfo(username, query) {
     const { data, errors } = await fetch(
@@ -57,65 +74,68 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
   },
 
   async getTwitterBanner(username) {
-    const previousEntry = await strapi
-      .service("api::tweet.twitter-banner")
-      .find({ filters: { twitter_handle: username } });
+    console.log(`getting twitter banner for ${username}`);
+    // TODO: get rid of this in favor of user object
+    const projects = await strapi.db.query("api::project.project").findMany();
+    const people = await strapi.db.query("api::person.person").findMany();
 
-    if (!previousEntry?.results[0]?.profile_banner_url) {
-      const { profile_banner_url } = await fetch(
-        `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
+    const previousPerson = people.find(
+      (person) => person.twitter === `https://twitter.com/${username}`
+    );
+    const previousProject = projects.find(
+      (person) => person.twitter_url === `https://twitter.com/${username}`
+    );
+    debugger;
+    if (!previousPerson && !previousProject) {
+      console.log(`no person or project found for ${username}`);
+      console.log({ previousPerson, previousProject });
+      return;
+    }
+    const needsUpdate = await checkTwitterImages(
+      previousPerson || previousProject
+    );
+
+    if (!needsUpdate) {
+      return;
+    }
+
+    const response = await fetch(
+      `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
+        },
+      }
+    ).then((res) => {
+      console.log(`API returned :${res.status}: ${res.statusText}`);
+      return res.json();
+    });
+
+    if (previousPerson) {
+      await strapi.entityService.update(
+        "api::person.person",
+        previousPerson.id,
         {
-          headers: {
-            Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
+          data: {
+            twitter_img: response.profile_image_url_https,
+            twitter_banner: response.profile_banner_url,
           },
         }
-      ).then((res) => {
-        console.log(`API returned :${res.status}: ${res.statusText}`);
-        return res.json();
-      });
-      if (profile_banner_url) {
-        await strapi.entityService.create("api::tweet.twitter-banner", {
-          data: {
-            profile_banner_url,
-            twitter_handle: username,
-          },
-        });
-        return { profile_banner_url };
-      }
-      return { profile_banner_url: "" };
-    } else {
-      const res = await fetch(previousEntry.results[0].profile_banner_url, {
-        method: "HEAD",
-      });
-      if (res.status !== 200) {
-        const { profile_banner_url } = await fetch(
-          `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
-            },
-          }
-        ).then((res) => {
-          console.log(`API returned :${res.status}: ${res.statusText}`);
-          return res.json();
-        });
-
-        await strapi.entityService.update(
-          "api::tweet.twitter-banner",
-          previousEntry.results[0].id,
-          {
-            data: {
-              profile_banner_url,
-              twitter_handle: username,
-            },
-          }
-        );
-        return { profile_banner_url };
-      }
-      return {
-        profile_banner_url: previousEntry.results[0].profile_banner_url || null,
-      };
+      );
     }
+    if (previousProject) {
+      await strapi.entityService.update(
+        "api::project.project",
+        previousProject.id,
+        {
+          data: {
+            twitter_img: response.profile_image_url_https,
+            twitter_banner: response.profile_banner_url,
+          },
+        }
+      );
+    }
+    return { success: true };
   },
 
   async getPinnedTweetIdByUsername(userName) {
@@ -198,33 +218,23 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     const people = await strapi.db.query("api::person.person").findMany();
     for (const project of projects) {
       if (!project.twitter_url) {
-        continue
+        continue;
       }
       const handle = getHandleFromTwitterUrl(project.twitter_url).replaceAll(
         "/",
         ""
       );
-      const { profile_banner_url } = await this.getTwitterBanner(handle);
-      strapi.entityService.update("api::project.project", project.id, {
-        data: {
-          twitter_banner: profile_banner_url,
-        },
-      });
+      await this.getTwitterBanner(handle);
     }
     for (const person of people) {
       if (!person.twitter) {
-        continue
+        continue;
       }
       const handle = getHandleFromTwitterUrl(person.twitter).replaceAll(
         "/",
         ""
       );
-      const { profile_banner_url } = await this.getTwitterBanner(handle);
-      strapi.entityService.update("api::person.person", person.id, {
-        data: {
-          twitter_banner: profile_banner_url,
-        },
-      });
+      await this.getTwitterBanner(handle);
     }
     return { success: true };
   },

@@ -15,7 +15,15 @@ const myExtraRoutes = [
     handler: "api::tweet.tweet.syncProfileBanners",
     config: {
       auth: false,
-    }
+    },
+  },
+  {
+    method: "GET",
+    path: "/tweet/sync-single-profile-banner/:id",
+    handler: "api::tweet.tweet.syncSingleProfileBanner",
+    config: {
+      auth: false,
+    },
   },
   {
     method: "GET",
@@ -23,7 +31,7 @@ const myExtraRoutes = [
     handler: "api::tweet.tweet.getPinnedTweetId",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "GET",
@@ -31,7 +39,7 @@ const myExtraRoutes = [
     handler: "api::tweet.tweet.getTwitterBanner",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "GET",
@@ -39,7 +47,7 @@ const myExtraRoutes = [
     handler: "api::tweet.tweet.saveAllTwitterPfps",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "GET",
@@ -47,7 +55,7 @@ const myExtraRoutes = [
     handler: "api::tweet.tweet.getAndSetAllProfiles",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "GET",
@@ -55,7 +63,7 @@ const myExtraRoutes = [
     handler: "api::tweet.tweet.allToLowercase",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "GET",
@@ -63,9 +71,8 @@ const myExtraRoutes = [
     handler: "api::tweet.twitter-list.getLists",
     config: {
       auth: false,
-    }
+    },
   },
-  
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);
