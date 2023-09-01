@@ -85,7 +85,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     const previousProject = projects.find(
       (person) => person.twitter_url === `https://twitter.com/${username}`
     );
-    debugger;
+
     if (!previousPerson && !previousProject) {
       console.log(`no person or project found for ${username}`);
       console.log({ previousPerson, previousProject });
