@@ -11,16 +11,16 @@ const { customRouter } = require("../../../util/custom-router");
 const myExtraRoutes = [
   {
     method: "GET",
-    path: "/tweet/sync-profile-banners",
-    handler: "api::tweet.tweet.syncProfileBanners",
+    path: "/tweet/sync-twitter-media",
+    handler: "api::tweet.tweet.syncTwitterMedia",
     config: {
       auth: false,
     },
   },
   {
     method: "GET",
-    path: "/tweet/sync-single-profile-banner/:id",
-    handler: "api::tweet.tweet.syncSingleProfileBanner",
+    path: "/tweet/sync-single-twitter-media/:id",
+    handler: "api::tweet.tweet.syncSingleTwitterMedia",
     config: {
       auth: false,
     },
