@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * tweet router.
+ * helper router.
  */
 
 const { createCoreRouter } = require("@strapi/strapi").factories;

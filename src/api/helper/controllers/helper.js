@@ -32,8 +32,7 @@ module.exports = createCoreController("api::helper.helper", ({ strapi }) => ({
   async syncSkill({ params }) {
     const slug = params.slug;
     const skill = await strapi.db.query("api::skill.skill").findOne({ slug });
-    const data = await strapi.service("api::helper.helper").syncSkull(skill);
+    const data = await strapi.service("api::helper.helper").syncSkill(skill);
     return data;
   },
-  async syncSkill({ params }) {},
 }));
