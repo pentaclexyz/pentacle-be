@@ -47,6 +47,9 @@
     },
     "link": {
       "type": "string"
+    },
+    "link_text": {
+      "type": "string"
     }
   }
 }
