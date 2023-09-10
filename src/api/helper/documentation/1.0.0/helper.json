@@ -494,7 +494,7 @@
       "operationId": "delete/helpers/{id}"
     }
   },
-  "/helper/sync-descriptions": {
+  "/helper/description/sync-all": {
     "get": {
       "responses": {
         "200": {
@@ -562,10 +562,10 @@
         "Helper"
       ],
       "parameters": [],
-      "operationId": "get/helper/sync-descriptions"
+      "operationId": "get/helper/description/sync-all"
     }
   },
-  "/helper/sync-project/{slug}": {
+  "/helper/description/sync-project/{slug}": {
     "get": {
       "responses": {
         "200": {
@@ -644,10 +644,10 @@
           }
         }
       ],
-      "operationId": "get/helper/sync-project/{slug}"
+      "operationId": "get/helper/description/sync-project/{slug}"
     }
   },
-  "/helper/sync-person/{slug}": {
+  "/helper/description/sync-person/{slug}": {
     "get": {
       "responses": {
         "200": {
@@ -726,10 +726,10 @@
           }
         }
       ],
-      "operationId": "get/helper/sync-person/{slug}"
+      "operationId": "get/helper/description/sync-person/{slug}"
     }
   },
-  "/helper/sync-skill/{slug}": {
+  "/helper/description/sync-skill/{slug}": {
     "get": {
       "responses": {
         "200": {
@@ -808,7 +808,7 @@
           }
         }
       ],
-      "operationId": "get/helper/sync-skill/{slug}"
+      "operationId": "get/helper/description/sync-skill/{slug}"
     }
   }
 }

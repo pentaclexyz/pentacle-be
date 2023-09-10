@@ -15,7 +15,7 @@
     "Title": {
       "type": "string"
     },
-    "description": {
+    "text": {
       "type": "richtext"
     },
     "projects": {
@@ -43,6 +43,9 @@
       "type": "date"
     },
     "bg_image": {
+      "type": "string"
+    },
+    "link": {
       "type": "string"
     }
   }
