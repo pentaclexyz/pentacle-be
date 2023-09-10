@@ -494,7 +494,7 @@
       "operationId": "delete/tweets/{id}"
     }
   },
-  "/tweet/sync-profile-banners": {
+  "/tweet/sync-twitter-media": {
     "get": {
       "responses": {
         "200": {
@@ -562,10 +562,10 @@
         "Tweet"
       ],
       "parameters": [],
-      "operationId": "get/tweet/sync-profile-banners"
+      "operationId": "get/tweet/sync-twitter-media"
     }
   },
-  "/tweet/sync-single-profile-banner/{id}": {
+  "/tweet/sync-single-twitter-media/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -644,7 +644,7 @@
           }
         }
       ],
-      "operationId": "get/tweet/sync-single-profile-banner/{id}"
+      "operationId": "get/tweet/sync-single-twitter-media/{id}"
     }
   },
   "/tweet/pinned_id/{id}": {
