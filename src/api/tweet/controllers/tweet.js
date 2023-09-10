@@ -45,16 +45,16 @@ module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
 
     return data;
   },
-  async syncProfileBanners() {
-    const data = await strapi.service("api::tweet.tweet").syncProfileBanners();
+  async syncTwitterMedia() {
+    const data = await strapi.service("api::tweet.tweet").syncTwitterMedia();
 
     return data;
   },
-  async syncSingleProfileBanner({ params }) {
+  async syncSingleTwitterMedia({ params }) {
     const username = params.id;
     const data = await strapi
       .service("api::tweet.tweet")
-      .getTwitterBanner(username);
+      .getTwitterMedia(username);
 
     return data;
   },
