@@ -12,7 +12,7 @@ module.exports = {
       .service("api::defi-safety-report.defi-safety-report")
       .fetchReports();
     await strapi.service("api::tweet.tweet").getAndSetAllProfiles();
-    await strapi.service("api::tweet.tweet").syncProfileBanners();
+    await strapi.service("api::tweet.tweet").syncTwitterMedia();
     await strapi.service("api::helper.helper").syncDescriptions();
   },
 };

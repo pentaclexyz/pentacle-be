@@ -73,7 +73,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     return data;
   },
 
-  async getTwitterBanner(username) {
+  async getTwitterMedia(username) {
     console.log(`getting twitter banner for ${username}`);
     // TODO: get rid of this in favor of user object
     const projects = await strapi.db.query("api::project.project").findMany();
@@ -213,7 +213,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
 
     return { success: true };
   },
-  async syncProfileBanners() {
+  async syncTwitterMedia() {
     const projects = await strapi.db.query("api::project.project").findMany();
     const people = await strapi.db.query("api::person.person").findMany();
     for (const project of projects) {
@@ -224,7 +224,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
         "/",
         ""
       );
-      await this.getTwitterBanner(handle);
+      await this.getTwitterMedia(handle);
     }
     for (const person of people) {
       if (!person.twitter) {
@@ -234,7 +234,7 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
         "/",
         ""
       );
-      await this.getTwitterBanner(handle);
+      await this.getTwitterMedia(handle);
     }
     return { success: true };
   },
