@@ -246,6 +246,12 @@
       "relation": "manyToOne",
       "target": "api::tag.tag",
       "inversedBy": "ecosystem_projects"
+    },
+    "lores": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::lore.lore",
+      "inversedBy": "projects"
     }
   }
 }
