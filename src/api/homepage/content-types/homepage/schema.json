@@ -61,6 +61,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project.project"
+    },
+    "lores": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lore.lore"
     }
   }
 }

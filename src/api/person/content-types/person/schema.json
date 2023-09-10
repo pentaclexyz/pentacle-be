@@ -79,8 +79,14 @@
     "twitter_img": {
       "type": "string"
     },
-    "twitter_banner" : {
+    "twitter_banner": {
       "type": "string"
+    },
+    "lores": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::lore.lore",
+      "inversedBy": "people"
     }
   }
 }

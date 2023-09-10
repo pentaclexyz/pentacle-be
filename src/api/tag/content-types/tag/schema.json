@@ -70,6 +70,12 @@
       "relation": "oneToMany",
       "target": "api::project.project",
       "mappedBy": "tag"
+    },
+    "lores": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::lore.lore",
+      "inversedBy": "tags"
     }
   }
 }
