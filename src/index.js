@@ -8,11 +8,9 @@ module.exports = {
    * This gives you an opportunity to extend code.
    */
   register({ strapi }) {
-    strapi
-      .plugin("documentation")
-      .service("override")
-      // TODO: update list
-      // .excludeFromGeneration(["defi-safety-report"]);
+    strapi.plugin("documentation").service("override");
+    // TODO: update list
+    // .excludeFromGeneration(["defi-safety-report"]);
   },
 
   /**
@@ -36,9 +34,5 @@ module.exports = {
         event.params.data.slug = event.params.data.slug?.toLowerCase();
       },
     });
-
-    await strapi
-      .service("api::defi-safety-report.defi-safety-report")
-      .fetchReports();
   },
 };
