@@ -60,7 +60,7 @@ module.exports = createCoreService(
         `https://hub.snapshot.org/graphql?${fetchParams}`
       ).then((res) => res.json());
 
-      return data.proposals;
+      return data?.proposals;
     },
     async refreshData() {
       console.log(`Starting gov data refresh!`);
@@ -153,10 +153,10 @@ module.exports = createCoreService(
       const data = await strapi.db
         .query("api::governance-proposal.governance-proposal")
         .findMany({
-          where: { governance_url }
+          where: { governance_url },
         });
 
-      return data;   
-    }
+      return data;
+    },
   })
 );
