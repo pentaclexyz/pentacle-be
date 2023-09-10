@@ -41,6 +41,9 @@
     },
     "date": {
       "type": "date"
+    },
+    "bg_image": {
+      "type": "string"
     }
   }
 }
