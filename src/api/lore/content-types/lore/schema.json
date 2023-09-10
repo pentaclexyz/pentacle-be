@@ -44,6 +44,9 @@
     },
     "bg_image": {
       "type": "string"
+    },
+    "link": {
+      "type": "string"
     }
   }
 }
