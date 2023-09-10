@@ -36,23 +36,25 @@ module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
     return data;
   },
   async saveAllTwitterPfps() {
-    const data = await strapi
-      .service("api::tweet.tweet")
-      .saveAllTwitterPfps();
+    const data = await strapi.service("api::tweet.tweet").saveAllTwitterPfps();
 
     return data;
   },
   async allToLowercase() {
-    const data = await strapi
-      .service("api::tweet.tweet")
-      .allToLowercase();
+    const data = await strapi.service("api::tweet.tweet").allToLowercase();
 
     return data;
   },
   async syncProfileBanners() {
+    const data = await strapi.service("api::tweet.tweet").syncProfileBanners();
+
+    return data;
+  },
+  async syncSingleProfileBanner({ params }) {
+    const username = params.id;
     const data = await strapi
       .service("api::tweet.tweet")
-      .syncProfileBanners();
+      .getTwitterBanner(username);
 
     return data;
   },

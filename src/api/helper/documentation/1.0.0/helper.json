@@ -1,5 +1,5 @@
 {
-  "/tweets": {
+  "/helpers": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetListResponse"
+                "$ref": "#/components/schemas/HelperListResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [
         {
@@ -159,7 +159,7 @@
           "style": "deepObject"
         }
       ],
-      "operationId": "get/tweets"
+      "operationId": "get/helpers"
     },
     "post": {
       "responses": {
@@ -168,7 +168,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
+                "$ref": "#/components/schemas/HelperResponse"
               }
             }
           }
@@ -225,23 +225,23 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [],
-      "operationId": "post/tweets",
+      "operationId": "post/helpers",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/TweetRequest"
+              "$ref": "#/components/schemas/HelperRequest"
             }
           }
         }
       }
     }
   },
-  "/tweets/{id}": {
+  "/helpers/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -249,7 +249,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
+                "$ref": "#/components/schemas/HelperResponse"
               }
             }
           }
@@ -306,7 +306,7 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [
         {
@@ -320,7 +320,7 @@
           }
         }
       ],
-      "operationId": "get/tweets/{id}"
+      "operationId": "get/helpers/{id}"
     },
     "put": {
       "responses": {
@@ -329,7 +329,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
+                "$ref": "#/components/schemas/HelperResponse"
               }
             }
           }
@@ -386,7 +386,7 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [
         {
@@ -400,13 +400,13 @@
           }
         }
       ],
-      "operationId": "put/tweets/{id}",
+      "operationId": "put/helpers/{id}",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/TweetRequest"
+              "$ref": "#/components/schemas/HelperRequest"
             }
           }
         }
@@ -477,7 +477,7 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [
         {
@@ -491,10 +491,10 @@
           }
         }
       ],
-      "operationId": "delete/tweets/{id}"
+      "operationId": "delete/helpers/{id}"
     }
   },
-  "/tweet/sync-profile-banners": {
+  "/helper/sync-descriptions": {
     "get": {
       "responses": {
         "200": {
@@ -502,7 +502,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
+                "$ref": "#/components/schemas/HelperResponse"
               }
             }
           }
@@ -559,13 +559,13 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [],
-      "operationId": "get/tweet/sync-profile-banners"
+      "operationId": "get/helper/sync-descriptions"
     }
   },
-  "/tweet/sync-single-profile-banner/{id}": {
+  "/helper/sync-project/{slug}": {
     "get": {
       "responses": {
         "200": {
@@ -573,7 +573,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
+                "$ref": "#/components/schemas/HelperResponse"
               }
             }
           }
@@ -630,11 +630,11 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [
         {
-          "name": "id",
+          "name": "slug",
           "in": "path",
           "description": "",
           "deprecated": false,
@@ -644,10 +644,10 @@
           }
         }
       ],
-      "operationId": "get/tweet/sync-single-profile-banner/{id}"
+      "operationId": "get/helper/sync-project/{slug}"
     }
   },
-  "/tweet/pinned_id/{id}": {
+  "/helper/sync-person/{slug}": {
     "get": {
       "responses": {
         "200": {
@@ -655,7 +655,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
+                "$ref": "#/components/schemas/HelperResponse"
               }
             }
           }
@@ -712,11 +712,11 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [
         {
-          "name": "id",
+          "name": "slug",
           "in": "path",
           "description": "",
           "deprecated": false,
@@ -726,10 +726,10 @@
           }
         }
       ],
-      "operationId": "get/tweet/pinned_id/{id}"
+      "operationId": "get/helper/sync-person/{slug}"
     }
   },
-  "/tweet/twitter_banner/{id}": {
+  "/helper/sync-skill/{slug}": {
     "get": {
       "responses": {
         "200": {
@@ -737,7 +737,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
+                "$ref": "#/components/schemas/HelperResponse"
               }
             }
           }
@@ -794,11 +794,11 @@
         }
       },
       "tags": [
-        "Tweet"
+        "Helper"
       ],
       "parameters": [
         {
-          "name": "id",
+          "name": "slug",
           "in": "path",
           "description": "",
           "deprecated": false,
@@ -808,302 +808,7 @@
           }
         }
       ],
-      "operationId": "get/tweet/twitter_banner/{id}"
-    }
-  },
-  "/tweet/save-all-twitter-pfps": {
-    "get": {
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "403": {
-          "description": "Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        }
-      },
-      "tags": [
-        "Tweet"
-      ],
-      "parameters": [],
-      "operationId": "get/tweet/save-all-twitter-pfps"
-    }
-  },
-  "/tweet/get-and-set-all-images": {
-    "get": {
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "403": {
-          "description": "Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        }
-      },
-      "tags": [
-        "Tweet"
-      ],
-      "parameters": [],
-      "operationId": "get/tweet/get-and-set-all-images"
-    }
-  },
-  "/tweet/all-to-lowercase": {
-    "get": {
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "403": {
-          "description": "Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        }
-      },
-      "tags": [
-        "Tweet"
-      ],
-      "parameters": [],
-      "operationId": "get/tweet/all-to-lowercase"
-    }
-  },
-  "/tweet/twitter_lists/{screen_name}": {
-    "get": {
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TweetResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "403": {
-          "description": "Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        }
-      },
-      "tags": [
-        "Tweet"
-      ],
-      "parameters": [
-        {
-          "name": "screen_name",
-          "in": "path",
-          "description": "",
-          "deprecated": false,
-          "required": true,
-          "schema": {
-            "type": "number"
-          }
-        }
-      ],
-      "operationId": "get/tweet/twitter_lists/{screen_name}"
+      "operationId": "get/helper/sync-skill/{slug}"
     }
   }
 }
