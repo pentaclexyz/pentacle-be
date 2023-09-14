@@ -79,24 +79,28 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     const projects = await strapi.db.query("api::project.project").findMany();
     const people = await strapi.db.query("api::person.person").findMany();
 
-    const previousPerson = people.find(
+    const previousPeople = people.filter(
       (person) => person.twitter === `https://twitter.com/${username}`
     );
-    const previousProject = projects.find(
+    const previousProjects = projects.filter(
       (person) => person.twitter_url === `https://twitter.com/${username}`
     );
 
-    if (!previousPerson && !previousProject) {
-      console.log(`no person or project found for ${username}`);
-      console.log({ previousPerson, previousProject });
+    if (!previousPeople.length && !previousProjects.length) {
+      console.log(
+        `no person or project found for ${username}. Check casing and make sure the twitter url is correct`
+      );
       return;
     }
-    const needsUpdate = await checkTwitterImages(
-      previousPerson || previousProject
-    );
 
-    if (!needsUpdate) {
-      return;
+    const needsUpdate = await Promise.all([
+      ...previousPeople.map(checkTwitterImages),
+      ...previousProjects.map(checkTwitterImages),
+    ]);
+
+    if (!needsUpdate.some((item) => !!item)) {
+      console.log(`no update needed for ${username}`);
+      return { success: true, message: "no update needed" };
     }
 
     const response = await fetch(
@@ -111,29 +115,25 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       return res.json();
     });
 
-    if (previousPerson) {
-      await strapi.entityService.update(
-        "api::person.person",
-        previousPerson.id,
-        {
+    if (previousPeople) {
+      for (const person of previousPeople) {
+        await strapi.entityService.update("api::person.person", person.id, {
           data: {
             twitter_img: response.profile_image_url_https,
             twitter_banner: response.profile_banner_url,
           },
-        }
-      );
+        });
+      }
     }
-    if (previousProject) {
-      await strapi.entityService.update(
-        "api::project.project",
-        previousProject.id,
-        {
+    if (previousProjects) {
+      for (const project of previousProjects) {
+        await strapi.entityService.update("api::project.project", project.id, {
           data: {
             twitter_img: response.profile_image_url_https,
             twitter_banner: response.profile_banner_url,
           },
-        }
-      );
+        });
+      }
     }
     return { success: true };
   },
