@@ -80,10 +80,18 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     const people = await strapi.db.query("api::person.person").findMany();
 
     const previousPeople = people.filter(
-      (person) => person.twitter === `https://twitter.com/${username}`
+      (person) =>
+        person.twitter === `https://twitter.com/${username}` ||
+        person.twitter === `http://twitter.com/${username}` ||
+        person.twitter === `https://www.twitter.com/${username}` ||
+        person.twitter === `http://www.twitter.com/${username}`
     );
     const previousProjects = projects.filter(
-      (person) => person.twitter_url === `https://twitter.com/${username}`
+      (person) =>
+        person.twitter_url === `https://twitter.com/${username}` ||
+        person.twitter_url === `http://twitter.com/${username}` ||
+        person.twitter_url === `https://www.twitter.com/${username}` ||
+        person.twitter_url === `http://www.twitter.com/${username}`
     );
 
     if (!previousPeople.length && !previousProjects.length) {
