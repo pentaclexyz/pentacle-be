@@ -252,12 +252,6 @@
       "relation": "manyToMany",
       "target": "api::lore.lore",
       "inversedBy": "projects"
-    },
-    "glossary_items": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::glossary-item.glossary-item",
-      "inversedBy": "projects"
     }
   }
 }
