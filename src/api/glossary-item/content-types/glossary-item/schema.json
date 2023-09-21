@@ -60,6 +60,12 @@
       "relation": "manyToMany",
       "target": "api::skill-type.skill-type",
       "inversedBy": "glossary_items"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "glossary_items"
     }
   }
 }
