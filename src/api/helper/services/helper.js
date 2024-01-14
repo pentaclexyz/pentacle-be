@@ -11,39 +11,54 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
     const descriptionRes = await fetch(
       `${process.env.DESCRIPTION_SERVICE}/projects/${project.slug}.md`
     );
-    if (descriptionRes.ok) {
-      await strapi.entityService.update("api::project.project", project.id, {
-        data: {
-          description: await descriptionRes.text(),
-        },
-      });
+    if (!descriptionRes.ok) {
+      return {
+        success: false,
+        error: descriptionRes.statusText,
+        status: descriptionRes.status,
+      };
     }
+    await strapi.entityService.update("api::project.project", project.id, {
+      data: {
+        description: await descriptionRes.text(),
+      },
+    });
     return { success: true };
   },
   async syncPerson(person) {
     const descriptionRes = await fetch(
       `${process.env.DESCRIPTION_SERVICE}/people/${person.slug}.md`
     );
-    if (descriptionRes.ok) {
-      await strapi.entityService.update("api::person.person", person.id, {
-        data: {
-          bio: await descriptionRes.text(),
-        },
-      });
+    if (!descriptionRes.ok) {
+      return {
+        success: false,
+        error: descriptionRes.statusText,
+        status: descriptionRes.status,
+      };
     }
+    await strapi.entityService.update("api::person.person", person.id, {
+      data: {
+        bio: await descriptionRes.text(),
+      },
+    });
     return { success: true };
   },
   async syncSkill(skill) {
     const descriptionRes = await fetch(
       `${process.env.DESCRIPTION_SERVICE}/skills/${skill.slug}.md`
     );
-    if (descriptionRes.ok) {
-      await strapi.entityService.update("api::skill.skill", skill.id, {
-        data: {
-          text: await descriptionRes.text(),
-        },
-      });
+    if (!descriptionRes.ok) {
+      return {
+        success: false,
+        error: descriptionRes.statusText,
+        status: descriptionRes.status,
+      };
     }
+    await strapi.entityService.update("api::skill.skill", skill.id, {
+      data: {
+        text: await descriptionRes.text(),
+      },
+    });
     return { success: true };
   },
   async syncDescriptions() {
