@@ -13,11 +13,12 @@ module.exports = createCoreService(
   "api::governance-proposal.governance-proposal",
   ({ strapi }) => ({
     async getProjectProposals({ governance_url }) {
-      const query = `query Proposals($first: Int!, $skip: Int!, $state: String!, $space: String, $space_in: [String], $author_in: [String]) {
+      const query = `
+      query Proposals($first: Int!, $skip: Int!, $state: String!, $space: String, $space_in: [String], $author_in: [String], $title_contains: String, $space_verified: Boolean, $flagged: Boolean) {
         proposals(
           first: $first
           skip: $skip
-          where: {space: $space, state: $state, space_in: $space_in, author_in: $author_in}
+          where: {space: $space, state: $state, space_in: $space_in, author_in: $author_in, title_contains: $title_contains, space_verified: $space_verified, flagged: $flagged}
         ) {
           id
           ipfs
@@ -35,6 +36,8 @@ module.exports = createCoreService(
             members
             avatar
             symbol
+            verified
+            plugins
           }
           scores_state
           scores_total
@@ -42,6 +45,7 @@ module.exports = createCoreService(
           votes
           quorum
           symbol
+          flagged
         }
       }
     `;
@@ -52,7 +56,8 @@ module.exports = createCoreService(
           skip: 0,
           space_in: [governance_url],
           state: "all",
-          author_in: [],
+          flagged: false,
+          title_contains: "",
         }),
         operationName: "Proposals",
       });
@@ -71,9 +76,15 @@ module.exports = createCoreService(
       ).results.filter((project) => !!project.governance_url);
 
       for (const project of found) {
+        console.log(`getting proposals for ${project.name}`);
         const proposals = await this.getProjectProposals({
           governance_url: project.governance_url,
         });
+        if (!proposals) {
+          console.log(`no proposals for ${project.name}`);
+          continue;
+        }
+        console.log(`found ${proposals.length} proposals for ${project.name}`);
         for (const proposal of proposals) {
           const previousEntries = await strapi.db
             .query("api::governance-proposal.governance-proposal")
