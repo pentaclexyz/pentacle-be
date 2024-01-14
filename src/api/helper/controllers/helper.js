@@ -15,7 +15,7 @@ module.exports = createCoreController("api::helper.helper", ({ strapi }) => ({
     const slug = params.slug;
     const project = await strapi.db
       .query("api::project.project")
-      .findOne({ slug });
+      .findOne({ where: { slug } });
     const data = await strapi
       .service("api::helper.helper")
       .syncProject(project);
@@ -25,13 +25,15 @@ module.exports = createCoreController("api::helper.helper", ({ strapi }) => ({
     const slug = params.slug;
     const person = await strapi.db
       .query("api::person.person")
-      .findOne({ slug });
+      .findOne({ where: { slug } });
     const data = await strapi.service("api::helper.helper").syncPerson(person);
     return data;
   },
   async syncSkill({ params }) {
     const slug = params.slug;
-    const skill = await strapi.db.query("api::skill.skill").findOne({ slug });
+    const skill = await strapi.db
+      .query("api::skill.skill")
+      .findOne({ where: { slug } });
     const data = await strapi.service("api::helper.helper").syncSkill(skill);
     return data;
   },
