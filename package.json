@@ -11,9 +11,9 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-documentation": "4.15.5",
     "@strapi/plugin-i18n": "4.15.5",
     "@strapi/plugin-open-ai": "^1.0.2",
+    "@strapi/plugin-documentation": "4.15.5",
     "@strapi/plugin-users-permissions": "4.15.5",
     "@strapi/provider-upload-cloudinary": "4.15.5",
     "@strapi/strapi": "4.15.5",
