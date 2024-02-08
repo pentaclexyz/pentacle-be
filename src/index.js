@@ -8,9 +8,9 @@ module.exports = {
    * This gives you an opportunity to extend code.
    */
   register({ strapi }) {
-    strapi.plugin("documentation").service("override");
+    strapi.plugin("documentation").service("override")
     // TODO: update list
-    // .excludeFromGeneration(["defi-safety-report"]);
+    .excludeFromGeneration(["defi-safety-report", "sections"]);
   },
 
   /**
