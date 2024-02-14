@@ -10,6 +10,53 @@ module.exports = ({env}) => ({
       API_TOKEN: env('OPENAI_TOKEN'),
     },
   },
+  documentation: {
+    enabled: true,
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.1",
+      "title": "DOCUMENTATION",
+      "description": "",
+      "termsOfService": "YOUR_TERMS_OF_SERVICE_URL",
+      "contact": {
+        "name": "Pentacle",
+        "email": "pentacle@pentacle.xyz",
+        "url": "https://pentacle.xyz"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "x-strapi-config": {
+      "path": "/documentation",
+      "showGeneratedFiles": true,
+      "generateDefaultResponse": true,
+      "plugins": [
+        "email",
+        "upload",
+        "users-permissions"
+      ]
+    },
+    "servers": [
+      {
+        "url": "https://api.pentacle.xyz",
+        "description": "Pentacle API production server"
+      }
+    ],
+    "externalDocs": {
+      "description": "Find out more",
+      "url": "https://strapi.io/documentation/"
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "paths": {},
+    "tags": [],
+    "components": {}
+  },
   upload: {
     config: {
       provider: 'cloudinary',
