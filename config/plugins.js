@@ -34,7 +34,7 @@ module.exports = ({env}) => ({
         plugins: [ 'upload', 'users-permissions'],
         path: '/documentation',
       },
-      servers: [{ url: 'https://api.pentacle.xyz', description: 'Development server' }],
+      servers: [{url: env("DOCUMENTATION_SERVER"), description: "Documentation server"},],
       externalDocs: {
         description: 'Find out more',
         url: 'https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html'
