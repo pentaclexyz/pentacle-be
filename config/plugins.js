@@ -20,7 +20,7 @@ module.exports = ({env}) => ({
         description: '',
         termsOfService: 'YOUR_TERMS_OF_SERVICE_URL',
         contact: {
-          name: 'TEAM',
+          name: 'PENTACLE',
           email: 'pentacle@pentacle.xyz',
           url: 'https://pentacle.xyz'
         },
