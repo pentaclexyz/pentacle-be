@@ -10,7 +10,26 @@ module.exports = {
     register({strapi}) {
         strapi.plugin("documentation").service("override")
             // TODO: update list
-            .excludeFromGeneration(["defi-safety-report", "section", "lore", "tweet", "term", "helper", "homepage", "connect", "auth", "governance-discussion", "governance-proposal", "global", "content-type", "audit", "about", "users", "users-permissions", "upload"]);
+            .excludeFromGeneration([
+                "defi-safety-report",
+                "section",
+                "lore",
+                "tweet",
+                "term",
+                "helper",
+                "homepage",
+                "connect",
+                "auth",
+                "governance-discussion",
+                "governance-proposal",
+                "global",
+                "content-type",
+                "audit",
+                "about",
+                "users",
+                "users-permissions",
+                "upload"
+            ]);
     },
 
     /**
