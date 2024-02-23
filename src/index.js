@@ -26,9 +26,6 @@ module.exports = {
                 "content-type",
                 "audit",
                 "about",
-                "users",
-                "users-permissions",
-                "upload"
             ]);
     },
 

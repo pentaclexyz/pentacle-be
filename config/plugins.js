@@ -21,8 +21,8 @@ module.exports = ({env}) => ({
         termsOfService: 'YOUR_TERMS_OF_SERVICE_URL',
         contact: {
           name: 'TEAM',
-          email: 'contact-email@something.io',
-          url: 'mywebsite.io'
+          email: 'pentacle@pentacle.xyz',
+          url: 'https://pentacle.xyz'
         },
         license: {
           name: 'Apache 2.0',
