@@ -31,7 +31,7 @@ module.exports = ({env}) => ({
       },
       'x-strapi-config': {
         // Leave empty to ignore plugins during generation
-        // plugins: [ 'upload', 'users-permissions'],
+        plugins: [],
         path: '/documentation',
       },
       servers: [{url: env("DOCUMENTATION_SERVER"), description: "Documentation server"},],
