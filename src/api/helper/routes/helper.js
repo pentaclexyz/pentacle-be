@@ -41,6 +41,14 @@ const myExtraRoutes = [
       auth: false,
     },
   },
+  {
+    method: "GET",
+    path: "/helper/migrate-github",
+    handler: "api::helper.helper.migrateGithub",
+    config: {
+      auth: false,
+    },
+  },
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);

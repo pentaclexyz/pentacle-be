@@ -57,6 +57,9 @@
     "github_url": {
       "type": "string"
     },
+    "github_id": {
+      "type": "string"
+    },
     "docs_url": {
       "type": "string"
     },

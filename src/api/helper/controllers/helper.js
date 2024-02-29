@@ -37,4 +37,8 @@ module.exports = createCoreController("api::helper.helper", ({ strapi }) => ({
     const data = await strapi.service("api::helper.helper").syncSkill(skill);
     return data;
   },
+  async migrateGithub() {
+    const data = await strapi.service("api::helper.helper").migrateGithub();
+    return data;
+  },
 }));

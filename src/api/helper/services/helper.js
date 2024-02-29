@@ -84,4 +84,33 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
       i++;
     }
   },
+  async migrateGithub() {
+    const projects = await strapi.db.query("api::project.project").findMany();
+    for (const project of projects) {
+      if (project.github_url) {
+        const github = project.github_url.split("/");
+        const username = github[github.length - 1];
+
+        const res = await (
+          await fetch(`https://api.github.com/users/${username}`, {
+            headers: {
+              Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            },
+          }).catch((e) => console.error(e))
+        ).json().catch((e) => console.error(e));
+        if (res?.id) {
+          await strapi.entityService.update(
+            "api::project.project",
+            project.id,
+            {
+              data: {
+                github_id: res.id,
+              },
+            }
+          );
+        }
+      }
+    }
+    return { success: true };
+  },
 }));
