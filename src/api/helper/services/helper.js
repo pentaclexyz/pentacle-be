@@ -86,31 +86,30 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
   },
   async migrateGithub() {
     const projects = await strapi.db.query("api::project.project").findMany();
-    for (const project of projects) {
-      if (project.github_url) {
-        const github = project.github_url.split("/");
-        const username = github[github.length - 1];
+    let i = 1;
+    console.log("Starting to migrate github data");
+    for (const project of projects.filter((p) => p.github_url)) {
+      const github = project.github_url.split("/");
+      const username = github[github.length - 1];
 
-        const res = await (
-          await fetch(`https://api.github.com/users/${username}`, {
-            headers: {
-              Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-            },
-          }).catch((e) => console.error(e))
-        ).json().catch((e) => console.error(e));
-        if (res?.id) {
-          await strapi.entityService.update(
-            "api::project.project",
-            project.id,
-            {
-              data: {
-                github_id: res.id,
-                github_created_at: res.created_at,
-              },
-            }
-          );
-        }
+      const res = await (
+        await fetch(`https://api.github.com/users/${username}`, {
+          headers: {
+            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          },
+        }).catch((e) => console.error(e))
+      )
+        .json()
+        .catch((e) => console.error(e));
+      if (res?.id) {
+        await strapi.entityService.update("api::project.project", project.id, {
+          data: {
+            github_id: res.id,
+            github_created_at: res.created_at,
+          },
+        });
       }
+      console.log(`${i}/${projects.length} done`);
     }
     return { success: true };
   },
