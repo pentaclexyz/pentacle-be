@@ -60,6 +60,9 @@
     "github_id": {
       "type": "integer"
     },
+    "github_created_at": {
+      "type": "integer"
+    },
     "docs_url": {
       "type": "string"
     },

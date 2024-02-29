@@ -105,6 +105,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
             {
               data: {
                 github_id: res.id,
+                github_created_at: res.created_at,
               },
             }
           );
