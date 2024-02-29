@@ -61,7 +61,7 @@
       "type": "integer"
     },
     "github_created_at": {
-      "type": "integer"
+      "type": "string"
     },
     "docs_url": {
       "type": "string"
