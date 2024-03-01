@@ -58,7 +58,7 @@
       "type": "string"
     },
     "github_id": {
-      "type": "integer"
+      "type": "string"
     },
     "github_created_at": {
       "type": "string"

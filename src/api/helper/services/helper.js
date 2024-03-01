@@ -105,7 +105,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
       if (res?.id) {
         await strapi.entityService.update("api::project.project", project.id, {
           data: {
-            github_id: res.id,
+            github_id: `${res.id}`,
             github_created_at: res.created_at,
           },
         });
