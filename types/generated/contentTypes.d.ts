@@ -1537,6 +1537,8 @@ export interface ApiProjectProject extends Schema.CollectionType {
     rekt_url: Attribute.String;
     whitepaper_url: Attribute.String;
     github_url: Attribute.String;
+    github_id: Attribute.String;
+    github_created_at: Attribute.String;
     docs_url: Attribute.String;
     discord_url: Attribute.String;
     telegram_url: Attribute.String;
