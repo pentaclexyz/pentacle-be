@@ -88,7 +88,8 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
     const projects = await strapi.db.query("api::project.project").findMany();
     let i = 1;
     console.log("Starting to migrate github data");
-    for (const project of projects.filter((p) => p.github_url)) {
+    const filtered = projects.filter((p) => p.github_url);
+    for (const project of filtered) {
       const github = project.github_url.split("/");
       const username = github[github.length - 1];
 
@@ -109,7 +110,8 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
           },
         });
       }
-      console.log(`${i}/${projects.length} done`);
+      console.log(`${i}/${filtered.length} done`);
+      i++;
     }
     return { success: true };
   },
