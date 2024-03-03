@@ -60,7 +60,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
-      "inversedBy": "related_to"
+      "mappedBy": "related_to"
     },
     "description": {
       "type": "richtext"
@@ -75,7 +75,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::lore.lore",
-      "inversedBy": "tags"
+      "mappedBy": "tags"
     }
   }
 }

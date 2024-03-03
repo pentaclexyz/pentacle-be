@@ -36,7 +36,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
-      "inversedBy": "articles"
+      "mappedBy": "articles"
     },
     "categories": {
       "type": "relation",
@@ -63,13 +63,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::chain.chain",
-      "inversedBy": "articles"
+      "mappedBy": "articles"
     },
     "skill_levels": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::skill-level.skill-level",
-      "inversedBy": "articles"
+      "mappedBy": "articles"
     }
   }
 }

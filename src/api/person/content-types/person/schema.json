@@ -32,7 +32,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
-      "inversedBy": "people"
+      "mappedBy": "people"
     },
     "github": {
       "type": "string"
@@ -41,7 +41,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::glossary-item.glossary-item",
-      "inversedBy": "people"
+      "mappedBy": "people"
     },
     "skills": {
       "type": "relation",
@@ -62,19 +62,19 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "has_investor_person"
+      "mappedBy": "has_investor_person"
     },
     "subject_expert_types": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::subject-expert-type.subject-expert-type",
-      "inversedBy": "people"
+      "mappedBy": "people"
     },
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
-      "inversedBy": "people"
+      "mappedBy": "people"
     },
     "twitter_img": {
       "type": "string"
@@ -86,7 +86,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::lore.lore",
-      "inversedBy": "people"
+      "mappedBy": "people"
     }
   }
 }

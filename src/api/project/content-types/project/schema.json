@@ -107,19 +107,19 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::person.person",
-      "inversedBy": "projects"
+      "mappedBy": "projects"
     },
     "has_investor": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "has_investment"
+      "mappedBy": "has_investment"
     },
     "has_investment": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "has_investor"
+      "mappedBy": "has_investor"
     },
     "has_investor_person": {
       "type": "relation",
@@ -131,7 +131,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::skill-level.skill-level",
-      "inversedBy": "projects"
+      "mappedBy": "projects"
     },
     "governance_url": {
       "type": "string"
@@ -188,7 +188,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "has_auditor"
+      "mappedBy": "has_auditor"
     },
     "has_auditor": {
       "type": "relation",
@@ -200,37 +200,37 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "risk_managed_by"
+      "mappedBy": "risk_managed_by"
     },
     "risk_managed_by": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "risk_manager_for"
+      "mappedBy": "risk_manager_for"
     },
     "powers": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "powered_by"
+      "mappedBy": "powered_by"
     },
     "powered_by": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "powers"
+      "mappedBy": "powers"
     },
     "child_projects": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "parent_projects"
+      "mappedBy": "parent_projects"
     },
     "parent_projects": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "child_projects"
+      "mappedBy": "child_projects"
     },
     "risk_urls": {
       "displayName": "risk_urls",
@@ -257,7 +257,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::lore.lore",
-      "inversedBy": "projects"
+      "mappedBy": "projects"
     }
   }
 }

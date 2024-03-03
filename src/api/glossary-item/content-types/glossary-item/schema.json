@@ -59,7 +59,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::skill-type.skill-type",
-      "inversedBy": "glossary_items"
+      "mappedBy": "glossary_items"
     }
   }
 }

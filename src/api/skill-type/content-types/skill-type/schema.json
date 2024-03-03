@@ -23,13 +23,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::skill.skill",
-      "inversedBy": "skill_types"
+      "mappedBy": "skill_types"
     },
     "glossary_items": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::glossary-item.glossary-item",
-      "inversedBy": "skill_types"
+      "mappedBy": "skill_types"
     }
   }
 }
