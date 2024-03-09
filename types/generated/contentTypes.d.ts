@@ -1816,6 +1816,7 @@ export interface ApiSkillLevelSkillLevel extends Schema.CollectionType {
       'api::article.article'
     >;
     description: Attribute.RichText;
+    image_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

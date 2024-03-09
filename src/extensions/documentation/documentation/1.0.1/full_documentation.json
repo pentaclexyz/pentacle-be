@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-03-04T16:02:35.242Z"
+    "x-generation-date": "2024-03-09T19:29:56.860Z"
   },
   "x-strapi-config": {
     "plugins": [],
@@ -3031,6 +3031,9 @@
                       "description": {
                         "type": "string"
                       },
+                      "image_url": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -5984,6 +5987,9 @@
                                     "description": {
                                       "type": "string"
                                     },
+                                    "image_url": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -8082,6 +8088,9 @@
                                                                   }
                                                                 },
                                                                 "description": {
+                                                                  "type": "string"
+                                                                },
+                                                                "image_url": {
                                                                   "type": "string"
                                                                 },
                                                                 "createdAt": {
@@ -12402,6 +12411,9 @@
                                                   "description": {
                                                     "type": "string"
                                                   },
+                                                  "image_url": {
+                                                    "type": "string"
+                                                  },
                                                   "createdAt": {
                                                     "type": "string",
                                                     "format": "date-time"
@@ -16512,6 +16524,9 @@
                                     "description": {
                                       "type": "string"
                                     },
+                                    "image_url": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -19849,6 +19864,9 @@
                                                     }
                                                   },
                                                   "description": {
+                                                    "type": "string"
+                                                  },
+                                                  "image_url": {
                                                     "type": "string"
                                                   },
                                                   "createdAt": {
@@ -23730,6 +23748,9 @@
                         "description": {
                           "type": "string"
                         },
+                        "image_url": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -23991,6 +24012,9 @@
                 }
               },
               "description": {
+                "type": "string"
+              },
+              "image_url": {
                 "type": "string"
               }
             }
@@ -26680,6 +26704,9 @@
                                       "description": {
                                         "type": "string"
                                       },
+                                      "image_url": {
+                                        "type": "string"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -26913,6 +26940,9 @@
             }
           },
           "description": {
+            "type": "string"
+          },
+          "image_url": {
             "type": "string"
           },
           "createdAt": {
@@ -29715,6 +29745,9 @@
                                       "description": {
                                         "type": "string"
                                       },
+                                      "image_url": {
+                                        "type": "string"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -32357,6 +32390,9 @@
                                                     }
                                                   },
                                                   "description": {
+                                                    "type": "string"
+                                                  },
+                                                  "image_url": {
                                                     "type": "string"
                                                   },
                                                   "createdAt": {
@@ -35708,6 +35744,9 @@
                                       }
                                     },
                                     "description": {
+                                      "type": "string"
+                                    },
+                                    "image_url": {
                                       "type": "string"
                                     },
                                     "createdAt": {
