@@ -1389,6 +1389,46 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@oven/bun-darwin-aarch64@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-darwin-aarch64/-/bun-darwin-aarch64-1.1.6.tgz#09a73e84f11d0f6b108bd8254ea5fbdef974e1e5"
+  integrity sha512-1GQb0gugo/qndj5ehktgHRAoyCM5fWisbLEBLq6YorHTc71T5cqFWCQ6uPcfy3k9cxEDd8tUpejekyi8EsCxgw==
+
+"@oven/bun-darwin-x64-baseline@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-darwin-x64-baseline/-/bun-darwin-x64-baseline-1.1.6.tgz#b19083606379d0193126a1d3e5130112513f2552"
+  integrity sha512-amG6o1y1ksjwOUKS97IW5VQE/UPfEa4Edket1+VUa0UGvo/0z3+2gVYF3Bt+pZA45glJKXM3nI9wYlmVeE/AcQ==
+
+"@oven/bun-darwin-x64@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-darwin-x64/-/bun-darwin-x64-1.1.6.tgz#ef73cce31ac9d827e2aa33266bcb8398c90ba4ad"
+  integrity sha512-NK8py4eJNkN6iNfvaM8pzmmNNNkbyzRvnc/pmrDLFPPfgJklJ2esm8OBCALDe9RvP1USDo8H1I4IXCtQQIu3SQ==
+
+"@oven/bun-linux-aarch64@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-linux-aarch64/-/bun-linux-aarch64-1.1.6.tgz#f1508deda5a6f7a592c88018d7c9dfdaba5f6857"
+  integrity sha512-FOlZBeIrk7DlOsktWwahmxJwaKxCG9C+pKPMj8s+u08WhAKtfMBpgHvHsilBKE9W1twta+jB+geW4kU1KZSNZg==
+
+"@oven/bun-linux-x64-baseline@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-linux-x64-baseline/-/bun-linux-x64-baseline-1.1.6.tgz#7f726593b533aaa9167ca31da40053d66ec5d001"
+  integrity sha512-a/Wx5ZTl0BDq9WH5nJfl8rw0YX5/dWmxmy3pYki6EBbwjcsA8iMzjkRpp5k8NEV2SpyaDMdS+xCb/HiaO4RWoQ==
+
+"@oven/bun-linux-x64@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-linux-x64/-/bun-linux-x64-1.1.6.tgz#29f9a1d8919a3f7fb699e7eb058ca854933f4158"
+  integrity sha512-PN/5XSPCWCuIgOEhxWfx5ViVEY9ZfpEpJkadDiZi9IY17mb/aZVvt0Lll4doe6B7hjbglb1nI++GXcpqU/fonw==
+
+"@oven/bun-windows-x64-baseline@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-windows-x64-baseline/-/bun-windows-x64-baseline-1.1.6.tgz#9e56e44b863922876b6c7d89371285f6f8cf908e"
+  integrity sha512-8VVPdKTYEsQPwlCasLWmTsHPcC9om9FaZlH9j7Gs9jBYje3FDXMyLI3DalVQ/VBY+uwQ8qoXhtDrh83nLuawhA==
+
+"@oven/bun-windows-x64@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@oven/bun-windows-x64/-/bun-windows-x64-1.1.6.tgz#4de112e641f40004844881ba33b4ebd9d2c2a348"
+  integrity sha512-knJePhYbqtYv5RNUrnkMFrK4z3dDIPzom402yjSLkESZhsnO16xtLkULocV2yk0KDXKo2C3BqoZKHATCK6LxqQ==
+
 "@pkgr/utils@^2.3.1":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@pkgr/utils/-/utils-2.4.2.tgz#9e638bbe9a6a6f165580dc943f138fd3309a2cbc"
@@ -3503,6 +3543,20 @@ buildmail@3.10.0:
     libqp "1.1.0"
     nodemailer-fetch "1.6.0"
     nodemailer-shared "1.1.0"
+
+bun@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/bun/-/bun-1.1.6.tgz#bde62fcdd6ee3c834261f111d8d231dca1bfa11e"
+  integrity sha512-0oKx5dVZ8LpsAvXdW2DTR5Zt3KS81Ifjx9T2ma7RjDPKbvGIlDXOPt++tr1SndxhFNFsMFeE4i6VKvlL7IR0Zw==
+  optionalDependencies:
+    "@oven/bun-darwin-aarch64" "1.1.6"
+    "@oven/bun-darwin-x64" "1.1.6"
+    "@oven/bun-darwin-x64-baseline" "1.1.6"
+    "@oven/bun-linux-aarch64" "1.1.6"
+    "@oven/bun-linux-x64" "1.1.6"
+    "@oven/bun-linux-x64-baseline" "1.1.6"
+    "@oven/bun-windows-x64" "1.1.6"
+    "@oven/bun-windows-x64-baseline" "1.1.6"
 
 bundle-name@^3.0.0:
   version "3.0.0"
