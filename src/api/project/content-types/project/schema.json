@@ -15,9 +15,6 @@
     "name": {
       "type": "string"
     },
-    "avatar": {
-      "type": "string"
-    },
     "coingecko_id": {
       "type": "string"
     },
