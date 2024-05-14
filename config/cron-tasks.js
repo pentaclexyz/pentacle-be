@@ -14,5 +14,6 @@ module.exports = {
     await strapi.service("api::tweet.tweet").getAndSetAllProfiles();
     await strapi.service("api::tweet.tweet").syncTwitterMedia();
     await strapi.service("api::helper.helper").syncDescriptions();
+    await strapi.service("api::helper.helper").migrateGithub();
   },
 };
