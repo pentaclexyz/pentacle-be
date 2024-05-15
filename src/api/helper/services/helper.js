@@ -25,8 +25,8 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
         await strapi.entityService.update("api::chain.chain", existing.id, {
           data: {
             name,
-            symbol,
-            evm_chain_id: `${chain.chainId}`,
+            ticker: symbol,
+            evm_chain_id: `${chain.id}`,
           },
         });
       } else {
@@ -34,8 +34,8 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
           data: {
             name,
             slug,
-            symbol,
-            evm_chain_id: `${chain.chainId}`,
+            ticker: symbol,
+            evm_chain_id: `${chain.id}`,
           },
         });
       }
