@@ -15,9 +15,6 @@
     "name": {
       "type": "string"
     },
-    "coingecko_id": {
-      "type": "string"
-    },
     "ticker": {
       "type": "string"
     },
@@ -27,7 +24,7 @@
     "webapp_url": {
       "type": "string"
     },
-    "twitter_url": {
+    "twitter_handle": {
       "type": "string"
     },
     "token_image_url": {
@@ -69,10 +66,13 @@
     "discord_url": {
       "type": "string"
     },
+    "marketplace_url": {
+      "type": "string"
+    },
     "telegram_url": {
       "type": "string"
     },
-    "medium_url": {
+    "blog_url": {
       "type": "string"
     },
     "tags": {
@@ -91,7 +91,7 @@
     "jobs_url": {
       "type": "string"
     },
-    "defisafety_id": {
+    "defisafety_url": {
       "type": "string"
     },
     "grants_url": {
@@ -115,7 +115,13 @@
     "audits_url": {
       "type": "string"
     },
-    "mirror_url": {
+    "contact": {
+      "type": "string"
+    },
+    "farcaster_handle": {
+      "type": "string"
+    },
+    "eth_address": {
       "type": "string"
     }
   }
