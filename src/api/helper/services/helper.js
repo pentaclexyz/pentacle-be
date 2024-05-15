@@ -1,5 +1,6 @@
 "use strict";
-import * as chains from "viem/chains";
+const _ = require("lodash");
+const chains = require("viem/chains");
 
 /**
  * helper service.
