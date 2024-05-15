@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-03-10T12:19:33.135Z"
+    "x-generation-date": "2024-05-15T19:17:11.444Z"
   },
   "x-strapi-config": {
     "plugins": [],
@@ -22,7 +22,7 @@
   },
   "servers": [
     {
-      "url": "https://pentacle-be-staging.up.railway.app",
+      "url": "https://pentacle-be-staging.up.railway.app/api",
       "description": "Documentation server"
     }
   ],
@@ -855,9 +855,6 @@
                                                                                                                         "name": {
                                                                                                                           "type": "string"
                                                                                                                         },
-                                                                                                                        "avatar": {
-                                                                                                                          "type": "string"
-                                                                                                                        },
                                                                                                                         "coingecko_id": {
                                                                                                                           "type": "string"
                                                                                                                         },
@@ -1159,6 +1156,9 @@
                                                                                                                                             }
                                                                                                                                           }
                                                                                                                                         }
+                                                                                                                                      },
+                                                                                                                                      "emv_chain_id": {
+                                                                                                                                        "type": "string"
                                                                                                                                       },
                                                                                                                                       "createdAt": {
                                                                                                                                         "type": "string",
@@ -2158,6 +2158,9 @@
                                                                                                                               }
                                                                                                                             }
                                                                                                                           }
+                                                                                                                        },
+                                                                                                                        "farcaster_handle": {
+                                                                                                                          "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
                                                                                                                           "type": "string",
@@ -3970,9 +3973,6 @@
                                                                                                           "name": {
                                                                                                             "type": "string"
                                                                                                           },
-                                                                                                          "avatar": {
-                                                                                                            "type": "string"
-                                                                                                          },
                                                                                                           "coingecko_id": {
                                                                                                             "type": "string"
                                                                                                           },
@@ -4950,6 +4950,9 @@
                                                                                                                             }
                                                                                                                           }
                                                                                                                         },
+                                                                                                                        "emv_chain_id": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
                                                                                                                         "createdAt": {
                                                                                                                           "type": "string",
                                                                                                                           "format": "date-time"
@@ -5509,6 +5512,9 @@
                                                                                                                 }
                                                                                                               }
                                                                                                             }
+                                                                                                          },
+                                                                                                          "farcaster_handle": {
+                                                                                                            "type": "string"
                                                                                                           },
                                                                                                           "createdAt": {
                                                                                                             "type": "string",
@@ -6399,6 +6405,9 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "emv_chain_id": {
+                "type": "string"
               }
             }
           }
@@ -6477,9 +6486,6 @@
                       "type": "object",
                       "properties": {
                         "name": {
-                          "type": "string"
-                        },
-                        "avatar": {
                           "type": "string"
                         },
                         "coingecko_id": {
@@ -8297,6 +8303,9 @@
                                                                       }
                                                                     }
                                                                   },
+                                                                  "emv_chain_id": {
+                                                                    "type": "string"
+                                                                  },
                                                                   "createdAt": {
                                                                     "type": "string",
                                                                     "format": "date-time"
@@ -9212,6 +9221,9 @@
                             }
                           }
                         },
+                        "farcaster_handle": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -9287,6 +9299,9 @@
                 }
               }
             }
+          },
+          "emv_chain_id": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -10544,9 +10559,6 @@
                                                                                                                         "name": {
                                                                                                                           "type": "string"
                                                                                                                         },
-                                                                                                                        "avatar": {
-                                                                                                                          "type": "string"
-                                                                                                                        },
                                                                                                                         "coingecko_id": {
                                                                                                                           "type": "string"
                                                                                                                         },
@@ -10848,6 +10860,9 @@
                                                                                                                                             }
                                                                                                                                           }
                                                                                                                                         }
+                                                                                                                                      },
+                                                                                                                                      "emv_chain_id": {
+                                                                                                                                        "type": "string"
                                                                                                                                       },
                                                                                                                                       "createdAt": {
                                                                                                                                         "type": "string",
@@ -11847,6 +11862,9 @@
                                                                                                                               }
                                                                                                                             }
                                                                                                                           }
+                                                                                                                        },
+                                                                                                                        "farcaster_handle": {
+                                                                                                                          "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
                                                                                                                           "type": "string",
@@ -14507,9 +14525,6 @@
                                                                                                           "name": {
                                                                                                             "type": "string"
                                                                                                           },
-                                                                                                          "avatar": {
-                                                                                                            "type": "string"
-                                                                                                          },
                                                                                                           "coingecko_id": {
                                                                                                             "type": "string"
                                                                                                           },
@@ -15487,6 +15502,9 @@
                                                                                                                             }
                                                                                                                           }
                                                                                                                         },
+                                                                                                                        "emv_chain_id": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
                                                                                                                         "createdAt": {
                                                                                                                           "type": "string",
                                                                                                                           "format": "date-time"
@@ -16046,6 +16064,9 @@
                                                                                                                 }
                                                                                                               }
                                                                                                             }
+                                                                                                          },
+                                                                                                          "farcaster_handle": {
+                                                                                                            "type": "string"
                                                                                                           },
                                                                                                           "createdAt": {
                                                                                                             "type": "string",
@@ -16992,9 +17013,6 @@
               "name": {
                 "type": "string"
               },
-              "avatar": {
-                "type": "string"
-              },
               "coingecko_id": {
                 "type": "string"
               },
@@ -17399,6 +17417,9 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "farcaster_handle": {
+                "type": "string"
               }
             }
           }
@@ -17454,9 +17475,6 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
-          },
-          "avatar": {
             "type": "string"
           },
           "coingecko_id": {
@@ -18085,9 +18103,6 @@
                                                                                                                         "name": {
                                                                                                                           "type": "string"
                                                                                                                         },
-                                                                                                                        "avatar": {
-                                                                                                                          "type": "string"
-                                                                                                                        },
                                                                                                                         "coingecko_id": {
                                                                                                                           "type": "string"
                                                                                                                         },
@@ -18389,6 +18404,9 @@
                                                                                                                                             }
                                                                                                                                           }
                                                                                                                                         }
+                                                                                                                                      },
+                                                                                                                                      "emv_chain_id": {
+                                                                                                                                        "type": "string"
                                                                                                                                       },
                                                                                                                                       "createdAt": {
                                                                                                                                         "type": "string",
@@ -19388,6 +19406,9 @@
                                                                                                                               }
                                                                                                                             }
                                                                                                                           }
+                                                                                                                        },
+                                                                                                                        "farcaster_handle": {
+                                                                                                                          "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
                                                                                                                           "type": "string",
@@ -20773,6 +20794,9 @@
               }
             }
           },
+          "farcaster_handle": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -21572,9 +21596,6 @@
                                                                                                                           "name": {
                                                                                                                             "type": "string"
                                                                                                                           },
-                                                                                                                          "avatar": {
-                                                                                                                            "type": "string"
-                                                                                                                          },
                                                                                                                           "coingecko_id": {
                                                                                                                             "type": "string"
                                                                                                                           },
@@ -21876,6 +21897,9 @@
                                                                                                                                               }
                                                                                                                                             }
                                                                                                                                           }
+                                                                                                                                        },
+                                                                                                                                        "emv_chain_id": {
+                                                                                                                                          "type": "string"
                                                                                                                                         },
                                                                                                                                         "createdAt": {
                                                                                                                                           "type": "string",
@@ -22875,6 +22899,9 @@
                                                                                                                                 }
                                                                                                                               }
                                                                                                                             }
+                                                                                                                          },
+                                                                                                                          "farcaster_handle": {
+                                                                                                                            "type": "string"
                                                                                                                           },
                                                                                                                           "createdAt": {
                                                                                                                             "type": "string",
@@ -24607,9 +24634,6 @@
                                                                                                             "name": {
                                                                                                               "type": "string"
                                                                                                             },
-                                                                                                            "avatar": {
-                                                                                                              "type": "string"
-                                                                                                            },
                                                                                                             "coingecko_id": {
                                                                                                               "type": "string"
                                                                                                             },
@@ -24911,6 +24935,9 @@
                                                                                                                                 }
                                                                                                                               }
                                                                                                                             }
+                                                                                                                          },
+                                                                                                                          "emv_chain_id": {
+                                                                                                                            "type": "string"
                                                                                                                           },
                                                                                                                           "createdAt": {
                                                                                                                             "type": "string",
@@ -25910,6 +25937,9 @@
                                                                                                                   }
                                                                                                                 }
                                                                                                               }
+                                                                                                            },
+                                                                                                            "farcaster_handle": {
+                                                                                                              "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
                                                                                                               "type": "string",
@@ -27648,9 +27678,6 @@
                                                                                                             "name": {
                                                                                                               "type": "string"
                                                                                                             },
-                                                                                                            "avatar": {
-                                                                                                              "type": "string"
-                                                                                                            },
                                                                                                             "coingecko_id": {
                                                                                                               "type": "string"
                                                                                                             },
@@ -27952,6 +27979,9 @@
                                                                                                                                 }
                                                                                                                               }
                                                                                                                             }
+                                                                                                                          },
+                                                                                                                          "emv_chain_id": {
+                                                                                                                            "type": "string"
                                                                                                                           },
                                                                                                                           "createdAt": {
                                                                                                                             "type": "string",
@@ -28951,6 +28981,9 @@
                                                                                                                   }
                                                                                                                 }
                                                                                                               }
+                                                                                                            },
+                                                                                                            "farcaster_handle": {
+                                                                                                              "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
                                                                                                               "type": "string",
@@ -30685,9 +30718,6 @@
                                                                                                                         "name": {
                                                                                                                           "type": "string"
                                                                                                                         },
-                                                                                                                        "avatar": {
-                                                                                                                          "type": "string"
-                                                                                                                        },
                                                                                                                         "coingecko_id": {
                                                                                                                           "type": "string"
                                                                                                                         },
@@ -31355,6 +31385,9 @@
                                                                                                                                           }
                                                                                                                                         }
                                                                                                                                       },
+                                                                                                                                      "emv_chain_id": {
+                                                                                                                                        "type": "string"
+                                                                                                                                      },
                                                                                                                                       "createdAt": {
                                                                                                                                         "type": "string",
                                                                                                                                         "format": "date-time"
@@ -31914,6 +31947,9 @@
                                                                                                                               }
                                                                                                                             }
                                                                                                                           }
+                                                                                                                        },
+                                                                                                                        "farcaster_handle": {
+                                                                                                                          "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
                                                                                                                           "type": "string",
@@ -32977,6 +33013,612 @@
           }
         }
       },
+      "SubmissionRequest": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "ticker": {
+                "type": "string"
+              },
+              "website_url": {
+                "type": "string"
+              },
+              "webapp_url": {
+                "type": "string"
+              },
+              "twitter_handle": {
+                "type": "string"
+              },
+              "token_image_url": {
+                "type": "string"
+              },
+              "contract_url": {
+                "type": "string"
+              },
+              "coingecko_url": {
+                "type": "string"
+              },
+              "llama_url": {
+                "type": "string"
+              },
+              "llama_id": {
+                "type": "string"
+              },
+              "dune_url": {
+                "type": "string"
+              },
+              "rekt_url": {
+                "type": "string"
+              },
+              "whitepaper_url": {
+                "type": "string"
+              },
+              "github_url": {
+                "type": "string"
+              },
+              "github_id": {
+                "type": "string"
+              },
+              "github_created_at": {
+                "type": "string"
+              },
+              "docs_url": {
+                "type": "string"
+              },
+              "discord_url": {
+                "type": "string"
+              },
+              "marketplace_url": {
+                "type": "string"
+              },
+              "telegram_url": {
+                "type": "string"
+              },
+              "blog_url": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "string"
+              },
+              "chains": {
+                "type": "string"
+              },
+              "governance_url": {
+                "type": "string"
+              },
+              "jobs_url": {
+                "type": "string"
+              },
+              "defisafety_url": {
+                "type": "string"
+              },
+              "grants_url": {
+                "type": "string"
+              },
+              "video_url": {
+                "type": "string"
+              },
+              "podcast_url": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "discourse_url": {
+                "type": "string"
+              },
+              "contributors_url": {
+                "type": "string"
+              },
+              "audits_url": {
+                "type": "string"
+              },
+              "contact": {
+                "type": "string"
+              },
+              "farcaster_handle": {
+                "type": "string"
+              },
+              "eth_address": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SubmissionListResponseDataItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/Submission"
+          }
+        }
+      },
+      "SubmissionListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubmissionListResponseDataItem"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "minimum": 25
+                  },
+                  "pageCount": {
+                    "type": "integer",
+                    "maximum": 1
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Submission": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "website_url": {
+            "type": "string"
+          },
+          "webapp_url": {
+            "type": "string"
+          },
+          "twitter_handle": {
+            "type": "string"
+          },
+          "token_image_url": {
+            "type": "string"
+          },
+          "contract_url": {
+            "type": "string"
+          },
+          "coingecko_url": {
+            "type": "string"
+          },
+          "llama_url": {
+            "type": "string"
+          },
+          "llama_id": {
+            "type": "string"
+          },
+          "dune_url": {
+            "type": "string"
+          },
+          "rekt_url": {
+            "type": "string"
+          },
+          "whitepaper_url": {
+            "type": "string"
+          },
+          "github_url": {
+            "type": "string"
+          },
+          "github_id": {
+            "type": "string"
+          },
+          "github_created_at": {
+            "type": "string"
+          },
+          "docs_url": {
+            "type": "string"
+          },
+          "discord_url": {
+            "type": "string"
+          },
+          "marketplace_url": {
+            "type": "string"
+          },
+          "telegram_url": {
+            "type": "string"
+          },
+          "blog_url": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "chains": {
+            "type": "string"
+          },
+          "governance_url": {
+            "type": "string"
+          },
+          "jobs_url": {
+            "type": "string"
+          },
+          "defisafety_url": {
+            "type": "string"
+          },
+          "grants_url": {
+            "type": "string"
+          },
+          "video_url": {
+            "type": "string"
+          },
+          "podcast_url": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "discourse_url": {
+            "type": "string"
+          },
+          "contributors_url": {
+            "type": "string"
+          },
+          "audits_url": {
+            "type": "string"
+          },
+          "contact": {
+            "type": "string"
+          },
+          "farcaster_handle": {
+            "type": "string"
+          },
+          "eth_address": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "firstname": {
+                        "type": "string"
+                      },
+                      "lastname": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email"
+                      },
+                      "resetPasswordToken": {
+                        "type": "string"
+                      },
+                      "registrationToken": {
+                        "type": "string"
+                      },
+                      "isActive": {
+                        "type": "boolean"
+                      },
+                      "roles": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "attributes": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "code": {
+                                      "type": "string"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "users": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "permissions": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "action": {
+                                                    "type": "string"
+                                                  },
+                                                  "actionParameters": {},
+                                                  "subject": {
+                                                    "type": "string"
+                                                  },
+                                                  "properties": {},
+                                                  "conditions": {},
+                                                  "role": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "id": {
+                                                            "type": "number"
+                                                          },
+                                                          "attributes": {
+                                                            "type": "object",
+                                                            "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "createdAt": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                  },
+                                                  "updatedAt": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                  },
+                                                  "createdBy": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "id": {
+                                                            "type": "number"
+                                                          },
+                                                          "attributes": {
+                                                            "type": "object",
+                                                            "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "updatedBy": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "id": {
+                                                            "type": "number"
+                                                          },
+                                                          "attributes": {
+                                                            "type": "object",
+                                                            "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "blocked": {
+                        "type": "boolean"
+                      },
+                      "preferedLanguage": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "createdBy": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "updatedBy": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "updatedBy": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "SubmissionResponseDataObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/Submission"
+          }
+        }
+      },
+      "SubmissionResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SubmissionResponseDataObject"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
       "TagRequest": {
         "type": "object",
         "required": [
@@ -33727,9 +34369,6 @@
                                                                                                         "type": "object",
                                                                                                         "properties": {
                                                                                                           "name": {
-                                                                                                            "type": "string"
-                                                                                                          },
-                                                                                                          "avatar": {
                                                                                                             "type": "string"
                                                                                                           },
                                                                                                           "coingecko_id": {
@@ -34709,6 +35348,9 @@
                                                                                                                             }
                                                                                                                           }
                                                                                                                         },
+                                                                                                                        "emv_chain_id": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
                                                                                                                         "createdAt": {
                                                                                                                           "type": "string",
                                                                                                                           "format": "date-time"
@@ -35268,6 +35910,9 @@
                                                                                                                 }
                                                                                                               }
                                                                                                             }
+                                                                                                          },
+                                                                                                          "farcaster_handle": {
+                                                                                                            "type": "string"
                                                                                                           },
                                                                                                           "createdAt": {
                                                                                                             "type": "string",
@@ -42782,6 +43427,511 @@
           }
         ],
         "operationId": "delete/subject-expert-types/{id}"
+      }
+    },
+    "/submissions": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmissionListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Submission"
+        ],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort by attributes ascending (asc) or descending (desc)",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination[withCount]",
+            "in": "query",
+            "description": "Return page/pageSize (default: true)",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pagination[page]",
+            "in": "query",
+            "description": "Page number (default: 0)",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pagination[pageSize]",
+            "in": "query",
+            "description": "Page size (default: 25)",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pagination[start]",
+            "in": "query",
+            "description": "Offset value (default: 0)",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pagination[limit]",
+            "in": "query",
+            "description": "Number of entities to return (default: 25)",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Fields to return (ex: title,author)",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "populate",
+            "in": "query",
+            "description": "Relations to return",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "Filters to apply",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "object"
+            },
+            "style": "deepObject"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale to apply",
+            "deprecated": false,
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "get/submissions"
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Submission"
+        ],
+        "parameters": [],
+        "operationId": "post/submissions",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmissionRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submissions/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Submission"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "get/submissions/{id}"
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Submission"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "put/submissions/{id}",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmissionRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Submission"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "delete/submissions/{id}"
       }
     },
     "/tags": {

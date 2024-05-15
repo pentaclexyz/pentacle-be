@@ -1,6 +1,6 @@
 "use strict";
 const _ = require("lodash");
-const chains = require("viem/chains");
+const chains = require("viem/chains")
 
 /**
  * helper service.
@@ -26,7 +26,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
           data: {
             name,
             symbol,
-            evm_chain_id: chain.chainId,
+            evm_chain_id: `${chain.chainId}`,
           },
         });
       } else {
@@ -35,7 +35,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
             name,
             slug,
             symbol,
-            evm_chain_id: chain.chainId,
+            evm_chain_id: `${chain.chainId}`,
           },
         });
       }
