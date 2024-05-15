@@ -30,7 +30,8 @@
     "strapi-plugin-import-export-entries": "^1.16.1",
     "strapi-plugin-meilisearch": "^0.8.2",
     "strapi-plugin-rest-cache": "^4.2.8",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "viem": "^2.10.5"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",

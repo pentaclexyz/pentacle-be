@@ -41,4 +41,8 @@ module.exports = createCoreController("api::helper.helper", ({ strapi }) => ({
     const data = await strapi.service("api::helper.helper").migrateGithub();
     return data;
   },
+  async processChains() {
+    const data = await strapi.service("api::helper.helper").processChains();
+    return data;
+  },
 }));

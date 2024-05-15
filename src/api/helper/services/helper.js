@@ -1,4 +1,6 @@
 "use strict";
+import _ from 'lodash'
+import * as chains from "viem/chains";
 
 /**
  * helper service.
@@ -7,6 +9,38 @@
 const { createCoreService } = require("@strapi/strapi").factories;
 
 module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
+  async processChains() {
+    const names = Object.keys(chains);
+    for (const key of names) {
+      const chain = chains[key];
+      const {
+        name,
+        nativeCurrency: { symbol },
+      } = chain;
+      const slug = _.kebabCase(name);
+      const existing = await strapi.db
+        .query("api::chain.chain")
+        .findOne.where({ slug });
+      if (existing) {
+        await strapi.entityService.update("api::chain.chain", existing.id, {
+          data: {
+            name,
+            symbol,
+            evm_chain_id: chain.chainId,
+          },
+        });
+      } else {
+        await strapi.entityService.create("api::chain.chain", {
+          data: {
+            name,
+            slug,
+            symbol,
+            evm_chain_id: chain.chainId,
+          },
+        });
+      }
+    }
+  },
   async syncProject(project) {
     const descriptionRes = await fetch(
       `${process.env.DESCRIPTION_SERVICE}/projects/${project.slug}.md`

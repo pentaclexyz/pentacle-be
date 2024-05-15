@@ -49,6 +49,14 @@ const myExtraRoutes = [
       auth: false,
     },
   },
+  {
+    method: "GET",
+    path: "/helper/process-chains",
+    handler: "api::helper.helper.processChains",
+    config: {
+      auth: false,
+    },
+  },
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);
