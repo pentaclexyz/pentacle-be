@@ -1,6 +1,6 @@
 "use strict";
-import _ from 'lodash'
-import * as chains from "viem/chains";
+const _ = require("lodash");
+const chains = require("viem/chains");
 
 /**
  * helper service.
@@ -20,7 +20,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
       const slug = _.kebabCase(name);
       const existing = await strapi.db
         .query("api::chain.chain")
-        .findOne.where({ slug });
+        .findOne({ where: { slug } });
       if (existing) {
         await strapi.entityService.update("api::chain.chain", existing.id, {
           data: {
