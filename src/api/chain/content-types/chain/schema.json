@@ -37,7 +37,7 @@
       "target": "api::article.article",
       "mappedBy": "chains"
     },
-    "emv-chain-id": {
+    "emv_chain_id": {
       "type": "string"
     }
   }
