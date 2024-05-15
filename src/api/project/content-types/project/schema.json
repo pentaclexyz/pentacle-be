@@ -255,6 +255,9 @@
       "relation": "manyToMany",
       "target": "api::lore.lore",
       "inversedBy": "projects"
+    },
+    "farcaster_handle": {
+      "type": "string"
     }
   }
 }
