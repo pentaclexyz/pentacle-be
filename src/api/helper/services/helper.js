@@ -1,5 +1,4 @@
 "use strict";
-import _ from 'lodash'
 import * as chains from "viem/chains";
 
 /**
