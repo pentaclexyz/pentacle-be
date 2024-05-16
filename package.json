@@ -7,7 +7,7 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "./node_modules/.bin/bun strapi"
   },
   "devDependencies": {},
   "dependencies": {
@@ -17,7 +17,7 @@
     "@strapi/plugin-users-permissions": "4.15.5",
     "@strapi/provider-upload-cloudinary": "4.15.5",
     "@strapi/strapi": "4.15.5",
-    "alchemy-sdk": "^2.2.5",
+    "bun": "^1.1.6",
     "ethers": "^5.6.9",
     "knex": "^2.3.0",
     "node-fetch": "2.6.1",
@@ -26,7 +26,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^5.2.0",
-    "request": "^2.88.2",
     "strapi-plugin-import-export-entries": "^1.16.1",
     "strapi-plugin-meilisearch": "^0.8.2",
     "strapi-plugin-rest-cache": "^4.2.8",
