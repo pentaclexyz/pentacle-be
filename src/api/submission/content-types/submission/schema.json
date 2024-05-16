@@ -1,0 +1,128 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submissions",
+  "info": {
+    "singularName": "submission",
+    "pluralName": "submissions",
+    "displayName": "submissions",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "ticker": {
+      "type": "string"
+    },
+    "website_url": {
+      "type": "string"
+    },
+    "webapp_url": {
+      "type": "string"
+    },
+    "twitter_handle": {
+      "type": "string"
+    },
+    "token_image_url": {
+      "type": "string"
+    },
+    "contract_url": {
+      "type": "string"
+    },
+    "coingecko_url": {
+      "type": "string"
+    },
+    "llama_url": {
+      "type": "string"
+    },
+    "llama_id": {
+      "type": "string"
+    },
+    "dune_url": {
+      "type": "string"
+    },
+    "rekt_url": {
+      "type": "string"
+    },
+    "whitepaper_url": {
+      "type": "string"
+    },
+    "github_url": {
+      "type": "string"
+    },
+    "github_id": {
+      "type": "string"
+    },
+    "github_created_at": {
+      "type": "string"
+    },
+    "docs_url": {
+      "type": "string"
+    },
+    "discord_url": {
+      "type": "string"
+    },
+    "marketplace_url": {
+      "type": "string"
+    },
+    "telegram_url": {
+      "type": "string"
+    },
+    "blog_url": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "chains": {
+      "type": "string"
+    },
+    "governance_url": {
+      "type": "string"
+    },
+    "jobs_url": {
+      "type": "string"
+    },
+    "defisafety_url": {
+      "type": "string"
+    },
+    "grants_url": {
+      "type": "string"
+    },
+    "video_url": {
+      "type": "string"
+    },
+    "podcast_url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "discourse_url": {
+      "type": "string"
+    },
+    "contributors_url": {
+      "type": "string"
+    },
+    "audits_url": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "string"
+    },
+    "farcaster_handle": {
+      "type": "string"
+    },
+    "eth_address": {
+      "type": "string"
+    }
+  }
+}

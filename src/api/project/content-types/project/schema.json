@@ -15,9 +15,6 @@
     "name": {
       "type": "string"
     },
-    "avatar": {
-      "type": "string"
-    },
     "coingecko_id": {
       "type": "string"
     },
@@ -258,6 +255,9 @@
       "relation": "manyToMany",
       "target": "api::lore.lore",
       "inversedBy": "projects"
+    },
+    "farcaster_handle": {
+      "type": "string"
     }
   }
 }

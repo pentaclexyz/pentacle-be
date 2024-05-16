@@ -36,6 +36,9 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "mappedBy": "chains"
+    },
+    "emv_chain_id": {
+      "type": "string"
     }
   }
 }
