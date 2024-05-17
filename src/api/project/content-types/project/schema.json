@@ -258,6 +258,9 @@
     },
     "farcaster_handle": {
       "type": "string"
+    },
+    "created_by": {
+      "type": "string"
     }
   }
 }
