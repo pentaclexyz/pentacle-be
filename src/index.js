@@ -1,54 +1,73 @@
 "use strict";
-
+const _ = require("lodash");
+const { verifyMessage } = require("viem");
 module.exports = {
-    /**
-     * An asynchronous register function that runs before
-     * your application is initialized.
-     *
-     * This gives you an opportunity to extend code.
-     */
-    register({strapi}) {
-        strapi.plugin("documentation").service("override")
-            // TODO: update list
-            .excludeFromGeneration([
-                "defi-safety-report",
-                "section",
-                "lore",
-                "tweet",
-                "term",
-                "helper",
-                "homepage",
-                "connect",
-                "auth",
-                "governance-discussion",
-                "governance-proposal",
-                "global",
-                "content-type",
-                "audit",
-                "about",
-            ]);
-    },
+  /**
+   * An asynchronous register function that runs before
+   * your application is initialized.
+   *
+   * This gives you an opportunity to extend code.
+   */
+  register({ strapi }) {
+    strapi
+      .plugin("documentation")
+      .service("override")
+      // TODO: update list
+      .excludeFromGeneration([
+        "defi-safety-report",
+        "section",
+        "lore",
+        "tweet",
+        "term",
+        "helper",
+        "homepage",
+        "connect",
+        "auth",
+        "governance-discussion",
+        "governance-proposal",
+        "global",
+        "content-type",
+        "audit",
+        "about",
+      ]);
+  },
 
-    /**
-     * An asynchronous bootstrap function that runs before
-     * your application gets started.
-     *
-     * This gives you an opportunity to set up your data model,
-     * run jobs, or perform some special logic.
-     */
-    async bootstrap({strapi}) {
-        strapi.db.lifecycles.subscribe({
-            async beforeCreate(event) {
-                if (event.model.singularName === "person") {
-                    event.params.data.twitter = event.params.data?.twitter?.toLowerCase();
-                }
-                if (event.model.singularName === "project") {
-                    event.params.data.twitter_url =
-                        event.params.data?.twitter_url?.toLowerCase();
-                }
+  /**
+   * An asynchronous bootstrap function that runs before
+   * your application gets started.
+   *
+   * This gives you an opportunity to set up your data model,
+   * run jobs, or perform some special logic.
+   */
+  async bootstrap({ strapi }) {
+    strapi.db.lifecycles.subscribe({
+      async beforeCreate(event) {
+        const ctx = strapi.requestContext.get();
+        if (event.model.singularName === "submission") {
+          const { signature, address, ...rest } = event.params.data;
+          event.params.data = rest;
+          event.params.data.slug = _.kebabCase(event.params.data.slug);
+          const isValid = await verifyMessage({
+            address,
+            message: "Sign this message to submit a project",
+            signature,
+          });
+          if (!isValid) {
+            ctx.throw(400, "Invalid signature");
+            return;
+          }
+        }
 
-                event.params.data.slug = event.params.data.slug?.toLowerCase();
-            },
-        });
-    },
+        if (event.model.singularName === "person") {
+          event.params.data.twitter = event.params.data?.twitter?.toLowerCase();
+        }
+        if (event.model.singularName === "project") {
+          event.params.data.twitter_url =
+            event.params.data?.twitter_url?.toLowerCase();
+        }
+
+        event.params.data.slug = _.kebabCase(event.params.data.slug);
+      },
+    });
+  },
 };
