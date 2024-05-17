@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-05-15T19:17:11.444Z"
+    "x-generation-date": "2024-05-17T19:26:54.495Z"
   },
   "x-strapi-config": {
     "plugins": [],
@@ -1157,7 +1157,7 @@
                                                                                                                                           }
                                                                                                                                         }
                                                                                                                                       },
-                                                                                                                                      "emv_chain_id": {
+                                                                                                                                      "evm_chain_id": {
                                                                                                                                         "type": "string"
                                                                                                                                       },
                                                                                                                                       "createdAt": {
@@ -4950,7 +4950,7 @@
                                                                                                                             }
                                                                                                                           }
                                                                                                                         },
-                                                                                                                        "emv_chain_id": {
+                                                                                                                        "evm_chain_id": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
@@ -6406,7 +6406,7 @@
                   "example": "string or id"
                 }
               },
-              "emv_chain_id": {
+              "evm_chain_id": {
                 "type": "string"
               }
             }
@@ -8303,7 +8303,7 @@
                                                                       }
                                                                     }
                                                                   },
-                                                                  "emv_chain_id": {
+                                                                  "evm_chain_id": {
                                                                     "type": "string"
                                                                   },
                                                                   "createdAt": {
@@ -9300,7 +9300,7 @@
               }
             }
           },
-          "emv_chain_id": {
+          "evm_chain_id": {
             "type": "string"
           },
           "createdAt": {
@@ -10861,7 +10861,7 @@
                                                                                                                                           }
                                                                                                                                         }
                                                                                                                                       },
-                                                                                                                                      "emv_chain_id": {
+                                                                                                                                      "evm_chain_id": {
                                                                                                                                         "type": "string"
                                                                                                                                       },
                                                                                                                                       "createdAt": {
@@ -15502,7 +15502,7 @@
                                                                                                                             }
                                                                                                                           }
                                                                                                                         },
-                                                                                                                        "emv_chain_id": {
+                                                                                                                        "evm_chain_id": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
@@ -18405,7 +18405,7 @@
                                                                                                                                           }
                                                                                                                                         }
                                                                                                                                       },
-                                                                                                                                      "emv_chain_id": {
+                                                                                                                                      "evm_chain_id": {
                                                                                                                                         "type": "string"
                                                                                                                                       },
                                                                                                                                       "createdAt": {
@@ -21898,7 +21898,7 @@
                                                                                                                                             }
                                                                                                                                           }
                                                                                                                                         },
-                                                                                                                                        "emv_chain_id": {
+                                                                                                                                        "evm_chain_id": {
                                                                                                                                           "type": "string"
                                                                                                                                         },
                                                                                                                                         "createdAt": {
@@ -24936,7 +24936,7 @@
                                                                                                                               }
                                                                                                                             }
                                                                                                                           },
-                                                                                                                          "emv_chain_id": {
+                                                                                                                          "evm_chain_id": {
                                                                                                                             "type": "string"
                                                                                                                           },
                                                                                                                           "createdAt": {
@@ -27980,7 +27980,7 @@
                                                                                                                               }
                                                                                                                             }
                                                                                                                           },
-                                                                                                                          "emv_chain_id": {
+                                                                                                                          "evm_chain_id": {
                                                                                                                             "type": "string"
                                                                                                                           },
                                                                                                                           "createdAt": {
@@ -31385,7 +31385,7 @@
                                                                                                                                           }
                                                                                                                                         }
                                                                                                                                       },
-                                                                                                                                      "emv_chain_id": {
+                                                                                                                                      "evm_chain_id": {
                                                                                                                                         "type": "string"
                                                                                                                                       },
                                                                                                                                       "createdAt": {
@@ -35348,7 +35348,7 @@
                                                                                                                             }
                                                                                                                           }
                                                                                                                         },
-                                                                                                                        "emv_chain_id": {
+                                                                                                                        "evm_chain_id": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
@@ -41407,6 +41407,87 @@
           }
         ],
         "operationId": "delete/projects/{id}"
+      }
+    },
+    "/projects/create-submission": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Project"
+        ],
+        "parameters": [],
+        "operationId": "post/projects/create-submission",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectRequest"
+              }
+            }
+          }
+        }
       }
     },
     "/skills": {
