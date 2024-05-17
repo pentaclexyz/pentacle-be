@@ -40,6 +40,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
         });
       }
     }
+    return { success: true };
   },
   async syncProject(project) {
     const descriptionRes = await fetch(
