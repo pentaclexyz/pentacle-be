@@ -17,8 +17,7 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
       parseInt(submissionId)
     );
     console.log({ newItem, deleted });
-    debugger;
+
     return newItem;
-    // return await strapi.services.submission.create(data);
   },
 }));
