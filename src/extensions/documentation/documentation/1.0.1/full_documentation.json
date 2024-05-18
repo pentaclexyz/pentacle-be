@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-05-17T19:48:34.322Z"
+    "x-generation-date": "2024-05-18T01:40:29.442Z"
   },
   "x-strapi-config": {
     "plugins": [],
@@ -868,6 +868,9 @@
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "twitter_url": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
+                                                                                                                        "blog_url": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "token_image_url": {
@@ -2160,6 +2163,9 @@
                                                                                                                           }
                                                                                                                         },
                                                                                                                         "farcaster_handle": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
+                                                                                                                        "created_by": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
@@ -3988,6 +3994,9 @@
                                                                                                           "twitter_url": {
                                                                                                             "type": "string"
                                                                                                           },
+                                                                                                          "blog_url": {
+                                                                                                            "type": "string"
+                                                                                                          },
                                                                                                           "token_image_url": {
                                                                                                             "type": "string"
                                                                                                           },
@@ -5516,6 +5525,9 @@
                                                                                                           "farcaster_handle": {
                                                                                                             "type": "string"
                                                                                                           },
+                                                                                                          "created_by": {
+                                                                                                            "type": "string"
+                                                                                                          },
                                                                                                           "createdAt": {
                                                                                                             "type": "string",
                                                                                                             "format": "date-time"
@@ -6501,6 +6513,9 @@
                           "type": "string"
                         },
                         "twitter_url": {
+                          "type": "string"
+                        },
+                        "blog_url": {
                           "type": "string"
                         },
                         "token_image_url": {
@@ -9224,6 +9239,9 @@
                         "farcaster_handle": {
                           "type": "string"
                         },
+                        "created_by": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -10574,6 +10592,9 @@
                                                                                                                         "twitter_url": {
                                                                                                                           "type": "string"
                                                                                                                         },
+                                                                                                                        "blog_url": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
                                                                                                                         "token_image_url": {
                                                                                                                           "type": "string"
                                                                                                                         },
@@ -11864,6 +11885,9 @@
                                                                                                                           }
                                                                                                                         },
                                                                                                                         "farcaster_handle": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
+                                                                                                                        "created_by": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
@@ -14540,6 +14564,9 @@
                                                                                                           "twitter_url": {
                                                                                                             "type": "string"
                                                                                                           },
+                                                                                                          "blog_url": {
+                                                                                                            "type": "string"
+                                                                                                          },
                                                                                                           "token_image_url": {
                                                                                                             "type": "string"
                                                                                                           },
@@ -16068,6 +16095,9 @@
                                                                                                           "farcaster_handle": {
                                                                                                             "type": "string"
                                                                                                           },
+                                                                                                          "created_by": {
+                                                                                                            "type": "string"
+                                                                                                          },
                                                                                                           "createdAt": {
                                                                                                             "type": "string",
                                                                                                             "format": "date-time"
@@ -17028,6 +17058,9 @@
               "twitter_url": {
                 "type": "string"
               },
+              "blog_url": {
+                "type": "string"
+              },
               "token_image_url": {
                 "type": "string"
               },
@@ -17420,6 +17453,9 @@
               },
               "farcaster_handle": {
                 "type": "string"
+              },
+              "created_by": {
+                "type": "string"
               }
             }
           }
@@ -17490,6 +17526,9 @@
             "type": "string"
           },
           "twitter_url": {
+            "type": "string"
+          },
+          "blog_url": {
             "type": "string"
           },
           "token_image_url": {
@@ -18116,6 +18155,9 @@
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "twitter_url": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
+                                                                                                                        "blog_url": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "token_image_url": {
@@ -19408,6 +19450,9 @@
                                                                                                                           }
                                                                                                                         },
                                                                                                                         "farcaster_handle": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
+                                                                                                                        "created_by": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
@@ -20797,6 +20842,9 @@
           "farcaster_handle": {
             "type": "string"
           },
+          "created_by": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -21609,6 +21657,9 @@
                                                                                                                             "type": "string"
                                                                                                                           },
                                                                                                                           "twitter_url": {
+                                                                                                                            "type": "string"
+                                                                                                                          },
+                                                                                                                          "blog_url": {
                                                                                                                             "type": "string"
                                                                                                                           },
                                                                                                                           "token_image_url": {
@@ -22901,6 +22952,9 @@
                                                                                                                             }
                                                                                                                           },
                                                                                                                           "farcaster_handle": {
+                                                                                                                            "type": "string"
+                                                                                                                          },
+                                                                                                                          "created_by": {
                                                                                                                             "type": "string"
                                                                                                                           },
                                                                                                                           "createdAt": {
@@ -24649,6 +24703,9 @@
                                                                                                             "twitter_url": {
                                                                                                               "type": "string"
                                                                                                             },
+                                                                                                            "blog_url": {
+                                                                                                              "type": "string"
+                                                                                                            },
                                                                                                             "token_image_url": {
                                                                                                               "type": "string"
                                                                                                             },
@@ -25939,6 +25996,9 @@
                                                                                                               }
                                                                                                             },
                                                                                                             "farcaster_handle": {
+                                                                                                              "type": "string"
+                                                                                                            },
+                                                                                                            "created_by": {
                                                                                                               "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
@@ -27693,6 +27753,9 @@
                                                                                                             "twitter_url": {
                                                                                                               "type": "string"
                                                                                                             },
+                                                                                                            "blog_url": {
+                                                                                                              "type": "string"
+                                                                                                            },
                                                                                                             "token_image_url": {
                                                                                                               "type": "string"
                                                                                                             },
@@ -28983,6 +29046,9 @@
                                                                                                               }
                                                                                                             },
                                                                                                             "farcaster_handle": {
+                                                                                                              "type": "string"
+                                                                                                            },
+                                                                                                            "created_by": {
                                                                                                               "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
@@ -30733,6 +30799,9 @@
                                                                                                                         "twitter_url": {
                                                                                                                           "type": "string"
                                                                                                                         },
+                                                                                                                        "blog_url": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
                                                                                                                         "token_image_url": {
                                                                                                                           "type": "string"
                                                                                                                         },
@@ -31949,6 +32018,9 @@
                                                                                                                           }
                                                                                                                         },
                                                                                                                         "farcaster_handle": {
+                                                                                                                          "type": "string"
+                                                                                                                        },
+                                                                                                                        "created_by": {
                                                                                                                           "type": "string"
                                                                                                                         },
                                                                                                                         "createdAt": {
@@ -34386,6 +34458,9 @@
                                                                                                           "twitter_url": {
                                                                                                             "type": "string"
                                                                                                           },
+                                                                                                          "blog_url": {
+                                                                                                            "type": "string"
+                                                                                                          },
                                                                                                           "token_image_url": {
                                                                                                             "type": "string"
                                                                                                           },
@@ -35912,6 +35987,9 @@
                                                                                                             }
                                                                                                           },
                                                                                                           "farcaster_handle": {
+                                                                                                            "type": "string"
+                                                                                                          },
+                                                                                                          "created_by": {
                                                                                                             "type": "string"
                                                                                                           },
                                                                                                           "createdAt": {
