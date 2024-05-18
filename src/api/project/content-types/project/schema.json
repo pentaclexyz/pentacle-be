@@ -30,6 +30,9 @@
     "twitter_url": {
       "type": "string"
     },
+    "blog_url": {
+      "type": "string"
+    },
     "token_image_url": {
       "type": "string"
     },
