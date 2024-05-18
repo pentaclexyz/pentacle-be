@@ -9,7 +9,9 @@ const { createCoreController } = require("@strapi/strapi").factories;
 if (!process.env.WHITELISTED_ADDRESSES) {
   throw new Error("WHITELISTED_ADDRESSES env var is required");
 }
-const WHITELIST = process.env.WHITELISTED_ADDRESSES.split(",").filter(Boolean);
+const WHITELIST = process.env.WHITELISTED_ADDRESSES.split(",")
+  .filter(Boolean)
+  .map((address) => address.toLowerCase());
 module.exports = createCoreController("api::project.project", ({ strapi }) => ({
   async createSubmission() {
     const ctx = strapi.requestContext.get();
@@ -20,7 +22,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       submissionId,
     } = ctx.request.body;
 
-    if (!WHITELIST.includes(address)) {
+    if (!WHITELIST.includes(address.toLowerCase())) {
       ctx.throw(400, "Address not whitelisted");
       return;
     }
