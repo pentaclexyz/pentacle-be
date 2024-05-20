@@ -906,6 +906,7 @@ export interface ApiChainChain extends Schema.CollectionType {
       'manyToMany',
       'api::article.article'
     >;
+    evm_chain_id: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1431,6 +1432,90 @@ export interface ApiLoreLore extends Schema.CollectionType {
   };
 }
 
+export interface ApiMediaKitMediaKit extends Schema.CollectionType {
+  collectionName: 'media_kits';
+  info: {
+    singularName: 'media-kit';
+    pluralName: 'media-kits';
+    displayName: 'media-kit';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    logo: Attribute.Media;
+    brand_guidelines: Attribute.Media;
+    font: Attribute.String;
+    project: Attribute.Relation<
+      'api::media-kit.media-kit',
+      'oneToOne',
+      'api::project.project'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::media-kit.media-kit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::media-kit.media-kit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPayWithCryptoPayWithCrypto extends Schema.CollectionType {
+  collectionName: 'pay_with_cryptos';
+  info: {
+    singularName: 'pay-with-crypto';
+    pluralName: 'pay-with-cryptos';
+    displayName: 'pay-with-crypto';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    website: Attribute.String;
+    physical_location: Attribute.Text;
+    chain: Attribute.Relation<
+      'api::pay-with-crypto.pay-with-crypto',
+      'oneToOne',
+      'api::chain.chain'
+    >;
+    main_image: Attribute.Media;
+    images: Attribute.Media;
+    map: Attribute.String;
+    type: Attribute.Enumeration<['cafe', 'retail store', 'travel']>;
+    twitter: Attribute.String;
+    farcaster: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pay-with-crypto.pay-with-crypto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pay-with-crypto.pay-with-crypto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPersonPerson extends Schema.CollectionType {
   collectionName: 'people';
   info: {
@@ -1523,12 +1608,12 @@ export interface ApiProjectProject extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    avatar: Attribute.String;
     coingecko_id: Attribute.String;
     ticker: Attribute.String;
     website_url: Attribute.String;
     webapp_url: Attribute.String;
     twitter_url: Attribute.String;
+    blog_url: Attribute.String;
     token_image_url: Attribute.String;
     contract_url: Attribute.String;
     coingecko_url: Attribute.String;
@@ -1665,6 +1750,8 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'manyToMany',
       'api::lore.lore'
     >;
+    farcaster_handle: Attribute.String;
+    created_by: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1915,6 +2002,73 @@ export interface ApiSubjectExpertTypeSubjectExpertType
   };
 }
 
+export interface ApiSubmissionSubmission extends Schema.CollectionType {
+  collectionName: 'submissions';
+  info: {
+    singularName: 'submission';
+    pluralName: 'submissions';
+    displayName: 'submissions';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    ticker: Attribute.String;
+    website_url: Attribute.String;
+    webapp_url: Attribute.String;
+    twitter_handle: Attribute.String;
+    token_image_url: Attribute.String;
+    contract_url: Attribute.String;
+    coingecko_url: Attribute.String;
+    llama_url: Attribute.String;
+    llama_id: Attribute.String;
+    dune_url: Attribute.String;
+    rekt_url: Attribute.String;
+    whitepaper_url: Attribute.String;
+    github_url: Attribute.String;
+    github_id: Attribute.String;
+    github_created_at: Attribute.String;
+    docs_url: Attribute.String;
+    discord_url: Attribute.String;
+    marketplace_url: Attribute.String;
+    telegram_url: Attribute.String;
+    blog_url: Attribute.String;
+    tags: Attribute.String;
+    slug: Attribute.UID<'api::submission.submission', 'name'>;
+    chains: Attribute.String;
+    governance_url: Attribute.String;
+    jobs_url: Attribute.String;
+    defisafety_url: Attribute.String;
+    grants_url: Attribute.String;
+    video_url: Attribute.String;
+    podcast_url: Attribute.String;
+    description: Attribute.RichText;
+    discourse_url: Attribute.String;
+    contributors_url: Attribute.String;
+    audits_url: Attribute.String;
+    contact: Attribute.String;
+    farcaster_handle: Attribute.String;
+    eth_address: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::submission.submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::submission.submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags';
   info: {
@@ -2101,6 +2255,8 @@ declare module '@strapi/types' {
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::job.job': ApiJobJob;
       'api::lore.lore': ApiLoreLore;
+      'api::media-kit.media-kit': ApiMediaKitMediaKit;
+      'api::pay-with-crypto.pay-with-crypto': ApiPayWithCryptoPayWithCrypto;
       'api::person.person': ApiPersonPerson;
       'api::project.project': ApiProjectProject;
       'api::section.section': ApiSectionSection;
@@ -2108,6 +2264,7 @@ declare module '@strapi/types' {
       'api::skill-level.skill-level': ApiSkillLevelSkillLevel;
       'api::skill-type.skill-type': ApiSkillTypeSkillType;
       'api::subject-expert-type.subject-expert-type': ApiSubjectExpertTypeSubjectExpertType;
+      'api::submission.submission': ApiSubmissionSubmission;
       'api::tag.tag': ApiTagTag;
       'api::term.term': ApiTermTerm;
       'api::tweet.tweet': ApiTweetTweet;
