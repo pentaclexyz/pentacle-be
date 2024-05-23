@@ -13,6 +13,14 @@ const WHITELIST = process.env.WHITELISTED_ADDRESSES.split(",")
   .filter(Boolean)
   .map((address) => address.toLowerCase());
 module.exports = createCoreController("api::project.project", ({ strapi }) => ({
+  async getSlim(ctx) {
+    const data = await strapi.service("api::project.project").getSlim(ctx);
+    return data;
+  },
+  async getRelated(ctx) {
+    const data = await strapi.service("api::project.project").getRelated(ctx);
+    return data;
+  },
   async createSubmission() {
     const ctx = strapi.requestContext.get();
     const {

@@ -56,4 +56,31 @@ module.exports = ({env}) => ({
       },
     },
   },
+  config: {
+    provider: {
+      name: "memory",
+      options: {
+        max: 32767,
+        maxAge: 3600,
+      },
+    },
+    strategy: {
+      contentTypes: [
+        // list of Content-Types UID to cache
+        "api::category.category",
+        "api::article.article",
+        "api::global.global",
+        "api::homepage.homepage",
+        "api::project.project",
+        "api::tag.tag",
+        "api::section.section",
+        "api::skill.skill",
+        "api::skill-level.skill-level",
+        "api::skill-type.skill-type",
+        "api::person.person",
+        "api::governance-discussion.governance-discussion",
+        "api::governance-proposal.governance-proposal",
+      ],
+    },
+  },
 });
