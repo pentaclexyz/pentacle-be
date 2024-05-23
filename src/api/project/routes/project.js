@@ -17,6 +17,22 @@ const myExtraRoutes = [
       auth: false,
     },
   },
+  {
+    method: "GET",
+    path: "/projects-slim",
+    handler: "api::project.project.getSlim",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "GET",
+    path: "/projects-related",
+    handler: "api::project.project.getRelated",
+    config: {
+      auth: false,
+    },
+  },
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);
