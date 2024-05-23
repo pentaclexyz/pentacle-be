@@ -57,6 +57,14 @@ const myExtraRoutes = [
       auth: false,
     },
   },
+  {
+    method: "GET",
+    path: "/helper/health",
+    handler: "api::helper.helper.checkHealth",
+    config: {
+      auth: false,
+    },
+  },
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);
