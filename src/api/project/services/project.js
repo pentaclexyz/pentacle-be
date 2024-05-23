@@ -8,12 +8,12 @@ const { createCoreService } = require("@strapi/strapi").factories;
 
 module.exports = createCoreService("api::project.project", ({ strapi }) => ({
   async createSubmission({ formData, submissionId, ethAddress }) {
-    const { eth_address, ...rest } = formData;
+    const { eth_address, profile_img, profile_banner, ...rest } = formData;
     const newItem = await strapi.entityService.create("api::project.project", {
       data: {
         ...rest,
-        twitter_img: data.profile_img,
-        twitter_banner: data.profile_banner,
+        twitter_img: profile_img,
+        twitter_banner: profile_banner,
         created_by: ethAddress,
         publishedAt: new Date(),
       },
