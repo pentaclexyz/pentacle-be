@@ -2051,6 +2051,8 @@ export interface ApiSubmissionSubmission extends Schema.CollectionType {
     audits_url: Attribute.String;
     contact: Attribute.String;
     farcaster_handle: Attribute.String;
+    profile_img: Attribute.String;
+    profile_banner: Attribute.String;
     eth_address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
