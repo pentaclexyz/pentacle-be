@@ -121,6 +121,12 @@
     "farcaster_handle": {
       "type": "string"
     },
+    "profile_img": {
+      "type": "string"
+    },
+    "profile_banner": {
+      "type": "string"
+    },
     "eth_address": {
       "type": "string"
     }
