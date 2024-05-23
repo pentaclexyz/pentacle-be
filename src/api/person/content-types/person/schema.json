@@ -88,7 +88,7 @@
       "target": "api::lore.lore",
       "inversedBy": "people"
     },
-    "farcaster_id": {
+    "farcaster_handle": {
       "type": "string"
     }
   }

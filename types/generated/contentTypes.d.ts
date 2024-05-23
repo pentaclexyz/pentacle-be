@@ -1577,7 +1577,7 @@ export interface ApiPersonPerson extends Schema.CollectionType {
       'manyToMany',
       'api::lore.lore'
     >;
-    farcaster_id: Attribute.String;
+    farcaster_handle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
