@@ -45,4 +45,7 @@ module.exports = createCoreController("api::helper.helper", ({ strapi }) => ({
     const data = await strapi.service("api::helper.helper").processChains();
     return data;
   },
+  async checkHealth() {
+    return { status: "ok" };
+  },
 }));
