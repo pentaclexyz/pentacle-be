@@ -87,6 +87,9 @@
       "relation": "manyToMany",
       "target": "api::lore.lore",
       "inversedBy": "people"
+    },
+    "farcaster_id": {
+      "type": "string"
     }
   }
 }
