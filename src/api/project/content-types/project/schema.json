@@ -51,6 +51,9 @@
     "rekt_url": {
       "type": "string"
     },
+    "marketplace_url": {
+      "type": "string"
+    },
     "whitepaper_url": {
       "type": "string"
     },
