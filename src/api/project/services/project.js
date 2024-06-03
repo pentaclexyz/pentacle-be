@@ -94,9 +94,7 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
       ...opts,
       populate: populatedKeys,
     });
-<<<<<<< Updated upstream
-=======
-  if (!data) {
+    if (!data) {
       return {
         data: [],
         meta: {
@@ -108,7 +106,6 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
         },
       };
     }
->>>>>>> Stashed changes
     for (const key of populatedKeys) {
       if (data[key]) {
         if (key === "treasury_wallets") {
@@ -155,7 +152,7 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
           page: 1,
           pageSize: 1,
         },
-      }
+      },
     };
   },
 }));
