@@ -94,21 +94,6 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
       ...opts,
       populate: populatedKeys,
     });
-<<<<<<< Updated upstream
-=======
-  if (!data) {
-      return {
-        data: [],
-        meta: {
-          pagination: {
-            total: 0,
-            page: 1,
-            pageSize: 1,
-          },
-        },
-      };
-    }
->>>>>>> Stashed changes
     for (const key of populatedKeys) {
       if (data[key]) {
         if (key === "treasury_wallets") {
