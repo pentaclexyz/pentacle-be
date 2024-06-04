@@ -1621,6 +1621,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
     llama_url: Attribute.String;
     dune_url: Attribute.String;
     rekt_url: Attribute.String;
+    marketplace_url: Attribute.String;
     whitepaper_url: Attribute.String;
     github_url: Attribute.String;
     github_id: Attribute.String;
@@ -1753,6 +1754,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
     >;
     farcaster_handle: Attribute.String;
     created_by: Attribute.String;
+    skills: Attribute.Relation<
+      'api::project.project',
+      'manyToMany',
+      'api::skill.skill'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1851,6 +1857,11 @@ export interface ApiSkillSkill extends Schema.CollectionType {
     tags: Attribute.Relation<'api::skill.skill', 'manyToMany', 'api::tag.tag'>;
     slug: Attribute.UID<'api::skill.skill', 'title'>;
     content: Attribute.RichText;
+    projects: Attribute.Relation<
+      'api::skill.skill',
+      'manyToMany',
+      'api::project.project'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2051,6 +2062,8 @@ export interface ApiSubmissionSubmission extends Schema.CollectionType {
     audits_url: Attribute.String;
     contact: Attribute.String;
     farcaster_handle: Attribute.String;
+    profile_img: Attribute.String;
+    profile_banner: Attribute.String;
     eth_address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
