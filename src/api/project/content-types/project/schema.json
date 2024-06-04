@@ -267,6 +267,12 @@
     },
     "created_by": {
       "type": "string"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "projects"
     }
   }
 }
