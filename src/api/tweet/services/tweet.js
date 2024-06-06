@@ -127,8 +127,8 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       for (const person of previousPeople) {
         await strapi.entityService.update("api::person.person", person.id, {
           data: {
-            twitter_img: response.profile_image_url_https,
-            twitter_banner: response.profile_banner_url,
+            twitter_img: response.profile_image_url_https?.replace('_normal', '_bigger'),
+            twitter_banner: response.profile_banner_url?.replace('_normal', '_bigger'),
           },
         });
       }
