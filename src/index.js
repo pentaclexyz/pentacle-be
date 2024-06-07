@@ -1,6 +1,7 @@
 "use strict";
 const _ = require("lodash");
 const { verifyMessage } = require("viem");
+const { getHandleFromTwitterUrl } = require("./util/util");
 module.exports = {
   /**
    * An asynchronous register function that runs before
@@ -64,6 +65,37 @@ module.exports = {
         if (event.model.singularName === "project") {
           event.params.data.twitter_url =
             event.params.data?.twitter_url?.toLowerCase();
+        }
+
+        if (
+          event.model.singularName === "person" ||
+          event.model.singularName === "project"
+        ) {
+          const username =
+            event.model.singularName === "person"
+              ? event.params.data.twitter
+              : event.params.data.twitter_url;
+          const response = await fetch(
+            `https://api.socialdata.tools/twitter/user/${getHandleFromTwitterUrl(
+              username
+            )}`,
+            {
+              headers: {
+                Authorization: `Bearer ${process.env.SOCIALDATA_KEY}`,
+              },
+            }
+          ).then((res) => {
+            console.log(`API returned :${res.status}: ${res.statusText}`);
+            return res.json();
+          });
+          if (!event.params.data.twitter_img) {
+            event.params.data.twitter_img =
+              response.profile_image_url_https?.replace("_normal", "_bigger");
+          }
+          if (!event.params.data.twitter_banner) {
+            event.params.data.twitter_banner =
+              response.profile_banner_url?.replace("_normal", "_bigger");
+          }
         }
 
         event.params.data.slug = _.kebabCase(event.params.data.slug);
