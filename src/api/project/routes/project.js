@@ -9,9 +9,9 @@ const { createCoreRouter } = require("@strapi/strapi").factories;
 const defaultRouter = createCoreRouter("api::project.project", {
   config: {
     find: {
-      middlewares: ['api::project.logger']
-    }
-  }
+      middlewares: ["api::project.logger"],
+    },
+  },
 });
 const { customRouter } = require("../../../util/custom-router");
 const myExtraRoutes = [
@@ -27,17 +27,11 @@ const myExtraRoutes = [
     method: "GET",
     path: "/projects-slim",
     handler: "api::project.project.getSlim",
-    config: {
-      auth: false,
-    },
   },
   {
     method: "GET",
     path: "/projects-related",
     handler: "api::project.project.getRelated",
-    config: {
-      auth: false,
-    },
   },
 ];
 
