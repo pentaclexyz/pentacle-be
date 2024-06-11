@@ -112,10 +112,10 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
     }
 
     const response = await fetch(
-      `https://api.twitter.com/1.1/users/show.json?screen_name=${username}`,
+      `https://api.socialdata.tools/twitter/user/${username}`,
       {
         headers: {
-          Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
+          Authorization: `Bearer ${process.env.SOCIALDATA_KEY}`,
         },
       }
     ).then((res) => {
@@ -127,8 +127,8 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       for (const person of previousPeople) {
         await strapi.entityService.update("api::person.person", person.id, {
           data: {
-            twitter_img: response.profile_image_url_https,
-            twitter_banner: response.profile_banner_url,
+            twitter_img: response.profile_image_url_https?.replace('_normal', '_bigger'),
+            twitter_banner: response.profile_banner_url?.replace('_normal', '_bigger'),
           },
         });
       }
