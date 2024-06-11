@@ -907,6 +907,12 @@ export interface ApiChainChain extends Schema.CollectionType {
       'api::article.article'
     >;
     evm_chain_id: Attribute.String;
+    description: Attribute.Text;
+    project: Attribute.Relation<
+      'api::chain.chain',
+      'oneToOne',
+      'api::project.project'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
