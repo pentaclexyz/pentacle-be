@@ -39,6 +39,14 @@
     },
     "evm_chain_id": {
       "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
     }
   }
 }
