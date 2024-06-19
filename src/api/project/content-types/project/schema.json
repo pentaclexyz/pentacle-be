@@ -273,6 +273,12 @@
       "relation": "manyToMany",
       "target": "api::skill.skill",
       "mappedBy": "projects"
+    },
+    "sponsors_tag": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "sponsored_by"
     }
   }
 }

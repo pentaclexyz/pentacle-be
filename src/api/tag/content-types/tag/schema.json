@@ -76,6 +76,12 @@
       "relation": "manyToMany",
       "target": "api::lore.lore",
       "inversedBy": "tags"
+    },
+    "sponsored_by": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "sponsors_tag"
     }
   }
 }
