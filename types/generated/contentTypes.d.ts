@@ -1765,6 +1765,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'manyToMany',
       'api::skill.skill'
     >;
+    sponsors_tag: Attribute.Relation<
+      'api::project.project',
+      'manyToMany',
+      'api::tag.tag'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2145,6 +2150,11 @@ export interface ApiTagTag extends Schema.CollectionType {
       'api::project.project'
     >;
     lores: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::lore.lore'>;
+    sponsored_by: Attribute.Relation<
+      'api::tag.tag',
+      'manyToMany',
+      'api::project.project'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
