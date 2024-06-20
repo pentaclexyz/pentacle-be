@@ -1760,6 +1760,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
     >;
     farcaster_handle: Attribute.String;
     created_by: Attribute.String;
+    attestation_uid: Attribute.String;
     skills: Attribute.Relation<
       'api::project.project',
       'manyToMany',
