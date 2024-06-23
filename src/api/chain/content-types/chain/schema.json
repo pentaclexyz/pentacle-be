@@ -4,7 +4,7 @@
   "info": {
     "singularName": "chain",
     "pluralName": "chains",
-    "displayName": "Chain",
+    "displayName": "chain",
     "description": ""
   },
   "options": {
@@ -47,6 +47,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::project.project"
+    },
+    "chain_parent": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "chain"
     }
   }
 }

@@ -282,6 +282,12 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "sponsored_by"
+    },
+    "chain": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::chain.chain",
+      "mappedBy": "chain_parent"
     }
   }
 }
