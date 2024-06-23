@@ -20,7 +20,7 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
     });
     const submission = await strapi.entityService.update(
       "api::submission.submission",
-      submissionId,
+      parseInt(submissionId),
       { data: { status: "approved" } }
     );
     return { project, submission };
