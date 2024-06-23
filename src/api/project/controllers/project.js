@@ -48,7 +48,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
 
     const data = await strapi
       .service("api::project.project")
-      .createSubmission({ formData, submissionId, ethAddress: address });
+      .createSubmission({ formData, submissionId });
 
     return data;
   },
