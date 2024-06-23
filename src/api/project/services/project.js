@@ -9,7 +9,7 @@ const { createCoreService } = require("@strapi/strapi").factories;
 module.exports = createCoreService("api::project.project", ({ strapi }) => ({
   async createSubmission({ formData, submissionId, ethAddress }) {
     const { eth_address, profile_img, profile_banner, ...rest } = formData;
-    const newItem = await strapi.entityService.create("api::project.project", {
+    const project = await strapi.entityService.create("api::project.project", {
       data: {
         ...rest,
         twitter_img: profile_img,
@@ -18,11 +18,12 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
         publishedAt: new Date(),
       },
     });
-    const deleted = await strapi.entityService.delete(
+    const submission = await strapi.entityService.update(
       "api::submission.submission",
-      parseInt(submissionId)
+      parseInt(submissionId),
+      { data: { status: "approved" } }
     );
-    return { newItem, deleted };
+    return { project, submission };
   },
   async getRelated(ctx) {
     const allProjects = await strapi.db.query("api::project.project").findMany({
