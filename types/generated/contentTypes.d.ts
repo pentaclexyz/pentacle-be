@@ -885,7 +885,7 @@ export interface ApiChainChain extends Schema.CollectionType {
   info: {
     singularName: 'chain';
     pluralName: 'chains';
-    displayName: 'Chain';
+    displayName: 'chain';
     description: '';
   };
   options: {
@@ -911,6 +911,11 @@ export interface ApiChainChain extends Schema.CollectionType {
     project: Attribute.Relation<
       'api::chain.chain',
       'oneToOne',
+      'api::project.project'
+    >;
+    chain_parent: Attribute.Relation<
+      'api::chain.chain',
+      'manyToMany',
       'api::project.project'
     >;
     createdAt: Attribute.DateTime;
@@ -1770,6 +1775,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'api::project.project',
       'manyToMany',
       'api::tag.tag'
+    >;
+    chain: Attribute.Relation<
+      'api::project.project',
+      'manyToMany',
+      'api::chain.chain'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
