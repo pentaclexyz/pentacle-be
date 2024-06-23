@@ -46,11 +46,11 @@ module.exports = {
         try {
           const ctx = strapi.requestContext.get();
           if (event.model.singularName === "submission") {
-            const { signature, address, ...rest } = event.params.data;
-            event.params.data = rest;
+            const { signature, eth_address, ...rest } = event.params.data;
+            event.params.data = { ...rest, eth_address };
             event.params.data.slug = _.kebabCase(event.params.data.slug);
             const isValid = await verifyMessage({
-              address,
+              address: eth_address,
               message: "Sign this message to submit a project",
               signature,
             });
