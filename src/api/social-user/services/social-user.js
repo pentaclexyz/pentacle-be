@@ -14,8 +14,8 @@ const {
 module.exports = createCoreService(
   "api::social-user.social-user",
   ({ strapi }) => ({
-    async handleGithub(username) {
-      const ghProfile = await fetchGithubProfile(username);
+    async handleGithub(handle, platform) {
+      const ghProfile = await fetchGithubProfile(handle);
       if (ghProfile) {
         const existingUserWithSameId = await strapi.db
           .query("api::social-user.social-user")
@@ -52,8 +52,8 @@ module.exports = createCoreService(
         return newUser;
       }
     },
-    async handleTwitter(username) {
-      const twitterProfile = await fetchTwitterProfile(username);
+    async handleTwitter(handle, platform) {
+      const twitterProfile = await fetchTwitterProfile(handle);
       if (twitterProfile) {
         const existingUserWithSameId = await strapi.db
           .query("api::social-user.social-user")
@@ -95,8 +95,8 @@ module.exports = createCoreService(
         return newUser;
       }
     },
-    async handleFarcaster(username) {
-      const farcasterProfile = await fetchFarcasterProfile(username);
+    async handleFarcaster(handle, platform) {
+      const farcasterProfile = await fetchFarcasterProfile(handle);
       if (farcasterProfile) {
         const existingUserWithSameId = await strapi.db
           .query("api::social-user.social-user")
@@ -152,15 +152,18 @@ module.exports = createCoreService(
           continue;
         } else {
           if (platform === "github") {
-            const newUser = await this.handleGithub(handle);
+            const newUser = await this.handleGithub(handle, platform);
             returnData.push(newUser);
           }
           if (platform === "twitter") {
-            const twitterProfile = this.handleTwitter(handle);
+            const twitterProfile = await this.handleTwitter(handle, platform);
             returnData.push(twitterProfile);
           }
           if (platform === "farcaster") {
-            const farcasterProfile = await this.handleFarcaster(handle);
+            const farcasterProfile = await this.handleFarcaster(
+              handle,
+              platform
+            );
             returnData.push(farcasterProfile);
           }
         }
