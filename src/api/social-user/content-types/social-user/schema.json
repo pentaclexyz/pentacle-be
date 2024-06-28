@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "social-users",
+  "info": {
+    "singularName": "social-user",
+    "pluralName": "social-users",
+    "displayName": "social-user",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "handle": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "platform_id": {
+      "type": "string"
+    },
+    "pfp": {
+      "type": "string"
+    }
+  }
+}
