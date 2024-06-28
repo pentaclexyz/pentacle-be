@@ -9,6 +9,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const fs = require("fs"); // Built-in filesystem package for Node.js
 const { join } = require("path");
+const { fetchTwitterProfile } = require("../../../util/util");
 if (!String.prototype.replaceAll) {
   String.prototype.replaceAll = function (str, newStr) {
     // If a regex pattern
@@ -111,24 +112,20 @@ module.exports = createCoreService("api::tweet.tweet", ({ strapi }) => ({
       return { success: true, message: "no update needed" };
     }
 
-    const response = await fetch(
-      `https://api.socialdata.tools/twitter/user/${username}`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.SOCIALDATA_KEY}`,
-        },
-      }
-    ).then((res) => {
-      console.log(`API returned :${res.status}: ${res.statusText}`);
-      return res.json();
-    });
+    const response = await fetchTwitterProfile(username);
 
     if (previousPeople) {
       for (const person of previousPeople) {
         await strapi.entityService.update("api::person.person", person.id, {
           data: {
-            twitter_img: response.profile_image_url_https?.replace('_normal', '_bigger'),
-            twitter_banner: response.profile_banner_url?.replace('_normal', '_bigger'),
+            twitter_img: response.profile_image_url_https?.replace(
+              "_normal",
+              "_bigger"
+            ),
+            twitter_banner: response.profile_banner_url?.replace(
+              "_normal",
+              "_bigger"
+            ),
           },
         });
       }
