@@ -82,7 +82,7 @@ module.exports = createCoreService(
           "api::social-user.social-user",
           {
             data: {
-              handle: handle,
+              handle,
               platform,
               platform_id: twitterProfile.id_str,
               pfp: twitterProfile.profile_image_url_https?.replace(
@@ -122,7 +122,7 @@ module.exports = createCoreService(
           "api::social-user.social-user",
           {
             data: {
-              handle: handle,
+              handle,
               platform,
               platform_id: `${farcasterProfile.fid}`,
               pfp: farcasterProfile.pfp_url,
