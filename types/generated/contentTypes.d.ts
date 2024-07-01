@@ -1998,6 +1998,39 @@ export interface ApiSkillTypeSkillType extends Schema.CollectionType {
   };
 }
 
+export interface ApiSocialUserSocialUser extends Schema.CollectionType {
+  collectionName: 'social-users';
+  info: {
+    singularName: 'social-user';
+    pluralName: 'social-users';
+    displayName: 'social-user';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    handle: Attribute.String;
+    platform: Attribute.String;
+    platform_id: Attribute.String;
+    pfp: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::social-user.social-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::social-user.social-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSubjectExpertTypeSubjectExpertType
   extends Schema.CollectionType {
   collectionName: 'subject_expert_types';
@@ -2087,6 +2120,7 @@ export interface ApiSubmissionSubmission extends Schema.CollectionType {
     profile_img: Attribute.String;
     profile_banner: Attribute.String;
     eth_address: Attribute.String;
+    status: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2304,6 +2338,7 @@ declare module '@strapi/types' {
       'api::skill.skill': ApiSkillSkill;
       'api::skill-level.skill-level': ApiSkillLevelSkillLevel;
       'api::skill-type.skill-type': ApiSkillTypeSkillType;
+      'api::social-user.social-user': ApiSocialUserSocialUser;
       'api::subject-expert-type.subject-expert-type': ApiSubjectExpertTypeSubjectExpertType;
       'api::submission.submission': ApiSubmissionSubmission;
       'api::tag.tag': ApiTagTag;
