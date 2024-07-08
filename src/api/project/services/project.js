@@ -12,7 +12,6 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
     const project = await strapi.entityService.create("api::project.project", {
       data: {
         ...rest,
-        eth_address,
         twitter_img: profile_img,
         twitter_banner: profile_banner,
         created_by: eth_address,
@@ -25,6 +24,24 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
       { data: { status: "approved" } }
     );
     return { project, submission };
+  },
+  async updateProject({ formData, projectId }) {
+    // We probably don't want to update slug if name has changed, so hence I am taking it out of the rest spread
+    const { profile_img, profile_banner, slug, ...rest } = formData;
+    const pr = {
+      ...rest,
+      twitter_img: profile_img,
+      twitter_banner: profile_banner
+    }
+
+    const project = await strapi.entityService.update("api::project.project", parseInt(projectId), {
+      data: {
+        ...rest,
+        twitter_img: profile_img,
+        twitter_banner: profile_banner
+      },
+    });
+    return { project };
   },
   async getRelated(ctx) {
     const allProjects = await strapi.db.query("api::project.project").findMany({

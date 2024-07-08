@@ -12,6 +12,12 @@ if (!process.env.WHITELISTED_ADDRESSES) {
 const WHITELIST = process.env.WHITELISTED_ADDRESSES.split(",")
   .filter(Boolean)
   .map((address) => address.toLowerCase());
+
+//TODO: Fetch this from Strapi
+const WHITELISTED_PROJECT_EDITORS = {
+  1124: ['0xfbea1b97406C6945D07F50F588e54144ea8B684f']
+}
+
 module.exports = createCoreController("api::project.project", ({ strapi }) => ({
   async getSlim(ctx) {
     const data = await strapi.service("api::project.project").getSlim(ctx);
@@ -52,4 +58,35 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
 
     return data;
   },
+  async updateProject() {
+    const ctx = strapi.requestContext.get();
+    const {
+      address,
+      signature,
+      data: formData,
+      projectId,
+    } = ctx.request.body;
+
+    if (!WHITELISTED_PROJECT_EDITORS[projectId]?.map(editor => editor.toLowerCase())?.includes(address.toLowerCase())) {
+      ctx.throw(400, "Address not whitelisted");
+      return;
+    }
+
+    const isValid = await verifyMessage({
+      address,
+      message: "Sign this message to submit a project",
+      signature,
+    });
+
+    if (!isValid) {
+      ctx.throw(400, "Invalid signature");
+      return;
+    }
+
+    const data = await strapi
+        .service("api::project.project")
+        .updateProject({ formData, projectId });
+
+    return data;
+  }
 }));

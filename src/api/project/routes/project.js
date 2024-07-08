@@ -24,6 +24,14 @@ const myExtraRoutes = [
     },
   },
   {
+    method: "POST",
+    path: "/projects/update-project",
+    handler: "api::project.project.updateProject",
+    config: {
+      auth: false,
+    },
+  },
+  {
     method: "GET",
     path: "/projects-slim",
     handler: "api::project.project.getSlim",
