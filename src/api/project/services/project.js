@@ -12,7 +12,6 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
     const project = await strapi.entityService.create("api::project.project", {
       data: {
         ...rest,
-        eth_address,
         twitter_img: profile_img,
         twitter_banner: profile_banner,
         created_by: eth_address,
