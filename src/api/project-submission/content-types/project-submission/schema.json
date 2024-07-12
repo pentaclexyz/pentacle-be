@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "submissions",
+  "collectionName": "project-submissions",
   "info": {
-    "singularName": "submission",
-    "pluralName": "submissions",
-    "displayName": "submissions",
+    "singularName": "project-submission",
+    "pluralName": "project-submissions",
+    "displayName": "project-submissions",
     "description": ""
   },
   "options": {

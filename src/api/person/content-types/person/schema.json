@@ -21,6 +21,9 @@
     "twitter": {
       "type": "string"
     },
+    "blog_url": {
+      "type": "string"
+    },
     "website": {
       "type": "string"
     },
@@ -48,9 +51,6 @@
       "relation": "manyToMany",
       "target": "api::skill.skill",
       "mappedBy": "people"
-    },
-    "avatar": {
-      "type": "string"
     },
     "projects": {
       "type": "relation",
@@ -89,6 +89,12 @@
       "inversedBy": "people"
     },
     "farcaster_handle": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "reviewed_by": {
       "type": "string"
     }
   }

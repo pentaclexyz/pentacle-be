@@ -77,6 +77,7 @@ module.exports = {
               event.model.singularName === "person"
                 ? event.params.data.twitter
                 : event.params.data.twitter_url;
+            // @TODO: replace with fetchTwitterProfile
             const response = await fetch(
               `https://api.socialdata.tools/twitter/user/${getHandleFromTwitterUrl(
                 username

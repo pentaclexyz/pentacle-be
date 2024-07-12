@@ -7,18 +7,23 @@
 const { createCoreService } = require("@strapi/strapi").factories;
 
 module.exports = createCoreService("api::person.person", ({ strapi }) => ({
-  async create(...args) {
-    const newUser = await super.create(...args);
-
-    if (newUser.twitter.length > 0) {
-      const twitterHandle = newUser.twitter.split("https://twitter.com/")[1];
-      const twitterData = await strapi
-        .service("api::tweet.tweet")
-        .getUserTwitterInfo(twitterHandle);
-
-      newUser.twitter_img = twitterData[0].profile_image_url;
-    }
-
-    return newUser;
+  // @TODO: move this into submission service
+  async createSubmission({ formData, submissionId }) {
+    const { eth_address, profile_img, profile_banner, ...rest } = formData;
+    const person = await strapi.entityService.create("api::person.person", {
+      data: {
+        ...rest,
+        twitter_img: profile_img,
+        twitter_banner: profile_banner,
+        created_by: eth_address,
+        publishedAt: new Date(),
+      },
+    });
+    const submission = await strapi.entityService.update(
+      "api::submission.submission",
+      parseInt(submissionId),
+      { data: { status: "approved" } }
+    );
+    return { person, submission };
   },
 }));

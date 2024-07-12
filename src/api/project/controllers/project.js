@@ -21,6 +21,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     const data = await strapi.service("api::project.project").getRelated(ctx);
     return data;
   },
+  // @TODO: move this into submission service
   async createSubmission() {
     const ctx = strapi.requestContext.get();
     const {
@@ -46,9 +47,10 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
       return;
     }
 
-    const data = await strapi
-      .service("api::project.project")
-      .createSubmission({ formData, submissionId });
+    const data = await strapi.service("api::project.project").createSubmission({
+      formData: { ...formData, reviewed_by: address },
+      submissionId,
+    });
 
     return data;
   },
