@@ -27,29 +27,41 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
     return { project, submission };
   },
   async getRelated(ctx) {
-    const allProjects = await strapi.db.query("api::project.project").findMany({
+    const thisProject = await strapi.db.query("api::project.project").findOne({
+      where: { slug: ctx.query.slug },
       populate: {
         categories: true,
         sections: true,
       },
     });
-    const { slug } = ctx.query;
-    const thisProject = allProjects.find((proj) => proj.slug === slug);
     const categories = thisProject?.categories?.map(
       (category) => category.slug
     );
     const section = thisProject?.sections[0]?.slug || null;
-    const filteredRelatedProjects =
-      allProjects
-        ?.filter((proj) => {
-          return (
-            proj.sections.some((_section) => _section.slug === section) &&
-            proj.categories.some((_category) =>
-              categories.includes(_category.slug)
-            )
-          );
-        })
-        .slice(0, 20) || [];
+
+    if (!categories || !section) {
+      return {
+        data: [],
+      };
+    }
+
+    const filteredRelatedProjects = await strapi.db
+      .query("api::project.project")
+      .findMany({
+        where: {
+          slug: { $ne: ctx.query.slug },
+          sections: {
+            slug: section,
+            categories: { slug: { $in: categories } },
+          },
+        },
+        limit: 20,
+        populate: {
+          categories: true,
+          sections: true,
+        },
+      });
+
     const filteredMappedRelatedProjects = filteredRelatedProjects.map(
       (project) => {
         const { id, ...rest } = project;
