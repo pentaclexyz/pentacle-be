@@ -49,7 +49,7 @@ module.exports = createCoreService("api::project.project", ({ strapi }) => ({
       .query("api::project.project")
       .findMany({
         where: {
-          slug: { $nei: ctx.query.slug },
+          slug: { $ne: ctx.query.slug },
           sections: {
             slug: section,
             categories: { slug: { $in: categories } },
