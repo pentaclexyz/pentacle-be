@@ -7,12 +7,14 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "tsc && strapi build",
-    "strapi": "./node_modules/.bin/bun strapi"
+    "strapi": "./node_modules/.bin/bun strapi",
+    "prettify": "prettier --write '{src, config}/*.{ts,js}'"
   },
   "devDependencies": {
     "@strapi/typescript-utils": "^4.25.4",
     "@types/node": "18",
-    "@types/react": "18"
+    "@types/react": "18",
+    "prettier": "^3.3.3"
   },
   "dependencies": {
     "@strapi/plugin-documentation": "4.25.4",
