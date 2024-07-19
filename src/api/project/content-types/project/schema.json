@@ -175,18 +175,6 @@
       "repeatable": true,
       "component": "shared.treasury-wallet"
     },
-    "has_audit": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::audit.audit",
-      "mappedBy": "audited_project"
-    },
-    "is_auditor": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::audit.audit",
-      "mappedBy": "audited_by"
-    },
     "audits_url": {
       "type": "string"
     },
