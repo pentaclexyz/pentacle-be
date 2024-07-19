@@ -6,31 +6,38 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "./node_modules/.bin/bun strapi"
+    "build": "tsc && strapi build",
+    "strapi": "./node_modules/.bin/bun strapi",
+    "prettify": "prettier --write '{src,config}/*.{ts,js}'"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@strapi/typescript-utils": "^4.25.4",
+    "@types/node": "18",
+    "@types/react": "18",
+    "prettier": "^3.3.3"
+  },
   "dependencies": {
-    "@strapi/plugin-documentation": "4.15.5",
-    "@strapi/plugin-i18n": "4.15.5",
-    "@strapi/plugin-open-ai": "^1.0.2",
-    "@strapi/plugin-users-permissions": "4.15.5",
-    "@strapi/provider-upload-cloudinary": "4.15.5",
-    "@strapi/strapi": "4.15.5",
+    "@strapi/plugin-documentation": "4.25.4",
+    "@strapi/plugin-i18n": "4.25.4",
+    "@strapi/plugin-open-ai": "^1.0.3",
+    "@strapi/plugin-users-permissions": "4.25.4",
+    "@strapi/provider-upload-cloudinary": "4.25.4",
+    "@strapi/strapi": "4.25.4",
     "bun": "^1.1.6",
-    "ethers": "^5.6.9",
     "knex": "^2.3.0",
+    "lodash": "^4.17.21",
     "node-fetch": "2.6.7",
     "pg": "^8.4.0",
     "pg-connection-string": "^2.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^5.2.0",
-    "strapi-plugin-import-export-entries": "^1.16.1",
-    "strapi-plugin-meilisearch": "^0.8.2",
-    "strapi-plugin-rest-cache": "^4.2.8",
+    "strapi-plugin-import-export-entries": "^1.23.1",
+    "strapi-plugin-meilisearch": "^0.12.0",
+    "strapi-plugin-rest-cache": "^4.2.9",
     "styled-components": "^5.2.1",
-    "viem": "^2.10.5"
+    "typescript": "^5.5.3",
+    "viem": "^2.17.5"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",

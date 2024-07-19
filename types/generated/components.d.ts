@@ -1,41 +1,57 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ProjectProjectSummary extends Schema.Component {
-  collectionName: 'components_project_project_summaries';
+export interface SharedTreasuryWallet extends Schema.Component {
+  collectionName: 'components_shared_treasury_wallets';
   info: {
-    displayName: 'projectSummary';
-    icon: 'adjust';
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.String;
-  };
-}
-
-export interface ProjectRiskUrls extends Schema.Component {
-  collectionName: 'components_project_risk_urls';
-  info: {
-    displayName: 'risk_urls';
-    icon: 'ad';
-  };
-  attributes: {
-    risk_url: Attribute.String;
-  };
-}
-
-export interface SharedAudits extends Schema.Component {
-  collectionName: 'components_shared_audits';
-  info: {
-    displayName: 'audits';
+    displayName: 'treasury_wallet';
+    icon: 'apple-alt';
     description: '';
   };
   attributes: {
-    auditor: Attribute.Relation<
-      'shared.audits',
+    wallet_address: Attribute.String;
+  };
+}
+
+export interface SharedSeo extends Schema.Component {
+  collectionName: 'components_shared_seos';
+  info: {
+    name: 'Seo';
+    icon: 'allergies';
+  };
+  attributes: {
+    metaTitle: Attribute.String & Attribute.Required;
+    metaDescription: Attribute.Text & Attribute.Required;
+    shareImage: Attribute.Media<'images'>;
+  };
+}
+
+export interface SharedNav extends Schema.Component {
+  collectionName: 'components_shared_nav';
+  info: {
+    displayName: 'Shared.nav';
+    icon: 'apple-alt';
+    description: '';
+  };
+  attributes: {
+    navTitle: Attribute.String;
+    section: Attribute.Relation<
+      'shared.nav',
       'oneToOne',
-      'api::project.project'
+      'api::section.section'
     >;
-    audit_url: Attribute.String;
+  };
+}
+
+export interface SharedLogo extends Schema.Component {
+  collectionName: 'components_shared_logos';
+  info: {
+    displayName: 'shared.logo';
+    icon: 'baby-carriage';
+    description: '';
+  };
+  attributes: {
+    icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };
 }
 
@@ -70,72 +86,56 @@ export interface SharedCardLarge extends Schema.Component {
   };
 }
 
-export interface SharedLogo extends Schema.Component {
-  collectionName: 'components_shared_logos';
+export interface SharedAudits extends Schema.Component {
+  collectionName: 'components_shared_audits';
   info: {
-    displayName: 'shared.logo';
-    icon: 'baby-carriage';
+    displayName: 'audits';
     description: '';
   };
   attributes: {
-    icon: Attribute.Media;
-    logo: Attribute.Media;
-  };
-}
-
-export interface SharedNav extends Schema.Component {
-  collectionName: 'components_shared_nav';
-  info: {
-    displayName: 'Shared.nav';
-    icon: 'apple-alt';
-    description: '';
-  };
-  attributes: {
-    navTitle: Attribute.String;
-    section: Attribute.Relation<
-      'shared.nav',
+    auditor: Attribute.Relation<
+      'shared.audits',
       'oneToOne',
-      'api::section.section'
+      'api::project.project'
     >;
+    audit_url: Attribute.String;
   };
 }
 
-export interface SharedSeo extends Schema.Component {
-  collectionName: 'components_shared_seos';
+export interface ProjectRiskUrls extends Schema.Component {
+  collectionName: 'components_project_risk_urls';
   info: {
-    name: 'Seo';
-    icon: 'allergies';
+    displayName: 'risk_urls';
+    icon: 'ad';
   };
   attributes: {
-    metaTitle: Attribute.String & Attribute.Required;
-    metaDescription: Attribute.Text & Attribute.Required;
-    shareImage: Attribute.Media;
+    risk_url: Attribute.String;
   };
 }
 
-export interface SharedTreasuryWallet extends Schema.Component {
-  collectionName: 'components_shared_treasury_wallets';
+export interface ProjectProjectSummary extends Schema.Component {
+  collectionName: 'components_project_project_summaries';
   info: {
-    displayName: 'treasury_wallet';
-    icon: 'apple-alt';
-    description: '';
+    displayName: 'projectSummary';
+    icon: 'adjust';
   };
   attributes: {
-    wallet_address: Attribute.String;
+    name: Attribute.String;
+    description: Attribute.String;
   };
 }
 
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'project.project-summary': ProjectProjectSummary;
-      'project.risk-urls': ProjectRiskUrls;
-      'shared.audits': SharedAudits;
-      'shared.card-large': SharedCardLarge;
-      'shared.logo': SharedLogo;
-      'shared.nav': SharedNav;
-      'shared.seo': SharedSeo;
       'shared.treasury-wallet': SharedTreasuryWallet;
+      'shared.seo': SharedSeo;
+      'shared.nav': SharedNav;
+      'shared.logo': SharedLogo;
+      'shared.card-large': SharedCardLarge;
+      'shared.audits': SharedAudits;
+      'project.risk-urls': ProjectRiskUrls;
+      'project.project-summary': ProjectProjectSummary;
     }
   }
 }

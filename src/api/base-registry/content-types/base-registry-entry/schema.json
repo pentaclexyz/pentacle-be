@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "base_registry",
+  "info": {
+    "singularName": "base-registry-entry",
+    "pluralName": "base-registry-entries",
+    "displayName": "Base Registry",
+    "description": "Base registry entries from https://docs.base.org/docs/tools/registry-api/"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "base_registry_id": {
+      "required": true,
+      "type": "string",
+      "column": {
+        "unique": true,
+        "notNullable": true
+      }
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["Games", "Social", "Creators", "Finance", "Media"],
+      "required": true,
+      "column": {
+        "notNullable": true
+      }
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "column": {
+        "notNullable": true
+      }
+    },
+    "short_description": {
+      "type": "string"
+    },
+    "full_description": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "target_url": {
+      "type": "string"
+    },
+    "cta_text": {
+      "type": "string"
+    },
+    "function_signature": {
+      "type": "string"
+    },
+    "contract_address": {
+      "type": "string"
+    },
+    "token_id": {
+      "type": "string"
+    },
+    "token_amount": {
+      "type": "string"
+    },
+    "curation": {
+      "type": "enumeration",
+      "enum": ["Featured", "Curated", "Community"]
+    },
+    "creator_name": {
+      "type": "string"
+    },
+    "creator_image_url": {
+      "type": "string"
+    }
+  }
+}
