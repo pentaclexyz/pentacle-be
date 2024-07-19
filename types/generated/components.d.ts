@@ -34,7 +34,11 @@ export interface SharedNav extends Schema.Component {
   };
   attributes: {
     navTitle: Attribute.String;
-    section: Attribute.Relation<'shared.nav', 'oneToOne', 'api::section.section'>;
+    section: Attribute.Relation<
+      'shared.nav',
+      'oneToOne',
+      'api::section.section'
+    >;
   };
 }
 
@@ -62,8 +66,16 @@ export interface SharedCardLarge extends Schema.Component {
     header: Attribute.String;
     text: Attribute.Text;
     link: Attribute.String;
-    sections: Attribute.Relation<'shared.card-large', 'oneToMany', 'api::section.section'>;
-    categories: Attribute.Relation<'shared.card-large', 'oneToMany', 'api::category.category'>;
+    sections: Attribute.Relation<
+      'shared.card-large',
+      'oneToMany',
+      'api::section.section'
+    >;
+    categories: Attribute.Relation<
+      'shared.card-large',
+      'oneToMany',
+      'api::category.category'
+    >;
     tags: Attribute.Relation<'shared.card-large', 'oneToMany', 'api::tag.tag'>;
     skill_levels: Attribute.Relation<
       'shared.card-large',
@@ -81,7 +93,11 @@ export interface SharedAudits extends Schema.Component {
     description: '';
   };
   attributes: {
-    auditor: Attribute.Relation<'shared.audits', 'oneToOne', 'api::project.project'>;
+    auditor: Attribute.Relation<
+      'shared.audits',
+      'oneToOne',
+      'api::project.project'
+    >;
     audit_url: Attribute.String;
   };
 }
