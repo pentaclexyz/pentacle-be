@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "tsc && strapi build",
     "strapi": "./node_modules/.bin/bun strapi",
-    "prettify": "prettier --write '{src, config}/*.{ts,js}'"
+    "prettify": "prettier --write '{src,config}/*.{ts,js}'"
   },
   "devDependencies": {
     "@strapi/typescript-utils": "^4.25.4",
