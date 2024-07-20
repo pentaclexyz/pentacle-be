@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['python310Full', 'nodejs_18', 'pnpm-9_x']
+nixPkgs = ['python310Full', 'nodejs_18']
 
 providers = ["node"]
 
