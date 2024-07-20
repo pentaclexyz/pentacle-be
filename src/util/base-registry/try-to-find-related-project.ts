@@ -21,15 +21,15 @@ export const tryToFindRelatedProject = async ({
 
   if (contract_address && urlHostname) {
     filters['$or'] = [
-      { contract_url: { $contains: contract_address } },
-      { website_url: { $contains: urlHostname } },
+      { contract_url: { $contains: contract_address, $notNull: true } },
+      { website_url: { $contains: urlHostname, $notNull: true } },
     ];
   } else {
     if (contract_address) {
-      filters['contract_url'] = { $contains: contract_address };
+      filters['contract_url'] = { $contains: contract_address, $notNull: true };
     }
     if (urlHostname) {
-      filters['website_url'] = { $contains: urlHostname };
+      filters['website_url'] = { $contains: urlHostname, $notNull: true };
     }
   }
 
