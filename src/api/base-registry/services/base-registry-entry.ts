@@ -264,7 +264,7 @@ const baseRegistryService = createCoreService(
             const createdIds = await strapi.db
               ?.query('api::base-registry.base-registry-entry')
               .createMany({
-                data: entriesToCreate,
+                data: entriesToCreate.map((c) => ({ ...c, publishedAt: new Date() })),
               });
 
             savedIds = savedIds.concat(createdIds?.ids ?? []);
