@@ -16,7 +16,8 @@ export const tryToFindRelatedProject = async ({
   if (!contract_address && !target_url) {
     return undefined;
   }
-  const urlHostname = new URL(target_url).hostname;
+  const url = new URL(target_url);
+  const urlHostname = `${url.hostname}${url.pathname}`;
   const filters = {} as unknown as Record<string, unknown>;
 
   if (contract_address && urlHostname) {
