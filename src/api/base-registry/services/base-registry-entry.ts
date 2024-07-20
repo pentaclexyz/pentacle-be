@@ -58,6 +58,11 @@ type StrapiRelation = {
   };
 };
 
+/**
+ * Try to find related records in our database based on some Base Registry Entry fields
+ * @param baseRegistryEntryResponseItems
+ * @param strapi
+ */
 const getBaseRegistryEntryRelations = async ({
   baseRegistryEntryResponseItems,
   strapi,
@@ -66,28 +71,41 @@ const getBaseRegistryEntryRelations = async ({
   strapi: Strapi;
 }) => {
   const relations: StrapiRelation[] = [];
+  // Get Base chain entity to get it's ID
   const strapiChain = (
     await strapi.entityService?.findMany('api::chain.chain', { filters: { name: 'Base' } })
   )?.[0];
+
+  // Iterate through each Base entry and try to find related project and section
   for (const baseRegistryEntry of baseRegistryEntryResponseItems) {
+    // Create empty return object that will hold relations
     const projectRelation = {
       entryBaseId: baseRegistryEntry.id,
       relations: {},
     } as StrapiRelation;
+
+    // Since we know that these records will be on Base, we can add base chain realtion right away
     if (strapiChain) {
       projectRelation.relations = { chain: { connect: [{ id: strapiChain.id }] } };
     }
+
+    // Try to find related projects by contract address or website url
     const project = (await tryToFindRelatedProject({ strapi, baseRegistryEntry }))?.[0];
     if (project) {
       projectRelation.relations.project = { connect: [{ id: project.id }] };
     }
 
+    // Map Base registry category to Strapi section slug
     const strapiSectionSlug = BASE_CATEGORY_TO_STRAPI_SECTION_MAPPING[baseRegistryEntry.category];
+
+    // Try to find matching section in Strapi
     const strapiSection = (
       await strapi.entityService?.findMany('api::section.section', {
         filters: { slug: strapiSectionSlug },
       })
     )?.[0];
+
+    // Add matching section to relations if found
     if (strapiSection) {
       projectRelation.relations.sections = { connect: [{ id: strapiSection.id }] };
     }
@@ -137,6 +155,11 @@ const baseRegistryService = createCoreService(
     async fetchAllEntriesFromRegistry() {
       return fetchAllBaseRegistryEntries();
     },
+    /**
+     * Add missing relations to existing base_registry_entry records, by fetching them from strapi db and checking if at least 1 item in relation exists
+     * @param baseEntityIds
+     * @param relationsResults
+     */
     async addMissingRelationsToBaseRegistryEntries(
       baseEntityIds: string[],
       relationsResults: StrapiRelation[],
@@ -159,14 +182,18 @@ const baseRegistryService = createCoreService(
           );
           const missingRelations: Record<string, { connect: { id: ID }[] }> = {};
           let hasNewRelations = false;
+
+          // Check if chain relation exists, and we have a new chain relation to add
           if (!entity.chain?.id && entityNewRelations?.relations.chain) {
             missingRelations.chain = entityNewRelations.relations.chain;
             hasNewRelations = true;
           }
+          // Check if project relation exists, and we have a new project relation to add
           if (!entity.project?.id && entityNewRelations?.relations.project) {
             missingRelations.project = entityNewRelations.relations.project;
             hasNewRelations = true;
           }
+          // Check if section relation exists, and we have a new section relation to add
           if (
             (!entity.sections || !entity.sections?.[0]?.id) &&
             entityNewRelations?.relations.sections
@@ -175,6 +202,7 @@ const baseRegistryService = createCoreService(
             hasNewRelations = true;
           }
 
+          // If we have new relations to add, add it to this one entity (we are in a for of loop)
           if (hasNewRelations) {
             await strapi.entityService?.update(
               'api::base-registry.base-registry-entry',
@@ -229,7 +257,7 @@ const baseRegistryService = createCoreService(
                 ?.id,
             }));
 
-          // Create new entries
+          // Create new entries that don't yet exist in db
           if (entriesToCreate.length > 0) {
             const createdIds = await strapi.db
               ?.query('api::base-registry.base-registry-entry')
@@ -240,7 +268,7 @@ const baseRegistryService = createCoreService(
             savedIds = savedIds.concat(createdIds?.ids ?? []);
           }
 
-          // Update existing new entries
+          // Update existing entries with the new data
           // TODO: Identify only the fields that need to be updated
           if (entriesToUpdate.length > 0) {
             for (const entry of entriesToUpdate) {
