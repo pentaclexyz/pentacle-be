@@ -5,8 +5,7 @@
     "rootDir": ".",
     "allowJs": true, //enables the build without .ts files
     "strict": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true
+    "skipLibCheck": true
   },
   "include": ["./", "src/**/*.json"],
   "exclude": [

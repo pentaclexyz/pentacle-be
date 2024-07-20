@@ -250,15 +250,6 @@ const baseRegistryService = createCoreService(
             (entity) => !existingBaseRegistryIds.includes(entity.base_registry_id),
           );
 
-          // Filter out entries that are already present in strapi DB. For UPDATE op
-          const entriesToUpdate = chunk
-            .filter((entity) => existingBaseRegistryIds.includes(entity.base_registry_id))
-            .map((entity) => ({
-              ...entity,
-              id: existingIdsResponse.find((e) => e.base_registry_id === entity.base_registry_id)
-                ?.id,
-            }));
-
           // Create new entries that don't yet exist in db
           if (entriesToCreate.length > 0) {
             const createdIds = await strapi.db
@@ -272,20 +263,31 @@ const baseRegistryService = createCoreService(
 
           // Update existing entries with the new data
           // TODO: Identify only the fields that need to be updated
-          if (entriesToUpdate.length > 0) {
-            for (const entry of entriesToUpdate) {
-              const { id, ...data } = entry;
-              const updatedDocument = await strapi.entityService?.update(
-                'api::base-registry.base-registry-entry',
-                id as ID,
-                //@ts-ignore
-                { data },
-              );
-              if (updatedDocument?.id) {
-                savedIds.push(updatedDocument.id);
-              }
-            }
-          }
+          // TODO: Commented out for now, we don't have a confirmation that these entries are ever edited on the Base side, so we don't want to overwrite any edits that we make.
+          // Leaving code for future reference, safe to delete if we don't use it after a month
+          // Also if we ever want to bring this back, we need to make sure that we only update fields that changed, and somehow differentiate between changes that we made VS base-registry
+          // // Filter out entries that are already present in strapi DB. For UPDATE op
+          // const entriesToUpdate = chunk
+          //   .filter((entity) => existingBaseRegistryIds.includes(entity.base_registry_id))
+          //   .map((entity) => ({
+          //     ...entity,
+          //     id: existingIdsResponse.find((e) => e.base_registry_id === entity.base_registry_id)
+          //       ?.id,
+          //   }));
+          // if (entriesToUpdate.length > 0) {
+          //   for (const entry of entriesToUpdate) {
+          //     const { id, ...data } = entry;
+          //     const updatedDocument = await strapi.entityService?.update(
+          //       'api::base-registry.base-registry-entry',
+          //       id as ID,
+          //       //@ts-ignore
+          //       { data },
+          //     );
+          //     if (updatedDocument?.id) {
+          //       savedIds.push(updatedDocument.id);
+          //     }
+          //   }
+          // }
 
           // Add missing relations if needed
           await (
