@@ -21,21 +21,24 @@ export default createCoreController('api::base-registry.base-registry-entry', ({
   async removeAllProjectRelations() {
     const allEntries = await strapi.entityService?.findMany(
       'api::base-registry.base-registry-entry',
-      { populate: ['project'], fields: ['id'] },
+      {
+        populate: ['project'],
+      },
     );
 
-    //@ts-ignore
-    for (const entry of allEntries) {
-      if (!!entry?.project?.id) {
-        await strapi.entityService?.update('api::base-registry.base-registry-entry', entry.id, {
-          data: {
-            //@ts-ignore
-            project: {
-              disconnect: [entry.project.id],
+    if (allEntries) {
+      for (const entry of allEntries) {
+        if (!!entry?.project?.id) {
+          await strapi.entityService?.update('api::base-registry.base-registry-entry', entry.id, {
+            data: {
+              project: {
+                // @ts-ignore - Issue with Strapi 4.x types, incorrectly identifies type of relation
+                disconnect: [entry.project.id],
+              },
             },
-          },
-          populate: ['project'],
-        });
+            populate: ['project'],
+          });
+        }
       }
     }
 

@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": " pnpm strapi:types && tsc && strapi build",
+    "build": "pnpm strapi:types && tsc && strapi build",
     "strapi": "./node_modules/.bin/bun strapi",
     "strapi:types": "strapi ts:generate-types",
     "prettify": "prettier --write '{src,config}/*.{ts,js}'"
@@ -14,12 +14,12 @@
   "devDependencies": {
     "@strapi/typescript-utils": "^4.25.4",
     "@types/lodash": "^4.17.7",
-    "@types/node": "18",
+    "@types/qs": "^6.9.15",
     "@types/react": "18",
     "prettier": "^3.3.3"
   },
   "dependencies": {
-    "@strapi/database": "^4.25.4",
+    "@strapi/database": "4.25.4",
     "@strapi/plugin-documentation": "4.25.4",
     "@strapi/plugin-i18n": "4.25.4",
     "@strapi/plugin-open-ai": "^1.0.3",
@@ -33,6 +33,7 @@
     "node-fetch": "2.6.7",
     "pg": "^8.4.0",
     "pg-connection-string": "^2.5.0",
+    "qs": "^6.12.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^5.2.0",
@@ -40,7 +41,7 @@
     "strapi-plugin-meilisearch": "^0.12.0",
     "strapi-plugin-rest-cache": "^4.2.9",
     "styled-components": "^5.3.3",
-    "typescript": "^5.5.3",
+    "typescript": "5.3.3",
     "viem": "^2.17.5"
   },
   "engines": {

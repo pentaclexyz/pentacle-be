@@ -133,7 +133,7 @@ const fetchAllBaseRegistryEntries = async () => {
     maxEntriesPerPage.toString(),
   );
 
-  let lastBaseEntriesBatch = [];
+  let lastBaseEntriesBatch: ReturnType<typeof mapBaseResponseToStrapiResponse>[] = [];
 
   do {
     const { mappedEntities, relations } = await getBaseRegistryEntries({

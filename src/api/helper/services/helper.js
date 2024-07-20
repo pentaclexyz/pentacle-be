@@ -1,14 +1,16 @@
 'use strict';
-const _ = require('lodash');
-const chains = require('viem/chains');
+import { kebabCase } from 'lodash';
+import chains from 'viem/chains';
 
 /**
  * helper service.
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+import { factories } from '@strapi/strapi';
 
-module.exports = createCoreService('api::helper.helper', ({ strapi }) => ({
+const { createCoreService } = factories;
+
+export default createCoreService('api::helper.helper', ({ strapi }) => ({
   async processChains() {
     const names = Object.keys(chains);
     for (const key of names) {
@@ -17,7 +19,7 @@ module.exports = createCoreService('api::helper.helper', ({ strapi }) => ({
         name,
         nativeCurrency: { symbol },
       } = chain;
-      const slug = _.kebabCase(name);
+      const slug = kebabCase(name);
       const existing = await strapi.db.query('api::chain.chain').findOne({ where: { slug } });
       if (existing) {
         await strapi.entityService.update('api::chain.chain', existing.id, {
@@ -95,6 +97,7 @@ module.exports = createCoreService('api::helper.helper', ({ strapi }) => ({
     return { success: true };
   },
   async syncDescriptions() {
+    //TODO: Ideally need to split this into batches using offset and limit props https://docs.strapi.io/dev-docs/api/query-engine/order-pagination#pagination
     const projects = await strapi.db.query('api::project.project').findMany();
     const people = await strapi.db.query('api::person.person').findMany();
     const skills = await strapi.db.query('api::skill.skill').findMany();
