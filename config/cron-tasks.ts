@@ -2,8 +2,16 @@ import { Strapi } from '@strapi/strapi';
 
 export default {
   '0 */4 * * *': async ({ strapi }: { strapi: Strapi }) => {
-    await strapi.service('api::governance-proposal.governance-proposal').refreshData();
-    await strapi.service('api::governance-discussion.governance-discussion').refreshData();
+    try {
+      await strapi.service('api::governance-proposal.governance-proposal').refreshData();
+    } catch (e) {
+      console.error('CRON: Error refreshData governance-proposal', e);
+    }
+    try {
+      await strapi.service('api::governance-discussion.governance-discussion').refreshData();
+    } catch (e) {
+      console.error('CRON: Error refreshData governance-discussion', e);
+    }
   },
   // Once a day
   '0 0 * * *': async ({ strapi }: { strapi: Strapi }) => {
