@@ -784,6 +784,21 @@ export interface ApiBaseRegistryBaseRegistryEntry extends Schema.CollectionType 
     curation: Attribute.Enumeration<['Featured', 'Curated', 'Community']>;
     creator_name: Attribute.String;
     creator_image_url: Attribute.String;
+    chain: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToOne',
+      'api::chain.chain'
+    >;
+    project: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToOne',
+      'api::project.project'
+    >;
+    sections: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToMany',
+      'api::section.section'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -857,6 +872,11 @@ export interface ApiChainChain extends Schema.CollectionType {
     description: Attribute.Text;
     project: Attribute.Relation<'api::chain.chain', 'oneToOne', 'api::project.project'>;
     chain_parent: Attribute.Relation<'api::chain.chain', 'manyToMany', 'api::project.project'>;
+    base_registry_entries: Attribute.Relation<
+      'api::chain.chain',
+      'oneToMany',
+      'api::base-registry.base-registry-entry'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1490,6 +1510,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
     skills: Attribute.Relation<'api::project.project', 'manyToMany', 'api::skill.skill'>;
     sponsors_tag: Attribute.Relation<'api::project.project', 'manyToMany', 'api::tag.tag'>;
     chain: Attribute.Relation<'api::project.project', 'manyToMany', 'api::chain.chain'>;
+    base_registry_entries: Attribute.Relation<
+      'api::project.project',
+      'oneToMany',
+      'api::base-registry.base-registry-entry'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1518,6 +1543,11 @@ export interface ApiSectionSection extends Schema.CollectionType {
     articles: Attribute.Relation<'api::section.section', 'manyToMany', 'api::article.article'>;
     categories: Attribute.Relation<'api::section.section', 'manyToMany', 'api::category.category'>;
     projects: Attribute.Relation<'api::section.section', 'manyToMany', 'api::project.project'>;
+    base_registry_entries: Attribute.Relation<
+      'api::section.section',
+      'manyToMany',
+      'api::base-registry.base-registry-entry'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
