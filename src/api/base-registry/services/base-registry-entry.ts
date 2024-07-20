@@ -72,9 +72,11 @@ const getBaseRegistryEntryRelations = async ({
 }) => {
   const relations: StrapiRelation[] = [];
   // Get Base chain entity to get it's ID
-  const strapiChain = (
-    await strapi.entityService?.findMany('api::chain.chain', { filters: { name: 'Base' } })
-  )?.[0];
+  const strapiChains = await strapi.entityService?.findMany('api::chain.chain', {
+    filters: { name: 'Base' },
+  });
+
+  const strapiChain = strapiChains && Array.isArray(strapiChains) ? strapiChains?.[0] : null;
 
   // Iterate through each Base entry and try to find related project and section
   for (const baseRegistryEntry of baseRegistryEntryResponseItems) {
@@ -99,11 +101,11 @@ const getBaseRegistryEntryRelations = async ({
     const strapiSectionSlug = BASE_CATEGORY_TO_STRAPI_SECTION_MAPPING[baseRegistryEntry.category];
 
     // Try to find matching section in Strapi
-    const strapiSection = (
-      await strapi.entityService?.findMany('api::section.section', {
-        filters: { slug: strapiSectionSlug },
-      })
-    )?.[0];
+    const strapiSections = await strapi.entityService?.findMany('api::section.section', {
+      filters: { slug: strapiSectionSlug },
+    });
+    const strapiSection =
+      strapiSections && Array.isArray(strapiSections) ? strapiSections?.[0] : null;
 
     // Add matching section to relations if found
     if (strapiSection) {
@@ -275,7 +277,8 @@ const baseRegistryService = createCoreService(
               const { id, ...data } = entry;
               const updatedDocument = await strapi.entityService?.update(
                 'api::base-registry.base-registry-entry',
-                id,
+                id as ID,
+                //@ts-ignore
                 { data },
               );
               if (updatedDocument?.id) {
