@@ -1,4 +1,3 @@
-'use strict';
 import _ from 'lodash';
 import { verifyMessage } from 'viem';
 import { getHandleFromTwitterUrl } from './util/util';

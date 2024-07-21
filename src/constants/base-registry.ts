@@ -13,7 +13,7 @@ export const BASE_REGISTRY_API_ENTRIES_QUERY_PARAMS = {
   category: "category",
   //The entry’s level of curation
   curation: "curation",
-};
+} as const;
 
 //(Options: Games, Social, Creators, Finance, Media)
 export const BASE_REGISTRY_CATEGORIES = {
@@ -22,11 +22,20 @@ export const BASE_REGISTRY_CATEGORIES = {
   creators: "Creators",
   finance: "Finance",
   media: "Media",
-};
+} as const;
 
 //(Options: Featured, Curated, Community)
 export const BASE_REGISTRY_CURATION_TYPES = {
   featured: "Featured",
   curated: "Curated",
   community: "Community",
-};
+} as const;
+
+
+export const BASE_CATEGORY_TO_STRAPI_SECTION_MAPPING = {
+  [BASE_REGISTRY_CATEGORIES.games]: "games",
+  [BASE_REGISTRY_CATEGORIES.social]: "social",
+  [BASE_REGISTRY_CATEGORIES.creators]: "creative",
+  [BASE_REGISTRY_CATEGORIES.finance]: "defi",
+  [BASE_REGISTRY_CATEGORIES.media]: "creative",
+}

@@ -294,6 +294,12 @@
       "relation": "manyToMany",
       "target": "api::chain.chain",
       "mappedBy": "chain_parent"
+    },
+    "base_registry_entries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::base-registry.base-registry-entry",
+      "mappedBy": "project"
     }
   }
 }

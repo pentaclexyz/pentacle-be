@@ -1,13 +1,9 @@
 import { Address } from "viem";
+import { BASE_REGISTRY_CATEGORIES, BASE_REGISTRY_CURATION_TYPES } from '../../constants/base-registry';
 
-export type BaseRegistryCategory =
-  | "Games"
-  | "Social"
-  | "Creators"
-  | "Finance"
-  | "Media";
+export type BaseRegistryCategory = (typeof BASE_REGISTRY_CATEGORIES)[keyof typeof BASE_REGISTRY_CATEGORIES];
 
-export type BaseRegistryCurationType = "Featured" | "Curated" | "Community";
+export type BaseRegistryCurationType = (typeof BASE_REGISTRY_CURATION_TYPES)[keyof typeof BASE_REGISTRY_CURATION_TYPES];
 
 export type BaseRegistryEntryResponseItem = {
   id: string;
