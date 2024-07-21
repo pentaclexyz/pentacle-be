@@ -125,8 +125,6 @@ const getBaseRegistryEntryRelations = async ({
     });
     const strapiTag = strapiTags && Array.isArray(strapiTags) ? strapiTags?.[0] : null;
 
-    console.log('strapiTag', { strapiTag, strapiTagSlug });
-
     // Add matching tag to relations if found
     if (strapiTag) {
       projectRelation.relations.tags = { connect: [{ id: strapiTag.id }] };
