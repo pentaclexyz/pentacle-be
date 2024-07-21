@@ -1,4 +1,4 @@
-module.exports = ({env}) => ({
+module.exports = ({ env }) => ({
   'users-permissions': {
     config: {
       jwtSecret: env('JWT_SECRET'),
@@ -22,11 +22,11 @@ module.exports = ({env}) => ({
         contact: {
           name: 'PENTACLE',
           email: 'pentacle@pentacle.xyz',
-          url: 'https://pentacle.xyz'
+          url: 'https://pentacle.xyz',
         },
         license: {
           name: 'Apache 2.0',
-          url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+          url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
         },
       },
       'x-strapi-config': {
@@ -34,13 +34,18 @@ module.exports = ({env}) => ({
         plugins: [],
         path: '/documentation',
       },
-      servers: [{url: env("DOCUMENTATION_SERVER"), description: "Documentation server"},],
+      servers: [
+        {
+          url: env('DOCUMENTATION_SERVER'),
+          description: 'Documentation server',
+        },
+      ],
       externalDocs: {
         description: 'Find out more',
-        url: 'https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html'
+        url: 'https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html',
       },
-      security: [ { bearerAuth: [] } ]
-    }
+      security: [{ bearerAuth: [] }],
+    },
   },
   upload: {
     config: {
@@ -58,7 +63,7 @@ module.exports = ({env}) => ({
   },
   config: {
     provider: {
-      name: "memory",
+      name: 'memory',
       options: {
         max: 32767,
         maxAge: 3600,
@@ -67,19 +72,20 @@ module.exports = ({env}) => ({
     strategy: {
       contentTypes: [
         // list of Content-Types UID to cache
-        "api::category.category",
-        "api::article.article",
-        "api::global.global",
-        "api::homepage.homepage",
-        "api::project.project",
-        "api::tag.tag",
-        "api::section.section",
-        "api::skill.skill",
-        "api::skill-level.skill-level",
-        "api::skill-type.skill-type",
-        "api::person.person",
-        "api::governance-discussion.governance-discussion",
-        "api::governance-proposal.governance-proposal",
+        'api::category.category',
+        'api::article.article',
+        'api::global.global',
+        'api::homepage.homepage',
+        'api::project.project',
+        'api::tag.tag',
+        'api::section.section',
+        'api::skill.skill',
+        'api::skill-level.skill-level',
+        'api::skill-type.skill-type',
+        'api::person.person',
+        'api::governance-discussion.governance-discussion',
+        'api::governance-proposal.governance-proposal',
+        'api::base-registry.base-registry-entry',
       ],
     },
   },

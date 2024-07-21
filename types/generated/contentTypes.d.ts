@@ -403,9 +403,12 @@ export interface PluginUploadFile extends Schema.CollectionType {
     folderPath: Attribute.String &
       Attribute.Required &
       Attribute.Private &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -441,9 +444,12 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   attributes: {
     name: Attribute.String &
       Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     parent: Attribute.Relation<
       'plugin::upload.folder',
@@ -462,9 +468,12 @@ export interface PluginUploadFolder extends Schema.CollectionType {
     >;
     path: Attribute.String &
       Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -475,6 +484,105 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::upload.folder',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginContentReleasesRelease extends Schema.CollectionType {
+  collectionName: 'strapi_releases';
+  info: {
+    singularName: 'release';
+    pluralName: 'releases';
+    displayName: 'Release';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    releasedAt: Attribute.DateTime;
+    scheduledAt: Attribute.DateTime;
+    timezone: Attribute.String;
+    status: Attribute.Enumeration<
+      ['ready', 'blocked', 'failed', 'done', 'empty']
+    > &
+      Attribute.Required;
+    actions: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToMany',
+      'plugin::content-releases.release-action'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginContentReleasesReleaseAction
+  extends Schema.CollectionType {
+  collectionName: 'strapi_release_actions';
+  info: {
+    singularName: 'release-action';
+    pluralName: 'release-actions';
+    displayName: 'Release Action';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
+    entry: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'morphToOne'
+    >;
+    contentType: Attribute.String & Attribute.Required;
+    locale: Attribute.String;
+    release: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'manyToOne',
+      'plugin::content-releases.release'
+    >;
+    isEntryValid: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
       'oneToOne',
       'admin::user'
     > &
@@ -655,10 +763,13 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
     code: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -820,6 +931,55 @@ export interface ApiAuditAudit extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::audit.audit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBaseRegistryBaseRegistryEntry
+  extends Schema.CollectionType {
+  collectionName: 'base_registry';
+  info: {
+    singularName: 'base-registry-entry';
+    pluralName: 'base-registry-entries';
+    displayName: 'Base Registry';
+    description: 'Base registry entries from https://docs.base.org/docs/tools/registry-api/';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    base_registry_id: Attribute.String & Attribute.Required;
+    category: Attribute.Enumeration<
+      ['Games', 'Social', 'Creators', 'Finance', 'Media']
+    > &
+      Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    short_description: Attribute.String;
+    full_description: Attribute.String;
+    image_url: Attribute.String;
+    target_url: Attribute.String;
+    cta_text: Attribute.String;
+    function_signature: Attribute.String;
+    contract_address: Attribute.String;
+    token_id: Attribute.String;
+    token_amount: Attribute.String;
+    curation: Attribute.Enumeration<['Featured', 'Curated', 'Community']>;
+    creator_name: Attribute.String;
+    creator_image_url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
       'oneToOne',
       'admin::user'
     > &
@@ -1071,7 +1231,7 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
   attributes: {
     siteName: Attribute.String & Attribute.Required;
     defaultSeo: Attribute.Component<'shared.seo'> & Attribute.Required;
-    favicon: Attribute.Media;
+    favicon: Attribute.Media<'images' | 'files' | 'videos'>;
     defaultNav: Attribute.Component<'shared.nav', true>;
     sections: Attribute.Relation<
       'api::global.global',
@@ -1457,8 +1617,8 @@ export interface ApiMediaKitMediaKit extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     description: Attribute.Blocks;
-    logo: Attribute.Media;
-    brand_guidelines: Attribute.Media;
+    logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    brand_guidelines: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     font: Attribute.String;
     project: Attribute.Relation<
       'api::media-kit.media-kit',
@@ -1503,8 +1663,8 @@ export interface ApiPayWithCryptoPayWithCrypto extends Schema.CollectionType {
       'oneToOne',
       'api::chain.chain'
     >;
-    main_image: Attribute.Media;
-    images: Attribute.Media;
+    main_image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     map: Attribute.String;
     type: Attribute.Enumeration<['cafe', 'retail store', 'travel']>;
     twitter: Attribute.String;
@@ -1620,6 +1780,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
+    contact: Attribute.String;
     coingecko_id: Attribute.String;
     ticker: Attribute.String;
     website_url: Attribute.String;
@@ -2309,6 +2470,8 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::content-releases.release': PluginContentReleasesRelease;
+      'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
@@ -2316,6 +2479,7 @@ declare module '@strapi/types' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::audit.audit': ApiAuditAudit;
+      'api::base-registry.base-registry-entry': ApiBaseRegistryBaseRegistryEntry;
       'api::category.category': ApiCategoryCategory;
       'api::chain.chain': ApiChainChain;
       'api::content-type.content-type': ApiContentTypeContentType;
