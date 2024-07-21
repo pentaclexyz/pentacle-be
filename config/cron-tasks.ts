@@ -20,8 +20,10 @@ export default {
   refreshGovernanceData: {
     task: async ({ strapi }: { strapi: Strapi }) => {
       try {
+        console.log('CRON: START refreshGovernanceData');
         await strapi.service('api::governance-proposal.governance-proposal').refreshData();
         await strapi.service('api::governance-discussion.governance-discussion').refreshData();
+        console.log('CRON: FINISH refreshGovernanceData');
       } catch (e) {
         console.error('CRON: Error refreshGovernanceData', e);
       }
@@ -33,7 +35,9 @@ export default {
   refetchDefiReports: {
     task: async ({ strapi }: { strapi: Strapi }) => {
       try {
+        console.log('CRON: START refetchDefiReports');
         await strapi.service('api::defi-safety-report.defi-safety-report').fetchReports();
+        console.log('CRON: FINISH refetchDefiReports');
       } catch (e) {
         console.error('CRON: Error defi-safety-report:refetchDefiReports', e);
       }
@@ -42,13 +46,15 @@ export default {
       rule: '0 0 * * *',
     },
   },
-  fetchMissingTwitterProfiles: {
+  fetchMissingTwitterProfileData: {
     task: async ({ strapi }: { strapi: Strapi }) => {
       try {
+        console.log('CRON: START fetchMissingTwitterProfileData');
         await strapi.service('api::tweet.tweet').getAndSetAllProfiles();
         await strapi.service('api::tweet.tweet').syncTwitterMedia();
+        console.log('CRON: FINISH fetchMissingTwitterProfileData');
       } catch (e) {
-        console.error('CRON: Error fetchMissingTwitterProfiles', e);
+        console.error('CRON: Error fetchMissingTwitterProfileData', e);
       }
     },
     options: {
@@ -58,9 +64,11 @@ export default {
   syncContentFromMdFiles: {
     task: async ({ strapi }: { strapi: Strapi }) => {
       try {
+        console.log('CRON: START syncContentFromMdFiles');
         await strapi.service('api::helper.helper').syncDescriptions();
+        console.log('CRON: FINISH syncContentFromMdFiles');
       } catch (e) {
-        console.error('CRON: Error syncDescriptions', e);
+        console.error('CRON: Error syncContentFromMdFiles', e);
       }
     },
     options: {
@@ -70,7 +78,9 @@ export default {
   syncGithubData: {
     task: async ({ strapi }: { strapi: Strapi }) => {
       try {
+        console.log('CRON: START syncGithubData');
         await strapi.service('api::helper.helper').migrateGithub();
+        console.log('CRON: FINISH syncGithubData');
       } catch (e) {
         console.error('CRON: Error syncGithubData', e);
       }
@@ -82,9 +92,11 @@ export default {
   fetchAndUpdateAllBaseRegistryEntries: {
     task: async ({ strapi }: { strapi: Strapi }) => {
       try {
+        console.log('CRON: START fetchAndUpdateAllBaseRegistryEntries');
         await strapi
           .service('api::base-registry.base-registry-entry')
           .fetchAndUpdateAllBaseRegistryEntries();
+        console.log('CRON: FINISH fetchAndUpdateAllBaseRegistryEntries');
       } catch (e) {
         console.error('CRON: Error fetchAndUpdateAllBaseRegistryEntries', e);
       }
