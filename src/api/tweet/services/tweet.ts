@@ -1,7 +1,5 @@
 import { factories } from '@strapi/strapi';
 import { GetNonPopulatableKeys, GetValues } from '@strapi/types/dist/types/core/attributes';
-import fs from 'fs';
-import { join } from 'path';
 import { UserV2 } from '../../../../types/twitter-api-types';
 import { fetchTwitterProfile, getHandleFromTwitterUrl } from '../../../util/util';
 
@@ -141,41 +139,6 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
             twitter: lowercaseName,
           },
         });
-      }
-    }
-
-    return { success: true };
-  },
-  async saveAllTwitterPfps() {
-    const projects = await strapi.db
-      ?.query('api::project.project')
-      .findMany({ where: { twitter_img: { $notNull: true } } });
-    const people = await strapi.db
-      ?.query('api::person.person')
-      .findMany({ where: { twitter_img: { $notNull: true } } });
-
-    if (!projects || !people) {
-      throw new Error('Couldnt find projects or people');
-    }
-
-    for (const project of projects) {
-      if (project.twitter_img) {
-        await fetch(project.twitter_img.replace('_normal', '_bigger')).then((res) =>
-          (res.body as unknown as NodeJS.ReadableStream).pipe(
-            fs.createWriteStream(
-              join(process.cwd(), '../', `/images/projects/${project.slug}.png`),
-            ),
-          ),
-        );
-      }
-    }
-    for (const person of people) {
-      if (person.twitter_img) {
-        await fetch(person.twitter_img.replace('_normal', '_bigger')).then((res) =>
-          (res.body as unknown as NodeJS.ReadableStream).pipe(
-            fs.createWriteStream(join(process.cwd(), '../', `/images/people/${person.slug}.png`)),
-          ),
-        );
       }
     }
 
