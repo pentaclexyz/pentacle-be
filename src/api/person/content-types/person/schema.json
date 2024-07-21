@@ -90,6 +90,12 @@
     },
     "farcaster_handle": {
       "type": "string"
+    },
+    "base_registry_entries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::base-registry.base-registry-entry",
+      "mappedBy": "sections"
     }
   }
 }

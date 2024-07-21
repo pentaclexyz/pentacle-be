@@ -5,9 +5,19 @@ $ psql pentacle-db < pentacle-db.sql
 
 
 
+### To build: including typescript compile
+
+```shell
+pnpm build
+```
+
+
 ### To run
 
-$ yarn develop
+```shell
+pnpm install
+pnpm develop
+```
 
 
 
