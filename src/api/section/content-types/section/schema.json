@@ -39,6 +39,12 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "inversedBy": "sections"
+    },
+    "base_registry_entries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::base-registry.base-registry-entry",
+      "mappedBy": "sections"
     }
   }
 }

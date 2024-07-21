@@ -53,6 +53,12 @@
       "relation": "manyToMany",
       "target": "api::project.project",
       "inversedBy": "chain"
+    },
+    "base_registry_entries": {
+        "type": "relation",
+        "relation": "oneToMany",
+        "target": "api::base-registry.base-registry-entry",
+        "mappedBy": "chain"
     }
   }
 }

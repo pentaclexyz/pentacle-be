@@ -33,17 +33,9 @@ export interface AdminPermission extends Schema.CollectionType {
     role: Attribute.Relation<'admin::permission', 'manyToOne', 'admin::role'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -89,19 +81,14 @@ export interface AdminUser extends Schema.CollectionType {
       }>;
     resetPasswordToken: Attribute.String & Attribute.Private;
     registrationToken: Attribute.String & Attribute.Private;
-    isActive: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
-    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> &
-      Attribute.Private;
+    isActive: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
+    roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> & Attribute.Private;
     blocked: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     preferedLanguage: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -137,17 +124,11 @@ export interface AdminRole extends Schema.CollectionType {
       }>;
     description: Attribute.String;
     users: Attribute.Relation<'admin::role', 'manyToMany', 'admin::user'>;
-    permissions: Attribute.Relation<
-      'admin::role',
-      'oneToMany',
-      'admin::permission'
-    >;
+    permissions: Attribute.Relation<'admin::role', 'oneToMany', 'admin::permission'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -189,26 +170,14 @@ export interface AdminApiToken extends Schema.CollectionType {
         minLength: 1;
       }>;
     lastUsedAt: Attribute.DateTime;
-    permissions: Attribute.Relation<
-      'admin::api-token',
-      'oneToMany',
-      'admin::api-token-permission'
-    >;
+    permissions: Attribute.Relation<'admin::api-token', 'oneToMany', 'admin::api-token-permission'>;
     expiresAt: Attribute.DateTime;
     lifespan: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::api-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::api-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -236,24 +205,12 @@ export interface AdminApiTokenPermission extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
-    token: Attribute.Relation<
-      'admin::api-token-permission',
-      'manyToOne',
-      'admin::api-token'
-    >;
+    token: Attribute.Relation<'admin::api-token-permission', 'manyToOne', 'admin::api-token'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::api-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::api-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::api-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -302,17 +259,9 @@ export interface AdminTransferToken extends Schema.CollectionType {
     lifespan: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::transfer-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::transfer-token',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::transfer-token', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -347,17 +296,9 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'admin::transfer-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'admin::transfer-token-permission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'admin::transfer-token-permission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -394,11 +335,7 @@ export interface PluginUploadFile extends Schema.CollectionType {
     provider: Attribute.String & Attribute.Required;
     provider_metadata: Attribute.JSON;
     related: Attribute.Relation<'plugin::upload.file', 'morphToMany'>;
-    folder: Attribute.Relation<
-      'plugin::upload.file',
-      'manyToOne',
-      'plugin::upload.folder'
-    > &
+    folder: Attribute.Relation<'plugin::upload.file', 'manyToOne', 'plugin::upload.folder'> &
       Attribute.Private;
     folderPath: Attribute.String &
       Attribute.Required &
@@ -411,17 +348,9 @@ export interface PluginUploadFile extends Schema.CollectionType {
       >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::upload.file', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.file',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::upload.file', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -451,21 +380,9 @@ export interface PluginUploadFolder extends Schema.CollectionType {
         number
       >;
     pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    parent: Attribute.Relation<
-      'plugin::upload.folder',
-      'manyToOne',
-      'plugin::upload.folder'
-    >;
-    children: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.folder'
-    >;
-    files: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.file'
-    >;
+    parent: Attribute.Relation<'plugin::upload.folder', 'manyToOne', 'plugin::upload.folder'>;
+    children: Attribute.Relation<'plugin::upload.folder', 'oneToMany', 'plugin::upload.folder'>;
+    files: Attribute.Relation<'plugin::upload.folder', 'oneToMany', 'plugin::upload.file'>;
     path: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -476,17 +393,9 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::upload.folder', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::upload.folder', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -514,9 +423,7 @@ export interface PluginContentReleasesRelease extends Schema.CollectionType {
     releasedAt: Attribute.DateTime;
     scheduledAt: Attribute.DateTime;
     timezone: Attribute.String;
-    status: Attribute.Enumeration<
-      ['ready', 'blocked', 'failed', 'done', 'empty']
-    > &
+    status: Attribute.Enumeration<['ready', 'blocked', 'failed', 'done', 'empty']> &
       Attribute.Required;
     actions: Attribute.Relation<
       'plugin::content-releases.release',
@@ -525,23 +432,14 @@ export interface PluginContentReleasesRelease extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::content-releases.release', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::content-releases.release',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::content-releases.release', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface PluginContentReleasesReleaseAction
-  extends Schema.CollectionType {
+export interface PluginContentReleasesReleaseAction extends Schema.CollectionType {
   collectionName: 'strapi_release_actions';
   info: {
     singularName: 'release-action';
@@ -561,10 +459,7 @@ export interface PluginContentReleasesReleaseAction
   };
   attributes: {
     type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
-    entry: Attribute.Relation<
-      'plugin::content-releases.release-action',
-      'morphToOne'
-    >;
+    entry: Attribute.Relation<'plugin::content-releases.release-action', 'morphToOne'>;
     contentType: Attribute.String & Attribute.Required;
     locale: Attribute.String;
     release: Attribute.Relation<
@@ -590,8 +485,7 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
-export interface PluginUsersPermissionsPermission
-  extends Schema.CollectionType {
+export interface PluginUsersPermissionsPermission extends Schema.CollectionType {
   collectionName: 'up_permissions';
   info: {
     name: 'permission';
@@ -669,17 +563,9 @@ export interface PluginUsersPermissionsRole extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::users-permissions.role', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::users-permissions.role', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -726,17 +612,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::users-permissions.user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::users-permissions.user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -773,17 +651,9 @@ export interface PluginI18NLocale extends Schema.CollectionType {
     code: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'plugin::i18n.locale', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'plugin::i18n.locale', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -805,17 +675,9 @@ export interface ApiAboutAbout extends Schema.SingleType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::about.about',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::about.about', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::about.about',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::about.about', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -845,32 +707,12 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::skill-level.skill-level'
     >;
     slug: Attribute.UID<'api::article.article', 'title'>;
-    tags: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::tag.tag'
-    >;
-    categories: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::category.category'
-    >;
+    tags: Attribute.Relation<'api::article.article', 'manyToMany', 'api::tag.tag'>;
+    categories: Attribute.Relation<'api::article.article', 'manyToMany', 'api::category.category'>;
     description: Attribute.Text;
-    people: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::person.person'
-    >;
-    sections: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::section.section'
-    >;
-    chains: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::chain.chain'
-    >;
+    people: Attribute.Relation<'api::article.article', 'manyToMany', 'api::person.person'>;
+    sections: Attribute.Relation<'api::article.article', 'manyToMany', 'api::section.section'>;
+    chains: Attribute.Relation<'api::article.article', 'manyToMany', 'api::chain.chain'>;
     skill_levels: Attribute.Relation<
       'api::article.article',
       'manyToMany',
@@ -879,17 +721,9 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::article.article', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::article.article', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -906,40 +740,23 @@ export interface ApiAuditAudit extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    audited_project: Attribute.Relation<
-      'api::audit.audit',
-      'manyToMany',
-      'api::project.project'
-    >;
+    audited_project: Attribute.Relation<'api::audit.audit', 'manyToMany', 'api::project.project'>;
     audit_url: Attribute.String;
-    audited_by: Attribute.Relation<
-      'api::audit.audit',
-      'manyToMany',
-      'api::project.project'
-    >;
+    audited_by: Attribute.Relation<'api::audit.audit', 'manyToMany', 'api::project.project'>;
     date: Attribute.Date;
     name: Attribute.String;
     Slug: Attribute.UID<'api::audit.audit', 'name'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::audit.audit',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::audit.audit', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::audit.audit',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::audit.audit', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface ApiBaseRegistryBaseRegistryEntry
-  extends Schema.CollectionType {
+export interface ApiBaseRegistryBaseRegistryEntry extends Schema.CollectionType {
   collectionName: 'base_registry';
   info: {
     singularName: 'base-registry-entry';
@@ -952,9 +769,7 @@ export interface ApiBaseRegistryBaseRegistryEntry
   };
   attributes: {
     base_registry_id: Attribute.String & Attribute.Required;
-    category: Attribute.Enumeration<
-      ['Games', 'Social', 'Creators', 'Finance', 'Media']
-    > &
+    category: Attribute.Enumeration<['Games', 'Social', 'Creators', 'Finance', 'Media']> &
       Attribute.Required;
     title: Attribute.String & Attribute.Required;
     short_description: Attribute.String;
@@ -969,6 +784,21 @@ export interface ApiBaseRegistryBaseRegistryEntry
     curation: Attribute.Enumeration<['Featured', 'Curated', 'Community']>;
     creator_name: Attribute.String;
     creator_image_url: Attribute.String;
+    chain: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToOne',
+      'api::chain.chain'
+    >;
+    project: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToOne',
+      'api::project.project'
+    >;
+    sections: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToMany',
+      'api::section.section'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1002,40 +832,20 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     name: Attribute.String;
     description: Attribute.Text;
     slug: Attribute.UID<'api::category.category', 'name'>;
-    articles: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::article.article'
-    >;
+    articles: Attribute.Relation<'api::category.category', 'manyToMany', 'api::article.article'>;
     glossary_items: Attribute.Relation<
       'api::category.category',
       'manyToMany',
       'api::glossary-item.glossary-item'
     >;
-    projects: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::project.project'
-    >;
-    sections: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::section.section'
-    >;
+    projects: Attribute.Relation<'api::category.category', 'manyToMany', 'api::project.project'>;
+    sections: Attribute.Relation<'api::category.category', 'manyToMany', 'api::section.section'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::category.category', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::category.category', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1055,43 +865,24 @@ export interface ApiChainChain extends Schema.CollectionType {
     name: Attribute.String;
     ticker: Attribute.String;
     coingecko_id: Attribute.String;
-    projects: Attribute.Relation<
-      'api::chain.chain',
-      'manyToMany',
-      'api::project.project'
-    >;
+    projects: Attribute.Relation<'api::chain.chain', 'manyToMany', 'api::project.project'>;
     slug: Attribute.UID<'api::chain.chain', 'name'>;
-    articles: Attribute.Relation<
-      'api::chain.chain',
-      'manyToMany',
-      'api::article.article'
-    >;
+    articles: Attribute.Relation<'api::chain.chain', 'manyToMany', 'api::article.article'>;
     evm_chain_id: Attribute.String;
     description: Attribute.Text;
-    project: Attribute.Relation<
+    project: Attribute.Relation<'api::chain.chain', 'oneToOne', 'api::project.project'>;
+    chain_parent: Attribute.Relation<'api::chain.chain', 'manyToMany', 'api::project.project'>;
+    base_registry_entries: Attribute.Relation<
       'api::chain.chain',
-      'oneToOne',
-      'api::project.project'
-    >;
-    chain_parent: Attribute.Relation<
-      'api::chain.chain',
-      'manyToMany',
-      'api::project.project'
+      'oneToMany',
+      'api::base-registry.base-registry-entry'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::chain.chain',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::chain.chain', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::chain.chain',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::chain.chain', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1114,23 +905,14 @@ export interface ApiContentTypeContentType extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::content-type.content-type',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::content-type.content-type', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::content-type.content-type',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::content-type.content-type', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface ApiDefiSafetyReportDefiSafetyReport
-  extends Schema.CollectionType {
+export interface ApiDefiSafetyReportDefiSafetyReport extends Schema.CollectionType {
   collectionName: 'defi-safety-reports';
   info: {
     singularName: 'defi-safety-report';
@@ -1199,17 +981,9 @@ export interface ApiEventEvent extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::event.event', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::event.event', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1233,30 +1007,14 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
     defaultSeo: Attribute.Component<'shared.seo'> & Attribute.Required;
     favicon: Attribute.Media<'images' | 'files' | 'videos'>;
     defaultNav: Attribute.Component<'shared.nav', true>;
-    sections: Attribute.Relation<
-      'api::global.global',
-      'oneToMany',
-      'api::section.section'
-    >;
-    categories: Attribute.Relation<
-      'api::global.global',
-      'oneToMany',
-      'api::category.category'
-    >;
+    sections: Attribute.Relation<'api::global.global', 'oneToMany', 'api::section.section'>;
+    categories: Attribute.Relation<'api::global.global', 'oneToMany', 'api::category.category'>;
     defaultLogo: Attribute.Component<'shared.logo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::global.global',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::global.global', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::global.global',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::global.global', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1288,11 +1046,7 @@ export interface ApiGlossaryItemGlossaryItem extends Schema.CollectionType {
       'manyToMany',
       'api::skill-level.skill-level'
     >;
-    tags: Attribute.Relation<
-      'api::glossary-item.glossary-item',
-      'manyToMany',
-      'api::tag.tag'
-    >;
+    tags: Attribute.Relation<'api::glossary-item.glossary-item', 'manyToMany', 'api::tag.tag'>;
     people: Attribute.Relation<
       'api::glossary-item.glossary-item',
       'manyToMany',
@@ -1307,23 +1061,14 @@ export interface ApiGlossaryItemGlossaryItem extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::glossary-item.glossary-item',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::glossary-item.glossary-item', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::glossary-item.glossary-item',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::glossary-item.glossary-item', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface ApiGovernanceDiscussionGovernanceDiscussion
-  extends Schema.CollectionType {
+export interface ApiGovernanceDiscussionGovernanceDiscussion extends Schema.CollectionType {
   collectionName: 'governance-discussions';
   info: {
     singularName: 'governance-discussion';
@@ -1354,8 +1099,7 @@ export interface ApiGovernanceDiscussionGovernanceDiscussion
   };
 }
 
-export interface ApiGovernanceProposalGovernanceProposal
-  extends Schema.CollectionType {
+export interface ApiGovernanceProposalGovernanceProposal extends Schema.CollectionType {
   collectionName: 'governance-proposals';
   info: {
     singularName: 'governance-proposal';
@@ -1415,17 +1159,9 @@ export interface ApiGrantGrant extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::grant.grant',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::grant.grant', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::grant.grant',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::grant.grant', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1445,17 +1181,9 @@ export interface ApiHelperHelper extends Schema.CollectionType {
     name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::helper.helper',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::helper.helper', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::helper.helper',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::helper.helper', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1473,11 +1201,7 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
   };
   attributes: {
     homeFeatures: Attribute.Component<'shared.card-large', true>;
-    defi: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::project.project'
-    >;
+    defi: Attribute.Relation<'api::homepage.homepage', 'oneToMany', 'api::project.project'>;
     skill_types: Attribute.Relation<
       'api::homepage.homepage',
       'oneToMany',
@@ -1489,50 +1213,18 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
       'oneToMany',
       'api::skill-level.skill-level'
     >;
-    tags: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::tag.tag'
-    >;
-    nfts: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::project.project'
-    >;
-    social: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::project.project'
-    >;
-    developer: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::project.project'
-    >;
-    resources: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::project.project'
-    >;
-    lores: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::lore.lore'
-    >;
+    tags: Attribute.Relation<'api::homepage.homepage', 'oneToMany', 'api::tag.tag'>;
+    nfts: Attribute.Relation<'api::homepage.homepage', 'oneToMany', 'api::project.project'>;
+    social: Attribute.Relation<'api::homepage.homepage', 'oneToMany', 'api::project.project'>;
+    developer: Attribute.Relation<'api::homepage.homepage', 'oneToMany', 'api::project.project'>;
+    resources: Attribute.Relation<'api::homepage.homepage', 'oneToMany', 'api::project.project'>;
+    lores: Attribute.Relation<'api::homepage.homepage', 'oneToMany', 'api::lore.lore'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1556,10 +1248,8 @@ export interface ApiJobJob extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -1577,16 +1267,8 @@ export interface ApiLoreLore extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     text: Attribute.RichText;
-    projects: Attribute.Relation<
-      'api::lore.lore',
-      'manyToMany',
-      'api::project.project'
-    >;
-    people: Attribute.Relation<
-      'api::lore.lore',
-      'manyToMany',
-      'api::person.person'
-    >;
+    projects: Attribute.Relation<'api::lore.lore', 'manyToMany', 'api::project.project'>;
+    people: Attribute.Relation<'api::lore.lore', 'manyToMany', 'api::person.person'>;
     tags: Attribute.Relation<'api::lore.lore', 'manyToMany', 'api::tag.tag'>;
     image: Attribute.String;
     date: Attribute.Date;
@@ -1596,10 +1278,8 @@ export interface ApiLoreLore extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::lore.lore', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::lore.lore', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::lore.lore', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::lore.lore', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -1620,25 +1300,13 @@ export interface ApiMediaKitMediaKit extends Schema.CollectionType {
     logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     brand_guidelines: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     font: Attribute.String;
-    project: Attribute.Relation<
-      'api::media-kit.media-kit',
-      'oneToOne',
-      'api::project.project'
-    >;
+    project: Attribute.Relation<'api::media-kit.media-kit', 'oneToOne', 'api::project.project'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::media-kit.media-kit',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::media-kit.media-kit', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::media-kit.media-kit',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::media-kit.media-kit', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1704,65 +1372,33 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     twitter: Attribute.String;
     website: Attribute.String;
     slug: Attribute.UID<'api::person.person', 'name'>;
-    articles: Attribute.Relation<
-      'api::person.person',
-      'manyToMany',
-      'api::article.article'
-    >;
+    articles: Attribute.Relation<'api::person.person', 'manyToMany', 'api::article.article'>;
     github: Attribute.String;
     glossary_items: Attribute.Relation<
       'api::person.person',
       'manyToMany',
       'api::glossary-item.glossary-item'
     >;
-    skills: Attribute.Relation<
-      'api::person.person',
-      'manyToMany',
-      'api::skill.skill'
-    >;
+    skills: Attribute.Relation<'api::person.person', 'manyToMany', 'api::skill.skill'>;
     avatar: Attribute.String;
-    projects: Attribute.Relation<
-      'api::person.person',
-      'manyToMany',
-      'api::project.project'
-    >;
-    has_investment: Attribute.Relation<
-      'api::person.person',
-      'manyToMany',
-      'api::project.project'
-    >;
+    projects: Attribute.Relation<'api::person.person', 'manyToMany', 'api::project.project'>;
+    has_investment: Attribute.Relation<'api::person.person', 'manyToMany', 'api::project.project'>;
     subject_expert_types: Attribute.Relation<
       'api::person.person',
       'manyToMany',
       'api::subject-expert-type.subject-expert-type'
     >;
-    tags: Attribute.Relation<
-      'api::person.person',
-      'manyToMany',
-      'api::tag.tag'
-    >;
+    tags: Attribute.Relation<'api::person.person', 'manyToMany', 'api::tag.tag'>;
     twitter_img: Attribute.String;
     twitter_banner: Attribute.String;
-    lores: Attribute.Relation<
-      'api::person.person',
-      'manyToMany',
-      'api::lore.lore'
-    >;
+    lores: Attribute.Relation<'api::person.person', 'manyToMany', 'api::lore.lore'>;
     farcaster_handle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::person.person', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::person.person', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1802,37 +1438,13 @@ export interface ApiProjectProject extends Schema.CollectionType {
     discord_url: Attribute.String;
     telegram_url: Attribute.String;
     medium_url: Attribute.String;
-    tags: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::tag.tag'
-    >;
+    tags: Attribute.Relation<'api::project.project', 'manyToMany', 'api::tag.tag'>;
     slug: Attribute.UID<'api::project.project', 'name'>;
-    categories: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::category.category'
-    >;
-    sections: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::section.section'
-    >;
-    chains: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::chain.chain'
-    >;
-    people: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::person.person'
-    >;
-    has_investor: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::project.project'
-    >;
+    categories: Attribute.Relation<'api::project.project', 'manyToMany', 'api::category.category'>;
+    sections: Attribute.Relation<'api::project.project', 'manyToMany', 'api::section.section'>;
+    chains: Attribute.Relation<'api::project.project', 'manyToMany', 'api::chain.chain'>;
+    people: Attribute.Relation<'api::project.project', 'manyToMany', 'api::person.person'>;
+    has_investor: Attribute.Relation<'api::project.project', 'manyToMany', 'api::project.project'>;
     has_investment: Attribute.Relation<
       'api::project.project',
       'manyToMany',
@@ -1859,27 +1471,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
     discourse_url: Attribute.String;
     contributors_url: Attribute.String;
     treasury_wallets: Attribute.Component<'shared.treasury-wallet', true>;
-    has_audit: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::audit.audit'
-    >;
-    is_auditor: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::audit.audit'
-    >;
+    has_audit: Attribute.Relation<'api::project.project', 'manyToMany', 'api::audit.audit'>;
+    is_auditor: Attribute.Relation<'api::project.project', 'manyToMany', 'api::audit.audit'>;
     audits_url: Attribute.String;
-    has_audited: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::project.project'
-    >;
-    has_auditor: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::project.project'
-    >;
+    has_audited: Attribute.Relation<'api::project.project', 'manyToMany', 'api::project.project'>;
+    has_auditor: Attribute.Relation<'api::project.project', 'manyToMany', 'api::project.project'>;
     risk_manager_for: Attribute.Relation<
       'api::project.project',
       'manyToMany',
@@ -1890,16 +1486,8 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'manyToMany',
       'api::project.project'
     >;
-    powers: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::project.project'
-    >;
-    powered_by: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::project.project'
-    >;
+    powers: Attribute.Relation<'api::project.project', 'manyToMany', 'api::project.project'>;
+    powered_by: Attribute.Relation<'api::project.project', 'manyToMany', 'api::project.project'>;
     child_projects: Attribute.Relation<
       'api::project.project',
       'manyToMany',
@@ -1914,48 +1502,25 @@ export interface ApiProjectProject extends Schema.CollectionType {
     twitter_img: Attribute.String;
     mirror_url: Attribute.String;
     twitter_banner: Attribute.String;
-    tag: Attribute.Relation<
-      'api::project.project',
-      'manyToOne',
-      'api::tag.tag'
-    >;
-    lores: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::lore.lore'
-    >;
+    tag: Attribute.Relation<'api::project.project', 'manyToOne', 'api::tag.tag'>;
+    lores: Attribute.Relation<'api::project.project', 'manyToMany', 'api::lore.lore'>;
     farcaster_handle: Attribute.String;
     created_by: Attribute.String;
     attestation_uid: Attribute.String;
-    skills: Attribute.Relation<
+    skills: Attribute.Relation<'api::project.project', 'manyToMany', 'api::skill.skill'>;
+    sponsors_tag: Attribute.Relation<'api::project.project', 'manyToMany', 'api::tag.tag'>;
+    chain: Attribute.Relation<'api::project.project', 'manyToMany', 'api::chain.chain'>;
+    base_registry_entries: Attribute.Relation<
       'api::project.project',
-      'manyToMany',
-      'api::skill.skill'
-    >;
-    sponsors_tag: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::tag.tag'
-    >;
-    chain: Attribute.Relation<
-      'api::project.project',
-      'manyToMany',
-      'api::chain.chain'
+      'oneToMany',
+      'api::base-registry.base-registry-entry'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::project.project',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::project.project', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::project.project',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::project.project', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1975,35 +1540,20 @@ export interface ApiSectionSection extends Schema.CollectionType {
     name: Attribute.String;
     description: Attribute.Text;
     slug: Attribute.UID<'api::section.section', 'name'>;
-    articles: Attribute.Relation<
+    articles: Attribute.Relation<'api::section.section', 'manyToMany', 'api::article.article'>;
+    categories: Attribute.Relation<'api::section.section', 'manyToMany', 'api::category.category'>;
+    projects: Attribute.Relation<'api::section.section', 'manyToMany', 'api::project.project'>;
+    base_registry_entries: Attribute.Relation<
       'api::section.section',
       'manyToMany',
-      'api::article.article'
-    >;
-    categories: Attribute.Relation<
-      'api::section.section',
-      'manyToMany',
-      'api::category.category'
-    >;
-    projects: Attribute.Relation<
-      'api::section.section',
-      'manyToMany',
-      'api::project.project'
+      'api::base-registry.base-registry-entry'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::section.section',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::section.section', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::section.section',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::section.section', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -2027,38 +1577,18 @@ export interface ApiSkillSkill extends Schema.CollectionType {
       'manyToMany',
       'api::skill-level.skill-level'
     >;
-    skill_types: Attribute.Relation<
-      'api::skill.skill',
-      'manyToMany',
-      'api::skill-type.skill-type'
-    >;
-    people: Attribute.Relation<
-      'api::skill.skill',
-      'manyToMany',
-      'api::person.person'
-    >;
+    skill_types: Attribute.Relation<'api::skill.skill', 'manyToMany', 'api::skill-type.skill-type'>;
+    people: Attribute.Relation<'api::skill.skill', 'manyToMany', 'api::person.person'>;
     tags: Attribute.Relation<'api::skill.skill', 'manyToMany', 'api::tag.tag'>;
     slug: Attribute.UID<'api::skill.skill', 'title'>;
     content: Attribute.RichText;
-    projects: Attribute.Relation<
-      'api::skill.skill',
-      'manyToMany',
-      'api::project.project'
-    >;
+    projects: Attribute.Relation<'api::skill.skill', 'manyToMany', 'api::project.project'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::skill.skill',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::skill.skill', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::skill.skill',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::skill.skill', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -2077,11 +1607,7 @@ export interface ApiSkillLevelSkillLevel extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     slug: Attribute.UID<'api::skill-level.skill-level', 'name'>;
-    skills: Attribute.Relation<
-      'api::skill-level.skill-level',
-      'manyToMany',
-      'api::skill.skill'
-    >;
+    skills: Attribute.Relation<'api::skill-level.skill-level', 'manyToMany', 'api::skill.skill'>;
     glossary_items: Attribute.Relation<
       'api::skill-level.skill-level',
       'manyToMany',
@@ -2102,17 +1628,9 @@ export interface ApiSkillLevelSkillLevel extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::skill-level.skill-level',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::skill-level.skill-level', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::skill-level.skill-level',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::skill-level.skill-level', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -2131,11 +1649,7 @@ export interface ApiSkillTypeSkillType extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     slug: Attribute.UID<'api::skill-type.skill-type', 'name'>;
-    skills: Attribute.Relation<
-      'api::skill-type.skill-type',
-      'manyToMany',
-      'api::skill.skill'
-    >;
+    skills: Attribute.Relation<'api::skill-type.skill-type', 'manyToMany', 'api::skill.skill'>;
     glossary_items: Attribute.Relation<
       'api::skill-type.skill-type',
       'manyToMany',
@@ -2144,17 +1658,9 @@ export interface ApiSkillTypeSkillType extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::skill-type.skill-type',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::skill-type.skill-type', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::skill-type.skill-type',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::skill-type.skill-type', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -2177,23 +1683,14 @@ export interface ApiSocialUserSocialUser extends Schema.CollectionType {
     pfp: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::social-user.social-user',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::social-user.social-user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::social-user.social-user',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::social-user.social-user', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface ApiSubjectExpertTypeSubjectExpertType
-  extends Schema.CollectionType {
+export interface ApiSubjectExpertTypeSubjectExpertType extends Schema.CollectionType {
   collectionName: 'subject_expert_types';
   info: {
     singularName: 'subject-expert-type';
@@ -2285,17 +1782,9 @@ export interface ApiSubmissionSubmission extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::submission.submission',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::submission.submission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::submission.submission',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::submission.submission', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -2313,61 +1802,27 @@ export interface ApiTagTag extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    articles: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::article.article'
-    >;
-    projects: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::project.project'
-    >;
+    articles: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::article.article'>;
+    projects: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::project.project'>;
     glossary_items: Attribute.Relation<
       'api::tag.tag',
       'manyToMany',
       'api::glossary-item.glossary-item'
     >;
     slug: Attribute.UID<'api::tag.tag', 'name'>;
-    skills: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::skill.skill'
-    >;
-    people: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::person.person'
-    >;
-    related_to: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::tag.tag'
-    >;
-    inbound_relation: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::tag.tag'
-    >;
+    skills: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::skill.skill'>;
+    people: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::person.person'>;
+    related_to: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::tag.tag'>;
+    inbound_relation: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::tag.tag'>;
     description: Attribute.RichText;
-    ecosystem_projects: Attribute.Relation<
-      'api::tag.tag',
-      'oneToMany',
-      'api::project.project'
-    >;
+    ecosystem_projects: Attribute.Relation<'api::tag.tag', 'oneToMany', 'api::project.project'>;
     lores: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::lore.lore'>;
-    sponsored_by: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::project.project'
-    >;
+    sponsored_by: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::project.project'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -2387,10 +1842,8 @@ export interface ApiTermTerm extends Schema.SingleType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::term.term', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::term.term', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::term.term', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::term.term', 'oneToOne', 'admin::user'> & Attribute.Private;
   };
 }
 
@@ -2411,17 +1864,9 @@ export interface ApiTweetTweet extends Schema.CollectionType {
     author_id: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::tweet.tweet',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::tweet.tweet', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::tweet.tweet',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::tweet.tweet', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -2443,17 +1888,9 @@ export interface ApiTweetTwitterList extends Schema.CollectionType {
     timestamp: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::tweet.twitter-list',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::tweet.twitter-list', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::tweet.twitter-list',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::tweet.twitter-list', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }

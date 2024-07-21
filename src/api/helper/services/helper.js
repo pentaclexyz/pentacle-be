@@ -1,14 +1,16 @@
-"use strict";
-const _ = require("lodash");
-const chains = require("viem/chains");
+'use strict';
+import { kebabCase } from 'lodash';
+import chains from 'viem/chains';
 
 /**
  * helper service.
  */
 
-const { createCoreService } = require("@strapi/strapi").factories;
+import { factories } from '@strapi/strapi';
 
-module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
+const { createCoreService } = factories;
+
+export default createCoreService('api::helper.helper', ({ strapi }) => ({
   async processChains() {
     const names = Object.keys(chains);
     for (const key of names) {
@@ -17,12 +19,10 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
         name,
         nativeCurrency: { symbol },
       } = chain;
-      const slug = _.kebabCase(name);
-      const existing = await strapi.db
-        .query("api::chain.chain")
-        .findOne({ where: { slug } });
+      const slug = kebabCase(name);
+      const existing = await strapi.db.query('api::chain.chain').findOne({ where: { slug } });
       if (existing) {
-        await strapi.entityService.update("api::chain.chain", existing.id, {
+        await strapi.entityService.update('api::chain.chain', existing.id, {
           data: {
             name,
             ticker: symbol,
@@ -30,7 +30,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
           },
         });
       } else {
-        await strapi.entityService.create("api::chain.chain", {
+        await strapi.entityService.create('api::chain.chain', {
           data: {
             name,
             slug,
@@ -44,7 +44,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
   },
   async syncProject(project) {
     const descriptionRes = await fetch(
-      `${process.env.DESCRIPTION_SERVICE}/projects/${project.slug}.md`
+      `${process.env.DESCRIPTION_SERVICE}/projects/${project.slug}.md`,
     );
     if (!descriptionRes.ok) {
       return {
@@ -53,7 +53,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
         status: descriptionRes.status,
       };
     }
-    await strapi.entityService.update("api::project.project", project.id, {
+    await strapi.entityService.update('api::project.project', project.id, {
       data: {
         description: await descriptionRes.text(),
       },
@@ -62,7 +62,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
   },
   async syncPerson(person) {
     const descriptionRes = await fetch(
-      `${process.env.DESCRIPTION_SERVICE}/people/${person.slug}.md`
+      `${process.env.DESCRIPTION_SERVICE}/people/${person.slug}.md`,
     );
     if (!descriptionRes.ok) {
       return {
@@ -71,7 +71,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
         status: descriptionRes.status,
       };
     }
-    await strapi.entityService.update("api::person.person", person.id, {
+    await strapi.entityService.update('api::person.person', person.id, {
       data: {
         bio: await descriptionRes.text(),
       },
@@ -80,7 +80,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
   },
   async syncSkill(skill) {
     const descriptionRes = await fetch(
-      `${process.env.DESCRIPTION_SERVICE}/skills/${skill.slug}.md`
+      `${process.env.DESCRIPTION_SERVICE}/skills/${skill.slug}.md`,
     );
     if (!descriptionRes.ok) {
       return {
@@ -89,7 +89,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
         status: descriptionRes.status,
       };
     }
-    await strapi.entityService.update("api::skill.skill", skill.id, {
+    await strapi.entityService.update('api::skill.skill', skill.id, {
       data: {
         text: await descriptionRes.text(),
       },
@@ -97,12 +97,13 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
     return { success: true };
   },
   async syncDescriptions() {
-    const projects = await strapi.db.query("api::project.project").findMany();
-    const people = await strapi.db.query("api::person.person").findMany();
-    const skills = await strapi.db.query("api::skill.skill").findMany();
+    //TODO: Ideally need to split this into batches using offset and limit props https://docs.strapi.io/dev-docs/api/query-engine/order-pagination#pagination
+    const projects = await strapi.db.query('api::project.project').findMany();
+    const people = await strapi.db.query('api::person.person').findMany();
+    const skills = await strapi.db.query('api::skill.skill').findMany();
     const totalLength = projects.length + people.length + skills.length;
     let i = 1;
-    console.log("Starting to sync descriptions");
+    console.log('Starting to sync descriptions');
     for (const project of projects) {
       await this.syncProject(project);
       console.log(`${i}/${totalLength}`);
@@ -120,12 +121,18 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
     }
   },
   async migrateGithub() {
-    const projects = await strapi.db.query("api::project.project").findMany();
+    const projects = await strapi.db.query('api::project.project').findMany({
+      where: {
+        github_url: {
+          $notNull: true,
+        },
+      },
+    });
     let i = 1;
-    console.log("Starting to migrate github data");
+    console.log('Starting to migrate github data');
     const filtered = projects.filter((p) => p.github_url);
     for (const project of filtered) {
-      const github = project.github_url.split("/");
+      const github = project.github_url.split('/');
       const username = github[github.length - 1];
 
       const res = await (
@@ -138,7 +145,7 @@ module.exports = createCoreService("api::helper.helper", ({ strapi }) => ({
         .json()
         .catch((e) => console.error(e));
       if (res?.id) {
-        await strapi.entityService.update("api::project.project", project.id, {
+        await strapi.entityService.update('api::project.project', project.id, {
           data: {
             github_id: `${res.id}`,
             github_created_at: res.created_at,
