@@ -36,7 +36,7 @@ export const BASE_CATEGORY_TO_STRAPI_SECTION_MAPPING = {
   [BASE_REGISTRY_CATEGORIES.social]: 'social',
   [BASE_REGISTRY_CATEGORIES.creators]: 'creative',
   [BASE_REGISTRY_CATEGORIES.finance]: 'defi',
-  [BASE_REGISTRY_CATEGORIES.media]: undefined,
+  [BASE_REGISTRY_CATEGORIES.media]: 'news',
 };
 
 export const BASE_CATEGORY_TO_STRAPI_TAG_MAPPING = {
