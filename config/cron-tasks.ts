@@ -36,7 +36,7 @@ export default {
   },
   fetchMissingTwitterProfiles: {
     task: async ({ strapi }: { strapi: Strapi }) => {
-      await strapi.service('api::tweet.tweet').getMissingProfiles();
+      await strapi.service('api::tweet.tweet').getAndSetAllProfiles();
       await strapi.service('api::tweet.tweet').syncTwitterMedia();
     },
     options: {
