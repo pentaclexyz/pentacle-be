@@ -27,7 +27,7 @@ export default createCoreController('api::project.project', ({ strapi }) => ({
   },
   async createSubmission() {
     const ctx = strapi.requestContext.get();
-    const { address, signature, data: formData, submissionId } = (ctx!.request as any).body;
+    const { address, signature, data: formData, submissionId, type } = (ctx!.request as any).body;
 
     if (!WHITELIST.includes(address.toLowerCase())) {
       ctx!.throw(400, 'Address not whitelisted');
@@ -48,6 +48,7 @@ export default createCoreController('api::project.project', ({ strapi }) => ({
     const data = await strapi.service('api::project.project').createSubmission({
       formData: { ...formData, reviewed_by: address },
       submissionId,
+      type,
     });
 
     return data;
