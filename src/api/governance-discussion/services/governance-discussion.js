@@ -14,10 +14,11 @@ module.exports = createCoreService(
   'api::governance-discussion.governance-discussion',
   ({ strapi }) => ({
     async getProjectDiscussions({ discourse_url }) {
-      const discussionsResponse = await fetch(`${discourse_url}/latest.json`);
+      const discourseUrlWithoutTrailingSlash = discourse_url.replace(/\/$/, '');
+      const discussionsResponse = await fetch(`${discourseUrlWithoutTrailingSlash}/latest.json`);
 
       console.log('discussionsResponse', {
-        url: `${discourse_url}/latest.json`,
+        url: `${discourseUrlWithoutTrailingSlash}/latest.json`,
         status: discussionsResponse.status,
       });
 
