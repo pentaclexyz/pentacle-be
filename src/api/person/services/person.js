@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 /**
  * person service.
  */
 
-const { createCoreService } = require("@strapi/strapi").factories;
+const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService("api::person.person", ({ strapi }) => ({
+module.exports = createCoreService('api::person.person', ({ strapi }) => ({
   // @TODO: move this into submission service
   async createSubmission({ formData, submissionId }) {
     const { eth_address, profile_img, profile_banner, ...rest } = formData;
-    const person = await strapi.entityService.create("api::person.person", {
+    const person = await strapi.entityService.create('api::person.person', {
       data: {
         ...rest,
         twitter_img: profile_img,
@@ -20,9 +20,9 @@ module.exports = createCoreService("api::person.person", ({ strapi }) => ({
       },
     });
     const submission = await strapi.entityService.update(
-      "api::submission.submission",
+      'api::person-submission.person-submission',
       parseInt(submissionId),
-      { data: { status: "approved" } }
+      { data: { status: 'approved' } },
     );
     return { person, submission };
   },
