@@ -63,7 +63,7 @@ module.exports = createCoreService('api::project.project', ({ strapi }) => ({
           categories: { slug: { $in: categories } },
         },
       },
-      limit: 20,
+      limit: 200,
       populate: {
         categories: true,
         sections: true,
