@@ -131,7 +131,7 @@
       "type": "string"
     },
     "status": {
-      "type": "boolean"
+      "type": "string"
     }
   }
 }
