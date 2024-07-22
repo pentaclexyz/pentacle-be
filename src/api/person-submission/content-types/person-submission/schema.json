@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "person-submissions",
+  "info": {
+    "singularName": "person-submission",
+    "pluralName": "person-submissions",
+    "displayName": "person-submissions",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "github": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "string"
+    },
+    "projects": {
+      "type": "string"
+    },
+    "has_investment": {
+      "type": "string"
+    },
+    "subject_expert_types": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "farcaster_handle": {
+      "type": "string"
+    },
+    "eth_address": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}
