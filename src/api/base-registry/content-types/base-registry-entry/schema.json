@@ -89,6 +89,18 @@
       "relation": "manyToMany",
       "target": "api::section.section",
       "inversedBy": "base_registry_entries"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "base_registry_entries"
+    },
+    "people": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::person.person",
+      "inversedBy": "base_registry_entries"
     }
   }
 }

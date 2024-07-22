@@ -6,6 +6,7 @@
 
 import {
   BASE_CATEGORY_TO_STRAPI_SECTION_MAPPING,
+  BASE_CATEGORY_TO_STRAPI_TAG_MAPPING,
   BASE_REGISTRY_API_BASE_URL,
   BASE_REGISTRY_API_ENDPOINTS,
   BASE_REGISTRY_API_ENTRIES_QUERY_PARAMS,
@@ -55,6 +56,7 @@ type StrapiRelation = {
     chain: { connect: { id: ID }[] };
     sections?: { connect: { id: ID }[] };
     project?: { connect: { id: ID }[] };
+    tags?: { connect: { id: ID }[] };
   };
 };
 
@@ -100,16 +102,32 @@ const getBaseRegistryEntryRelations = async ({
     // Map Base registry category to Strapi section slug
     const strapiSectionSlug = BASE_CATEGORY_TO_STRAPI_SECTION_MAPPING[baseRegistryEntry.category];
 
-    // Try to find matching section in Strapi
-    const strapiSections = await strapi.entityService?.findMany('api::section.section', {
-      filters: { slug: strapiSectionSlug },
-    });
-    const strapiSection =
-      strapiSections && Array.isArray(strapiSections) ? strapiSections?.[0] : null;
+    if (strapiSectionSlug) {
+      // Try to find matching section in Strapi
+      const strapiSections = await strapi.entityService?.findMany('api::section.section', {
+        filters: { slug: strapiSectionSlug },
+      });
+      const strapiSection =
+        strapiSections && Array.isArray(strapiSections) ? strapiSections?.[0] : null;
 
-    // Add matching section to relations if found
-    if (strapiSection) {
-      projectRelation.relations.sections = { connect: [{ id: strapiSection.id }] };
+      // Add matching section to relations if found
+      if (strapiSection) {
+        projectRelation.relations.sections = { connect: [{ id: strapiSection.id }] };
+      }
+    }
+
+    // Map Base registry category to Strapi tag slug
+    const strapiTagSlug = BASE_CATEGORY_TO_STRAPI_TAG_MAPPING[baseRegistryEntry.category];
+
+    // Try to find matching tag in Strapi
+    const strapiTags = await strapi.entityService?.findMany('api::tag.tag', {
+      filters: { slug: strapiTagSlug },
+    });
+    const strapiTag = strapiTags && Array.isArray(strapiTags) ? strapiTags?.[0] : null;
+
+    // Add matching tag to relations if found
+    if (strapiTag) {
+      projectRelation.relations.tags = { connect: [{ id: strapiTag.id }] };
     }
 
     relations.push(projectRelation);
@@ -174,7 +192,7 @@ const baseRegistryService = createCoreService(
             },
           },
           select: ['base_registry_id', 'id'],
-          populate: ['chain', 'project', 'sections'],
+          populate: ['chain', 'project', 'sections', 'tags'],
         })) ?? [];
 
       if (updatedEntities.length > 0) {
@@ -201,6 +219,12 @@ const baseRegistryService = createCoreService(
             entityNewRelations?.relations.sections
           ) {
             missingRelations.sections = entityNewRelations.relations.sections;
+            hasNewRelations = true;
+          }
+
+          // Check if section relation exists, and we have a new section relation to add
+          if ((!entity.tags || !entity.tags?.[0]?.id) && entityNewRelations?.relations.tags) {
+            missingRelations.tags = entityNewRelations.relations.tags;
             hasNewRelations = true;
           }
 

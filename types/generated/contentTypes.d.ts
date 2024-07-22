@@ -799,6 +799,16 @@ export interface ApiBaseRegistryBaseRegistryEntry extends Schema.CollectionType 
       'manyToMany',
       'api::section.section'
     >;
+    tags: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToMany',
+      'api::tag.tag'
+    >;
+    people: Attribute.Relation<
+      'api::base-registry.base-registry-entry',
+      'manyToMany',
+      'api::person.person'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1393,6 +1403,11 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     twitter_banner: Attribute.String;
     lores: Attribute.Relation<'api::person.person', 'manyToMany', 'api::lore.lore'>;
     farcaster_handle: Attribute.String;
+    base_registry_entries: Attribute.Relation<
+      'api::person.person',
+      'manyToMany',
+      'api::base-registry.base-registry-entry'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1818,6 +1833,11 @@ export interface ApiTagTag extends Schema.CollectionType {
     ecosystem_projects: Attribute.Relation<'api::tag.tag', 'oneToMany', 'api::project.project'>;
     lores: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::lore.lore'>;
     sponsored_by: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::project.project'>;
+    base_registry_entries: Attribute.Relation<
+      'api::tag.tag',
+      'manyToMany',
+      'api::base-registry.base-registry-entry'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
