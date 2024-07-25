@@ -1380,6 +1380,7 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     name: Attribute.String;
     bio: Attribute.String;
     twitter: Attribute.String;
+    blog_url: Attribute.String;
     website: Attribute.String;
     slug: Attribute.UID<'api::person.person', 'name'>;
     articles: Attribute.Relation<'api::person.person', 'manyToMany', 'api::article.article'>;
@@ -1390,7 +1391,6 @@ export interface ApiPersonPerson extends Schema.CollectionType {
       'api::glossary-item.glossary-item'
     >;
     skills: Attribute.Relation<'api::person.person', 'manyToMany', 'api::skill.skill'>;
-    avatar: Attribute.String;
     projects: Attribute.Relation<'api::person.person', 'manyToMany', 'api::project.project'>;
     has_investment: Attribute.Relation<'api::person.person', 'manyToMany', 'api::project.project'>;
     subject_expert_types: Attribute.Relation<
@@ -1403,6 +1403,8 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     twitter_banner: Attribute.String;
     lores: Attribute.Relation<'api::person.person', 'manyToMany', 'api::lore.lore'>;
     farcaster_handle: Attribute.String;
+    created_by: Attribute.String;
+    reviewed_by: Attribute.String;
     base_registry_entries: Attribute.Relation<
       'api::person.person',
       'manyToMany',
@@ -1414,6 +1416,50 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::person.person', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::person.person', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonSubmissionPersonSubmission extends Schema.CollectionType {
+  collectionName: 'person-submissions';
+  info: {
+    singularName: 'person-submission';
+    pluralName: 'person-submissions';
+    displayName: 'person-submissions';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    bio: Attribute.String;
+    twitter: Attribute.String;
+    website: Attribute.String;
+    slug: Attribute.UID<'api::person-submission.person-submission', 'name'>;
+    github: Attribute.String;
+    skills: Attribute.String;
+    projects: Attribute.String;
+    has_investment: Attribute.String;
+    subject_expert_types: Attribute.String;
+    tags: Attribute.String;
+    farcaster_handle: Attribute.String;
+    eth_address: Attribute.String;
+    status: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::person-submission.person-submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::person-submission.person-submission',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1514,13 +1560,14 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'api::project.project'
     >;
     risk_urls: Attribute.Component<'project.risk-urls', true>;
-    twitter_img: Attribute.String;
     mirror_url: Attribute.String;
+    twitter_img: Attribute.String;
     twitter_banner: Attribute.String;
     tag: Attribute.Relation<'api::project.project', 'manyToOne', 'api::tag.tag'>;
     lores: Attribute.Relation<'api::project.project', 'manyToMany', 'api::lore.lore'>;
     farcaster_handle: Attribute.String;
     created_by: Attribute.String;
+    reviewed_by: Attribute.String;
     attestation_uid: Attribute.String;
     skills: Attribute.Relation<'api::project.project', 'manyToMany', 'api::skill.skill'>;
     sponsors_tag: Attribute.Relation<'api::project.project', 'manyToMany', 'api::tag.tag'>;
@@ -1536,6 +1583,76 @@ export interface ApiProjectProject extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::project.project', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::project.project', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjectSubmissionProjectSubmission extends Schema.CollectionType {
+  collectionName: 'project-submissions';
+  info: {
+    singularName: 'project-submission';
+    pluralName: 'project-submissions';
+    displayName: 'project-submissions';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    ticker: Attribute.String;
+    website_url: Attribute.String;
+    webapp_url: Attribute.String;
+    twitter_handle: Attribute.String;
+    token_image_url: Attribute.String;
+    contract_url: Attribute.String;
+    coingecko_url: Attribute.String;
+    llama_url: Attribute.String;
+    llama_id: Attribute.String;
+    dune_url: Attribute.String;
+    rekt_url: Attribute.String;
+    whitepaper_url: Attribute.String;
+    github_url: Attribute.String;
+    github_id: Attribute.String;
+    github_created_at: Attribute.String;
+    docs_url: Attribute.String;
+    discord_url: Attribute.String;
+    marketplace_url: Attribute.String;
+    telegram_url: Attribute.String;
+    blog_url: Attribute.String;
+    tags: Attribute.String;
+    slug: Attribute.UID<'api::project-submission.project-submission', 'name'>;
+    chains: Attribute.String;
+    governance_url: Attribute.String;
+    jobs_url: Attribute.String;
+    defisafety_url: Attribute.String;
+    grants_url: Attribute.String;
+    video_url: Attribute.String;
+    podcast_url: Attribute.String;
+    description: Attribute.RichText;
+    discourse_url: Attribute.String;
+    contributors_url: Attribute.String;
+    audits_url: Attribute.String;
+    contact: Attribute.String;
+    farcaster_handle: Attribute.String;
+    profile_img: Attribute.String;
+    profile_banner: Attribute.String;
+    eth_address: Attribute.String;
+    status: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project-submission.project-submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project-submission.project-submission',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1793,7 +1910,7 @@ export interface ApiSubmissionSubmission extends Schema.CollectionType {
     profile_img: Attribute.String;
     profile_banner: Attribute.String;
     eth_address: Attribute.String;
-    status: Attribute.Boolean;
+    status: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1954,7 +2071,9 @@ declare module '@strapi/types' {
       'api::media-kit.media-kit': ApiMediaKitMediaKit;
       'api::pay-with-crypto.pay-with-crypto': ApiPayWithCryptoPayWithCrypto;
       'api::person.person': ApiPersonPerson;
+      'api::person-submission.person-submission': ApiPersonSubmissionPersonSubmission;
       'api::project.project': ApiProjectProject;
+      'api::project-submission.project-submission': ApiProjectSubmissionProjectSubmission;
       'api::section.section': ApiSectionSection;
       'api::skill.skill': ApiSkillSkill;
       'api::skill-level.skill-level': ApiSkillLevelSkillLevel;
