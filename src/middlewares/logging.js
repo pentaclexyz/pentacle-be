@@ -6,7 +6,7 @@ module.exports = (config, { strapi }) => {
       await next();
     } finally {
       const endTime = Date.now();
-      const duration = `${endTime - startTime}`;
+      const duration = endTime - startTime;
 
       const logEntry = async () => {
         const key = context.headers?.authorization?.split(' ')[1];
@@ -37,7 +37,7 @@ module.exports = (config, { strapi }) => {
             host,
             method,
             path,
-            statusCode: `${statusCode}`,
+            statusCode,
             duration,
             timestamp: new Date().toISOString(),
           },

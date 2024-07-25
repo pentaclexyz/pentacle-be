@@ -22,10 +22,10 @@
       "type": "text"
     },
     "statusCode": {
-      "type": "string"
+      "type": "integer"
     },
     "duration": {
-      "type": "string"
+      "type": "integer"
     },
     "host": {
       "type": "string"
