@@ -31,7 +31,6 @@ module.exports = (config, { strapi }) => {
 
       // Log the entry without blocking the response
       logEntry().catch((error) => {
-        debugger;
         console.error('Failed to log API usage:', error);
       });
     }
