@@ -5,7 +5,7 @@
  */
 
 import { RequestContext, factories } from '@strapi/strapi';
-import { fetchTwitterProfile } from '../../../util/util';
+import { fetchTwitterProfile, getAttestationBody, mapAttestation } from '../../../util/util';
 const { createCoreService } = factories;
 
 if (!process.env.EAS_SCHEMA_UID || !process.env.EAS_GRAPHQL_URL) {
@@ -193,40 +193,7 @@ module.exports = createCoreService('api::project.project', ({ strapi }) => ({
   },
   async getAttestations(ctx: QueryContext) {
     const { refUID, attester } = ctx.query;
-    const body = {
-      operationName: 'Attestations',
-      variables: {
-        where: {
-          refUID: {
-            equals: refUID,
-          },
-          schemaId: {
-            equals: process.env.EAS_SCHEMA_UID,
-          },
-        },
-      },
-      query:
-        'query Attestations($where: AttestationWhereInput) {\n  attestations(take: 100, orderBy: {time: desc}, where: $where) {\n    attester\n    decodedDataJson\n    expirationTime\n    id\n    ipfsHash\n    isOffchain\n    recipient\n    refUID\n    revoked\n    schemaId\n    time\n    timeCreated\n    txid\n    __typename\n  }\n}',
-    } as {
-      operationName: string;
-      variables: {
-        where: {
-          refUID: {
-            equals: string;
-          };
-          schemaId: {
-            equals: string;
-          };
-          attester?: {
-            equals: string;
-          };
-        };
-      };
-      query: string;
-    };
-    if (attester) {
-      body.variables.where.attester = { equals: attester };
-    }
+    const body = getAttestationBody({ refUID, attester });
     return await fetch(process.env.EAS_GRAPHQL_URL!, {
       method: 'POST',
       headers: {
@@ -234,15 +201,17 @@ module.exports = createCoreService('api::project.project', ({ strapi }) => ({
       },
       body: JSON.stringify(body),
     })
-      .then((res) => res.json())
-      .then((res: any) => {
-        res.data.attestations = res.data.attestations.map(
-          (attestation: { decodedData: any; decodedDataJson: string }) => {
-            attestation.decodedData = JSON.parse(attestation.decodedDataJson);
-            return attestation;
-          },
-        );
-        return res;
-      });
+      .then(
+        (res) =>
+          res.json() as Promise<{
+            data: {
+              attestations: {
+                decodedData: any;
+                decodedDataJson: string;
+              }[];
+            };
+          }>,
+      )
+      .then(mapAttestation);
   },
 }));
