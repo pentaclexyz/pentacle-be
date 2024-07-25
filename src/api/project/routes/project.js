@@ -6,13 +6,7 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-const defaultRouter = createCoreRouter('api::project.project', {
-  config: {
-    find: {
-      middlewares: ['api::project.logger'],
-    },
-  },
-});
+const defaultRouter = createCoreRouter('api::project.project', {});
 const { customRouter } = require('../../../util/custom-router');
 const myExtraRoutes = [
   {

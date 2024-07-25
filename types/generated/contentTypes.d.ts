@@ -699,7 +699,6 @@ export interface ApiApiUsageApiUsage extends Schema.CollectionType {
     path: Attribute.Text;
     statusCode: Attribute.String;
     duration: Attribute.String;
-    counter: Attribute.String;
     host: Attribute.String;
     timestamp: Attribute.String;
     createdAt: Attribute.DateTime;
