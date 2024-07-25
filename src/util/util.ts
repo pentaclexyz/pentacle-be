@@ -5,8 +5,10 @@ export const getHandleFromTwitterUrl = (str = '') =>
     .replace('https://x.com/', '')
     .replace('http://x.com/', '')
     .replace('http://wwww.x.com/', '')
+    .replace('https://wwww.x.com/', '')
     .replace('https://twitter.com/', '')
     .replace('http://twitter.com/', '')
+    .replace('http://www.twitter.com/', '')
     .replace('https://www.twitter.com/', '');
 
 //TODO: Get Github return types and type response
