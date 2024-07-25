@@ -1,3 +1,17 @@
+const blacklist = [
+  '/admin',
+  '/auth',
+  '/content-manager',
+  '/rest-cache',
+  '/upload',
+  '/graphql',
+  '/documentation',
+  '/open-ai',
+  '/i18n',
+  '/users-permissions',
+  'api:api/admin/content-manager/collection-types',
+  '/meilisearch',
+];
 module.exports = (config, { strapi }) => {
   return async (context, next) => {
     const startTime = Date.now();
@@ -14,20 +28,6 @@ module.exports = (config, { strapi }) => {
         const method = context.request.method;
         const path = context.request.url;
         const statusCode = context.response.status;
-        const blacklist = [
-          '/admin',
-          '/auth',
-          '/content-manager',
-          '/rest-cache',
-          '/upload',
-          '/graphql',
-          '/documentation',
-          '/open-ai',
-          '/i18n',
-          '/users-permissions',
-          'api:api/admin/content-manager/collection-types',
-          '/meilisearch',
-        ];
         if (blacklist.some((blacklistedPath) => path.startsWith(blacklistedPath))) {
           return;
         }
