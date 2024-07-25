@@ -39,6 +39,7 @@ export default {
       // TODO: update list
       .registerOverride(PROJECT_ATTESTATION_OVERRIDE, {
         excludeFromGeneration: [
+          'api-usage',
           'defi-safety-report',
           'section',
           'lore',

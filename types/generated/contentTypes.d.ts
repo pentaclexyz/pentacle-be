@@ -682,6 +682,35 @@ export interface ApiAboutAbout extends Schema.SingleType {
   };
 }
 
+export interface ApiApiUsageApiUsage extends Schema.CollectionType {
+  collectionName: 'api-usages';
+  info: {
+    singularName: 'api-usage';
+    pluralName: 'api-usages';
+    displayName: 'api-usage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    key: Attribute.String;
+    method: Attribute.String;
+    path: Attribute.Text;
+    statusCode: Attribute.String;
+    duration: Attribute.String;
+    counter: Attribute.String;
+    host: Attribute.String;
+    timestamp: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::api-usage.api-usage', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::api-usage.api-usage', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiArticleArticle extends Schema.CollectionType {
   collectionName: 'articles';
   info: {
@@ -2051,6 +2080,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::about.about': ApiAboutAbout;
+      'api::api-usage.api-usage': ApiApiUsageApiUsage;
       'api::article.article': ApiArticleArticle;
       'api::audit.audit': ApiAuditAudit;
       'api::base-registry.base-registry-entry': ApiBaseRegistryBaseRegistryEntry;

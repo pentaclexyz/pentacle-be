@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "api-usages",
+  "info": {
+    "singularName": "api-usage",
+    "pluralName": "api-usages",
+    "displayName": "api-usage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "text"
+    },
+    "statusCode": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    }
+  }
+}
