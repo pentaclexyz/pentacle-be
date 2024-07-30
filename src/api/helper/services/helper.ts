@@ -8,6 +8,7 @@ import { GithubUser } from '../../../../types/github-api-types';
 import { BaseEcosystem } from '../../../../types/base-ecosystem';
 import { mapBaseEcosystemTagToWoTag } from '../../../util/util';
 import { isTruthy } from '../../../util/is-truthy';
+import { fetchImageAndUploadToFilebase } from '../../../util/upload-to-filebase';
 
 const findExistingBaseEcosystemProject = async (
   strapi: Strapi,
@@ -19,26 +20,26 @@ const findExistingBaseEcosystemProject = async (
       : baseEcosystemProject.url;
   const url = ecosystemProjectUrlString ? new URL(ecosystemProjectUrlString) : undefined;
 
-  if (url && baseEcosystemProject.name) {
-    const filters = {
-      $or: [
-        { name: { $eqi: baseEcosystemProject.name, $notNull: true } },
-        { website_url: { $contains: url.hostname, $notNull: true } },
-      ],
-    };
+  const filters: Record<any, any> = {
+    $or: [
+      { name: { $eqi: baseEcosystemProject.name, $notNull: true } },
+      { slug: kebabCase(baseEcosystemProject.name.toLowerCase()) },
+    ],
+  };
 
-    const projects = await strapi.entityService?.findMany('api::project.project', {
-      fields: ['name', 'website_url'],
-      limit: 1,
-      //FIXME: Deal with the strapi types
-      //@ts-ignore
-      filters: filters,
-    });
-
-    return !!projects && !!projects?.[0]?.name;
+  if (url) {
+    filters['$or'].push({ website_url: { $contains: url.hostname, $notNull: true } });
   }
 
-  return false;
+  const projects = await strapi.entityService?.findMany('api::project.project', {
+    fields: ['name', 'website_url'],
+    limit: 1,
+    //FIXME: Deal with the strapi types
+    //@ts-ignore
+    filters: filters,
+  });
+
+  return !!projects && !!projects?.[0]?.name;
 };
 
 /**
@@ -248,6 +249,14 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
           });
 
           const tagIds = strapiTags?.map((tag) => tag.id);
+          const baseEcosystemGithubImageUrl =
+            baseEcosystemItem.imageUrl && baseEcosystemItem.imageUrl.startsWith('/')
+              ? `https://raw.githubusercontent.com/base-org/web/master/apps/web/public${baseEcosystemItem.imageUrl}`
+              : baseEcosystemItem.imageUrl || undefined;
+          const ipfsImageUrl = baseEcosystemGithubImageUrl
+            ? await fetchImageAndUploadToFilebase(baseEcosystemGithubImageUrl)
+            : undefined;
+
           await strapi.entityService?.create('api::project.project', {
             data: {
               name: baseEcosystemItem.name,
@@ -255,10 +264,7 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
               description: baseEcosystemItem.description,
               publishedAt: new Date(),
               slug: kebabCase(baseEcosystemItem.name.toLowerCase()),
-              //TODO: Ideally need to download the image and re-save to cloudinary?
-              twitter_img: baseEcosystemItem.imageUrl
-                ? `https://raw.githubusercontent.com/base-org/web/master/apps/web/public${baseEcosystemItem.imageUrl}`
-                : undefined,
+              twitter_img: ipfsImageUrl ?? undefined,
               tags: {
                 connect: tagIds || [],
               },
