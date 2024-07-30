@@ -1,4 +1,5 @@
 import { SocialDataToolsUser } from '../../types/social-data-tools-types';
+import { BaseEcosystemTag } from '../../types/base-ecosystem';
 
 export const getHandleFromTwitterUrl = (str = '') =>
   (str || '')
@@ -55,5 +56,32 @@ export const fetchFarcasterProfile = async (handle: string) => {
     });
   } catch (e) {
     console.error(e);
+  }
+};
+
+export const mapBaseEcosystemTagToWoTag = (tag: BaseEcosystemTag) => {
+  switch (tag) {
+    case 'social':
+      return 'social';
+    case 'defi':
+      return 'defi';
+    case 'nft':
+      return 'nft';
+    case 'infra':
+      return 'infra';
+    case 'gaming':
+      return 'gaming';
+    case 'wallet':
+      return 'wallet';
+    case 'onramp':
+      return 'fiat-onramp';
+    case 'dao':
+      return 'dao';
+    case 'bridge':
+      return 'bridge';
+    case 'security':
+      return 'security';
+    default:
+      return undefined;
   }
 };
