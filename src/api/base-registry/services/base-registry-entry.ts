@@ -15,7 +15,7 @@ import { factories, Strapi } from '@strapi/strapi';
 import {
   BaseRegistryEntryResponse,
   BaseRegistryEntryResponseItem,
-} from '../../../util/base-registry/types';
+} from '../../../../types/base-registry';
 import { splitIntoChunks } from '../../../util/split-into-chunks';
 import { ID } from '@strapi/database/dist/types';
 import { tryToFindRelatedProject } from '../../../util/base-registry/try-to-find-related-project';
