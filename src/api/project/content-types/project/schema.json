@@ -244,10 +244,10 @@
       "repeatable": true,
       "component": "project.risk-urls"
     },
-    "mirror_url": {
+    "twitter_img": {
       "type": "string"
     },
-    "twitter_img": {
+    "mirror_url": {
       "type": "string"
     },
     "twitter_banner": {
@@ -269,9 +269,6 @@
       "type": "string"
     },
     "created_by": {
-      "type": "string"
-    },
-    "reviewed_by": {
       "type": "string"
     },
     "attestation_uid": {

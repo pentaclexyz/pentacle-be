@@ -19,6 +19,9 @@ const myExtraRoutes = [
     method: "POST",
     path: "/projects/create-submission",
     handler: "api::project.project.createSubmission",
+    config: {
+      auth: false,
+    },
   },
   {
     method: "GET",

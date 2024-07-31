@@ -27,10 +27,10 @@ export default createCoreController('api::project.project', ({ strapi }) => ({
   },
   async createSubmission() {
     const ctx = strapi.requestContext.get();
-    const { address, signature, data: formData, submissionId, type } = (ctx!.request as any).body;
+    const { address, signature, data: formData, submissionId } = ctx.request.body;
 
     if (!WHITELIST.includes(address.toLowerCase())) {
-      ctx!.throw(400, 'Address not whitelisted');
+      ctx.throw(400, 'Address not whitelisted');
       return;
     }
 
@@ -41,15 +41,13 @@ export default createCoreController('api::project.project', ({ strapi }) => ({
     });
 
     if (!isValid) {
-      ctx!.throw(400, 'Invalid signature');
+      ctx.throw(400, 'Invalid signature');
       return;
     }
 
-    const data = await strapi.service('api::project.project').createSubmission({
-      formData: { ...formData, reviewed_by: address },
-      submissionId,
-      type,
-    });
+    const data = await strapi
+      .service('api::project.project')
+      .createSubmission({ formData, submissionId });
 
     return data;
   },

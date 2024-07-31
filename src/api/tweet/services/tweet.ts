@@ -1,9 +1,39 @@
+import qs from 'qs';
+import fs from 'fs';
+import { join } from 'path';
+import { fetchTwitterProfile } from '../../../util/util';
 import { factories } from '@strapi/strapi';
-import { GetNonPopulatableKeys, GetValues } from '@strapi/types/dist/types/core/attributes';
 import { UserV2 } from '../../../../types/twitter-api-types';
-import { fetchTwitterProfile, getHandleFromTwitterUrl } from '../../../util/util';
+import { GetNonPopulatableKeys, GetValues } from '@strapi/types/dist/types/core/attributes';
 
 const { createCoreService } = factories;
+
+// if (!String.prototype.replaceAll) {
+//   String.prototype.replaceAll = function (str, newStr) {
+//     // If a regex pattern
+//     if (Object.prototype.toString.call(str).toLowerCase() === '[object regexp]') {
+//       return this.replace(str, <string>newStr);
+//     }
+//
+//     // If a string
+//     return this.replace(new RegExp(str, 'g'), <string>newStr);
+//   };
+// }
+
+function sliceIntoChunks<T>(arr: T[], chunkSize: number) {
+  const res: T[][] = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    res.push(chunk);
+  }
+  return res;
+}
+
+const getHandleFromTwitterUrl = (str = '') =>
+  (str || '')
+    .replace('https://twitter.com/', '')
+    .replace('http://twitter.com/', '')
+    .replace('https://www.twitter.com/', '');
 
 type Person = GetValues<'api::person.person', GetNonPopulatableKeys<'api::person.person'>>;
 type Project = GetValues<'api::project.project', GetNonPopulatableKeys<'api::project.project'>>;
@@ -13,10 +43,10 @@ const checkTwitterImages = async (entity: Person | Project) => {
   if (!twitter_banner || !twitter_img) {
     return true;
   }
-  const bannerRes = await fetch(twitter_banner as any, {
+  const bannerRes = await fetch(twitter_banner, {
     method: 'HEAD',
   });
-  const pfpRes = await fetch(twitter_img as any, {
+  const pfpRes = await fetch(twitter_img, {
     method: 'HEAD',
   });
   if (bannerRes.status !== 200 || pfpRes.status !== 200) {
@@ -50,16 +80,12 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
       `http://twitter.com/${username}`,
       `https://www.twitter.com/${username}`,
       `http://www.twitter.com/${username}`,
-      `https://x.com/${username}`,
-      `http://x.com/${username}`,
-      `https://www.x.com/${username}`,
-      `http://www.x.com/${username}`,
     ];
     // TODO: get rid of this in favor of user object
-    const projects: any = await strapi.entityService?.findMany('api::project.project', {
+    const projects = await strapi.entityService?.findMany('api::project.project', {
       filters: { twitter_url: { $in: possibleValues } },
     });
-    const people: any = await strapi.entityService?.findMany('api::person.person', {
+    const people = await strapi.entityService?.findMany('api::person.person', {
       filters: { twitter: { $in: possibleValues } },
     });
 
@@ -93,7 +119,7 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
           data: {
             twitter_img: response.profile_image_url_https?.replace('_normal', '_bigger'),
             twitter_banner: response.profile_banner_url?.replace('_normal', '_bigger'),
-          } as any,
+          },
         });
       }
     }
@@ -103,14 +129,26 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
           data: {
             twitter_img: response.profile_image_url_https,
             twitter_banner: response.profile_banner_url,
-          } as any,
+          },
         });
       }
     }
     return { success: true };
   },
+
+  async getPinnedTweetIdByUsername(userName: string) {
+    const query = qs.stringify({
+      expansions: 'pinned_tweet_id',
+    });
+    const twitterInfo = await this.getUserTwitterInfo(userName, query);
+    const pinnedTweetId = twitterInfo[0].pinned_tweet_id;
+
+    if (!pinnedTweetId) return null;
+
+    return pinnedTweetId;
+  },
   async allToLowercase() {
-    const projects: any = await strapi.entityService?.findMany('api::project.project');
+    const projects = await strapi.entityService?.findMany('api::project.project');
     const people = await strapi.entityService?.findMany('api::person.person');
 
     if (!projects || !people) {
@@ -130,7 +168,7 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
         });
       }
     }
-    for (const person of people as any) {
+    for (const person of people) {
       if (person.twitter) {
         const lowercaseName = person.twitter.toLowerCase();
         await strapi.entityService?.update('api::person.person', person.id, {
@@ -139,6 +177,41 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
             twitter: lowercaseName,
           },
         });
+      }
+    }
+
+    return { success: true };
+  },
+  async saveAllTwitterPfps() {
+    const projects = await strapi.db
+      ?.query('api::project.project')
+      .findMany({ where: { twitter_img: { $notNull: true } } });
+    const people = await strapi.db
+      ?.query('api::person.person')
+      .findMany({ where: { twitter_img: { $notNull: true } } });
+
+    if (!projects || !people) {
+      throw new Error('Couldnt find projects or people');
+    }
+
+    for (const project of projects) {
+      if (project.twitter_img) {
+        await fetch(project.twitter_img.replace('_normal', '_bigger')).then((res) =>
+          (res.body as unknown as NodeJS.ReadableStream).pipe(
+            fs.createWriteStream(
+              join(process.cwd(), '../', `/images/projects/${project.slug}.png`),
+            ),
+          ),
+        );
+      }
+    }
+    for (const person of people) {
+      if (person.twitter_img) {
+        await fetch(person.twitter_img.replace('_normal', '_bigger')).then((res) =>
+          (res.body as unknown as NodeJS.ReadableStream).pipe(
+            fs.createWriteStream(join(process.cwd(), '../', `/images/people/${person.slug}.png`)),
+          ),
+        );
       }
     }
 
@@ -163,6 +236,99 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
       }
       const handle = getHandleFromTwitterUrl(person.twitter).replaceAll('/', '');
       await this.getTwitterMedia(handle);
+    }
+    return { success: true };
+  },
+  async getAndSetAllProfiles() {
+    const query = qs.stringify({
+      'user.fields': 'profile_image_url',
+    });
+    const projects = await strapi.db
+      ?.query('api::project.project')
+      .findMany({ where: { twitter_url: { $notNull: true } } });
+    const people = await strapi.db
+      ?.query('api::person.person')
+      .findMany({ where: { twitter: { $notNull: true } } });
+
+    if (!projects || !people) {
+      throw new Error('Couldnt find projects or people');
+    }
+
+    const chunkedProjects = sliceIntoChunks(projects, 100);
+    const chunkedPeople = sliceIntoChunks(people, 100);
+    console.log(`setting ${projects.length + people.length} images`);
+    for (const chunk of chunkedProjects) {
+      // console.log(`fetching twitter pfp for ${project.name}`);
+      const names = chunk
+        .map((item) => getHandleFromTwitterUrl(item.twitter_url).replaceAll('/', ''))
+        .filter((d) => d)
+        .join(',');
+
+      const twitterInfos = await this.getUserTwitterInfo(names, query);
+
+      if (twitterInfos?.length) {
+        for (const info of twitterInfos) {
+          if (info.profile_image_url) {
+            const projects = (
+              await strapi.service('api::project.project').find({
+                filters: {
+                  twitter_url: `https://twitter.com/${info.username.toLowerCase()}`,
+                },
+              })
+            ).results;
+
+            for (const project of projects) {
+              const profileImageUrl = info.profile_image_url.replace('_normal', '_bigger');
+
+              await strapi.entityService?.update('api::project.project', project.id, {
+                data: {
+                  ...project,
+                  twitter_img: profileImageUrl,
+                },
+              });
+            }
+          }
+        }
+      }
+    }
+    for (const chunk of chunkedPeople) {
+      // console.log(`fetching twitter pfp for ${project.name}`);
+      const names = chunk
+        .map((item) => getHandleFromTwitterUrl(item.twitter).replaceAll('/', ''))
+        .filter((d) => d)
+        .join(',');
+
+      const query = qs.stringify({
+        'user.fields': 'profile_image_url,description',
+      });
+      // await this.getProfileImageByUsername(names);
+      const twitterInfos = await this.getUserTwitterInfo(names, query);
+
+      if (twitterInfos?.length) {
+        for (const info of twitterInfos) {
+          if (info.profile_image_url) {
+            const people = (
+              await strapi.service('api::person.person').find({
+                filters: {
+                  twitter: `https://twitter.com/${info.username.toLowerCase()}`,
+                },
+              })
+            ).results;
+
+            for (const person of people) {
+              const profileImageUrl = info.profile_image_url.replace('_normal', '_bigger');
+
+              await strapi.entityService?.update('api::person.person', person.id, {
+                data: {
+                  ...person,
+                  twitter_img: profileImageUrl,
+                  bio: info.description,
+                },
+              });
+            }
+          }
+        }
+      }
     }
     return { success: true };
   },
