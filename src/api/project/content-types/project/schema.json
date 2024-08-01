@@ -286,7 +286,7 @@
       "target": "api::tag.tag",
       "mappedBy": "sponsored_by"
     },
-    "chain": {
+    "owns_chain": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::chain.chain",
