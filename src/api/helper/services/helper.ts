@@ -268,7 +268,7 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
               tags: {
                 connect: tagIds || [],
               },
-              chain: {
+              chains: {
                 connect: [{ id: strapiChain.id }],
               },
             },
