@@ -10,7 +10,7 @@ module.exports = (config, { strapi }) => {
       const duration = `${endTime - startTime}`;
 
       const logEntry = async () => {
-        const key = context.headers?.authorization?.split(' ')[1];
+        const key = context.headers?.authorization?.split(' ')?.[1];
         const host = context.headers?.host;
         const method = context.request.method;
         const path = context.request.url;
