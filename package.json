@@ -20,6 +20,7 @@
     "prettier": "^3.3.3"
   },
   "dependencies": {
+    "@filebase/client": "^0.0.5",
     "@strapi/database": "4.25.4",
     "@strapi/plugin-documentation": "4.25.4",
     "@strapi/plugin-i18n": "4.25.4",
@@ -46,7 +47,7 @@
     "viem": "^2.17.5"
   },
   "engines": {
-    "node": ">=18.0.0 <=20.x.x",
+    "node": ">=18.0.0",
     "npm": ">=6.0.0"
   },
   "packageManager": "pnpm@9.1.0",

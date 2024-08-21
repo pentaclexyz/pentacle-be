@@ -1,5 +1,5 @@
 import { Strapi } from '@strapi/strapi';
-import { BaseRegistryEntryResponseItem } from './types';
+import { BaseRegistryEntryResponseItem } from '../../../types/base-registry';
 import { ID } from '@strapi/database/dist/types';
 
 export const tryToFindRelatedProject = async ({

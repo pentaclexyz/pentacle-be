@@ -27,6 +27,30 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
+    path: "/tweet/pinned_id/:id",
+    handler: "api::tweet.tweet.getPinnedTweetId",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "GET",
+    path: "/tweet/twitter_banner/:id",
+    handler: "api::tweet.tweet.getTwitterBanner",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "GET",
+    path: "/tweet/save-all-twitter-pfps",
+    handler: "api::tweet.tweet.saveAllTwitterPfps",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "GET",
     path: "/tweet/get-and-set-all-images",
     handler: "api::tweet.tweet.getAndSetAllProfiles",
     config: {

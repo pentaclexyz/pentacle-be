@@ -1,3 +1,4 @@
+import { BaseEcosystemTag } from '../../types/base-ecosystem';
 import { SocialDataToolsUser } from '../../types/social-data-tools-types';
 
 export const getHandleFromTwitterUrl = (str = '') =>
@@ -113,4 +114,31 @@ export const mapAttestation = (data: {
     },
   );
   return data;
+};
+
+export const mapBaseEcosystemTagToWoTag = (tag: BaseEcosystemTag) => {
+  switch (tag) {
+    case 'social':
+      return 'social';
+    case 'defi':
+      return 'defi';
+    case 'nft':
+      return 'nft';
+    case 'infra':
+      return 'infra';
+    case 'gaming':
+      return 'gaming';
+    case 'wallet':
+      return 'wallet';
+    case 'onramp':
+      return 'fiat-onramp';
+    case 'dao':
+      return 'dao';
+    case 'bridge':
+      return 'bridge';
+    case 'security':
+      return 'security';
+    default:
+      return undefined;
+  }
 };

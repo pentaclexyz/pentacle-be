@@ -52,7 +52,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "chain"
+      "inversedBy": "owns_chain"
     },
     "base_registry_entries": {
         "type": "relation",

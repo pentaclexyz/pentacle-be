@@ -98,34 +98,38 @@ export default {
               event.model.singularName === 'person'
                 ? event.params.data.twitter
                 : event.params.data.twitter_url;
-            const response = (await fetch(
-              `https://api.socialdata.tools/twitter/user/${getHandleFromTwitterUrl(username)}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${process.env.SOCIALDATA_KEY}`,
+
+            if (username) {
+              const response = (await fetch(
+                `https://api.socialdata.tools/twitter/user/${getHandleFromTwitterUrl(username)}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${process.env.SOCIALDATA_KEY}`,
+                  },
                 },
-              },
-            ).then((res) => {
-              console.log(`API returned :${res.status}: ${res.statusText}`);
-              return res.json();
-            })) as SocialDataResponse;
-            if (!event.params.data.twitter_img) {
-              event.params.data.twitter_img = response.profile_image_url_https?.replace(
-                '_normal',
-                '_bigger',
-              );
-            }
-            if (!event.params.data.twitter_banner) {
-              event.params.data.twitter_banner = response.profile_banner_url?.replace(
-                '_normal',
-                '_bigger',
-              );
+              ).then((res) => {
+                console.log(`API returned :${res.status}: ${res.statusText}`);
+                return res.json();
+              })) as SocialDataResponse;
+
+              if (!event.params.data.twitter_img) {
+                event.params.data.twitter_img = response.profile_image_url_https?.replace(
+                  '_normal',
+                  '_bigger',
+                );
+              }
+              if (!event.params.data.twitter_banner) {
+                event.params.data.twitter_banner = response.profile_banner_url?.replace(
+                  '_normal',
+                  '_bigger',
+                );
+              }
             }
           }
 
           event.params.data.slug = _.kebabCase(event.params.data.slug);
         } catch (e) {
-          console.log(e);
+          console.log('beforeCreate', e);
         }
       },
     });
