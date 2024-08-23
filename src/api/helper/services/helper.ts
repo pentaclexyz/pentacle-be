@@ -3,7 +3,6 @@ import { kebabCase } from 'lodash';
 import chains from 'viem/chains';
 import { Strapi } from '@strapi/strapi';
 import { factories } from '@strapi/strapi';
-import { GetNonPopulatableKeys, GetValues } from '@strapi/types/dist/types/core/attributes';
 import { GithubUser } from '../../../../types/github-api-types';
 import { BaseEcosystem } from '../../../../types/base-ecosystem';
 import { mapBaseEcosystemTagToWoTag } from '../../../util/util';
@@ -48,9 +47,9 @@ const findExistingBaseEcosystemProject = async (
 
 const { createCoreService } = factories;
 
-type Project = GetValues<'api::project.project', GetNonPopulatableKeys<'api::project.project'>>;
-type Person = GetValues<'api::person.person', GetNonPopulatableKeys<'api::person.person'>>;
-type Skill = GetValues<'api::skill.skill', GetNonPopulatableKeys<'api::skill.skill'>>;
+// type Project = GetValues<'api::project.project', GetNonPopulatableKeys<'api::project.project'>>;
+// type Person = GetValues<'api::person.person', GetNonPopulatableKeys<'api::person.person'>>;
+// type Skill = GetValues<'api::skill.skill', GetNonPopulatableKeys<'api::skill.skill'>>;
 
 export default createCoreService('api::helper.helper', ({ strapi }) => ({
   async processChains() {
@@ -84,7 +83,7 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
     }
     return { success: true };
   },
-  async syncProject(project: Project) {
+  async syncProject(project: any) {
     const descriptionRes = await fetch(
       `${process.env.DESCRIPTION_SERVICE}/projects/${project.slug}.md`,
     );
@@ -102,7 +101,7 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
     });
     return { success: true };
   },
-  async syncPerson(person: Person) {
+  async syncPerson(person: any) {
     const descriptionRes = await fetch(
       `${process.env.DESCRIPTION_SERVICE}/people/${person.slug}.md`,
     );
@@ -120,7 +119,7 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
     });
     return { success: true };
   },
-  async syncSkill(skill: Skill) {
+  async syncSkill(skill: any) {
     const descriptionRes = await fetch(
       `${process.env.DESCRIPTION_SERVICE}/skills/${skill.slug}.md`,
     );
@@ -140,11 +139,11 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
   },
   async syncDescriptions() {
     //TODO: Ideally need to split this into batches using offset and limit props https://docs.strapi.io/dev-docs/api/query-engine/order-pagination#pagination
-    const projects: Project[] | undefined = await strapi.db
+    const projects = await strapi.db
       ?.query('api::project.project')
       .findMany();
-    const people: Person[] | undefined = await strapi.db?.query('api::person.person').findMany();
-    const skills: Skill[] | undefined = await strapi.db?.query('api::skill.skill').findMany();
+    const people = await strapi.db?.query('api::person.person').findMany();
+    const skills = await strapi.db?.query('api::skill.skill').findMany();
     const totalLength = (projects?.length || 0) + (people?.length || 0) + (skills?.length || 0);
     let i = 1;
     if (projects) {
@@ -173,7 +172,7 @@ export default createCoreService('api::helper.helper', ({ strapi }) => ({
     }
   },
   async migrateGithub() {
-    const projects: Project[] | undefined = await strapi.db
+    const projects = await strapi.db
       ?.query('api::project.project')
       .findMany({
         where: {
