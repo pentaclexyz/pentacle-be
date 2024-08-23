@@ -8,18 +8,6 @@ import { GetNonPopulatableKeys, GetValues } from '@strapi/types/dist/types/core/
 
 const { createCoreService } = factories;
 
-// if (!String.prototype.replaceAll) {
-//   String.prototype.replaceAll = function (str, newStr) {
-//     // If a regex pattern
-//     if (Object.prototype.toString.call(str).toLowerCase() === '[object regexp]') {
-//       return this.replace(str, <string>newStr);
-//     }
-//
-//     // If a string
-//     return this.replace(new RegExp(str, 'g'), <string>newStr);
-//   };
-// }
-
 function sliceIntoChunks<T>(arr: T[], chunkSize: number) {
   const res: T[][] = [];
   for (let i = 0; i < arr.length; i += chunkSize) {
