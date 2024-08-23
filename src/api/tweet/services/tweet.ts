@@ -97,7 +97,9 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
       console.log(
         `no person or project found for ${username}. Check casing and make sure the twitter url is correct`,
       );
-      return;
+      return {
+        error: `no person or project found for ${username}. Check casing and make sure the twitter url is correct`,
+      };
     }
 
     const needsUpdate = await Promise.all([
