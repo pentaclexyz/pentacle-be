@@ -6,6 +6,7 @@
 
 import { RequestContext, factories } from '@strapi/strapi';
 import { fetchTwitterProfile, getAttestationBody, mapAttestation } from '../../../util/util';
+import { ContentType } from '@strapi/database/dist/utils/content-types';
 const { createCoreService } = factories;
 
 if (!process.env.EAS_SCHEMA_UID || !process.env.EAS_GRAPHQL_URL) {
@@ -48,11 +49,9 @@ module.exports = createCoreService('api::project.project', ({ strapi }) => ({
       },
     });
     const submission = await strapi.entityService!.update(
-      `api::${type}.${type}` as
-        | 'api::project-submission.project-submission'
-        | 'api::submission.submission',
+      `api::${type}.${type}` as any,
       parseInt(submissionId),
-      { data: { status: 'approved' } },
+      { data: { status: 'approved' } as any },
     );
     return { project, submission };
   },
