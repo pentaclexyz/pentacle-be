@@ -25,6 +25,10 @@ export default createCoreController('api::project.project', ({ strapi }) => ({
     const data = await strapi.service('api::project.project').getRelated(ctx);
     return data;
   },
+  async getAttestations(ctx: { query: { refUID: string; attester: string } }): Promise<object> {
+    const data = await strapi.service('api::project.project').getAttestations(ctx);
+    return data;
+  },
   async createSubmission() {
     const ctx = strapi.requestContext.get();
     const { address, signature, data: formData, submissionId } = ctx.request.body;
