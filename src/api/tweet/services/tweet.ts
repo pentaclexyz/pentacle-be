@@ -116,7 +116,9 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
 
     if (!response) {
       console.warn('Could not fetch twitter profile', username);
-      return;
+      return {
+        error: 'Could not fetch twitter profile ' + username,
+      };
     }
 
     if (people) {
