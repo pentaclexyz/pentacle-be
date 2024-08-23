@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "pnpm strapi:types && tsc && strapi build",
+    "build": "npm strapi:types && tsc && strapi build",
     "strapi": "./node_modules/.bin/bun strapi",
     "strapi:types": "strapi ts:generate-types",
     "prettify": "prettier --write '{src,config}/*.{ts,js}'"
@@ -50,7 +50,6 @@
     "node": ">=18.0.0",
     "npm": ">=6.0.0"
   },
-  "packageManager": "pnpm@9.1.0",
   "author": {
     "name": "A Strapi developer and Pentacle"
   },
