@@ -47,12 +47,12 @@ module.exports = createCoreService('api::project.project', ({ strapi }) => ({
         publishedAt: new Date(),
       },
     });
+
+    // TODO: simplify once FE is on new version or with strapi 5
     const submission = await strapi.entityService!.update(
-      `api::${type}.${type}` as
-        | 'api::project-submission.project-submission'
-        | 'api::submission.submission',
+      `api::${type}.${type}` as any,
       parseInt(submissionId),
-      { data: { status: 'approved' } },
+      { data: { status: 'approved' } as any },
     );
     return { project, submission };
   },
