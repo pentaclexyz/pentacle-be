@@ -80,6 +80,10 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
       `http://twitter.com/${username}`,
       `https://www.twitter.com/${username}`,
       `http://www.twitter.com/${username}`,
+      `https://x.com/${username}`,
+      `http://x.com/${username}`,
+      `https://www.x.com/${username}`,
+      `http://www.x.com/${username}`,
     ];
     // TODO: get rid of this in favor of user object
     const projects = await strapi.entityService?.findMany('api::project.project', {
@@ -93,7 +97,9 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
       console.log(
         `no person or project found for ${username}. Check casing and make sure the twitter url is correct`,
       );
-      return;
+      return {
+        error: `no person or project found for ${username}. Check casing and make sure the twitter url is correct`,
+      };
     }
 
     const needsUpdate = await Promise.all([
@@ -110,7 +116,9 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
 
     if (!response) {
       console.warn('Could not fetch twitter profile', username);
-      return;
+      return {
+        error: 'Could not fetch twitter profile ' + username,
+      };
     }
 
     if (people) {
