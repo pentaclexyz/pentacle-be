@@ -80,6 +80,10 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
       `http://twitter.com/${username}`,
       `https://www.twitter.com/${username}`,
       `http://www.twitter.com/${username}`,
+      `https://x.com/${username}`,
+      `http://x.com/${username}`,
+      `https://www.x.com/${username}`,
+      `http://www.x.com/${username}`,
     ];
     // TODO: get rid of this in favor of user object
     const projects = await strapi.entityService?.findMany('api::project.project', {
