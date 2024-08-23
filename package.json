@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "npm strapi:types && tsc && strapi build",
+    "build": "./node_modules/.bin/bun strapi:types && tsc && strapi build",
     "strapi": "./node_modules/.bin/bun strapi",
     "strapi:types": "strapi ts:generate-types",
     "prettify": "prettier --write '{src,config}/*.{ts,js}'"

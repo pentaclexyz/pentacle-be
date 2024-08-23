@@ -1408,7 +1408,6 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     name: Attribute.String;
     bio: Attribute.String;
     twitter: Attribute.String;
-    blog_url: Attribute.String;
     website: Attribute.String;
     slug: Attribute.UID<'api::person.person', 'name'>;
     articles: Attribute.Relation<'api::person.person', 'manyToMany', 'api::article.article'>;
@@ -1419,6 +1418,7 @@ export interface ApiPersonPerson extends Schema.CollectionType {
       'api::glossary-item.glossary-item'
     >;
     skills: Attribute.Relation<'api::person.person', 'manyToMany', 'api::skill.skill'>;
+    avatar: Attribute.String;
     projects: Attribute.Relation<'api::person.person', 'manyToMany', 'api::project.project'>;
     has_investment: Attribute.Relation<'api::person.person', 'manyToMany', 'api::project.project'>;
     subject_expert_types: Attribute.Relation<
@@ -1431,8 +1431,6 @@ export interface ApiPersonPerson extends Schema.CollectionType {
     twitter_banner: Attribute.String;
     lores: Attribute.Relation<'api::person.person', 'manyToMany', 'api::lore.lore'>;
     farcaster_handle: Attribute.String;
-    created_by: Attribute.String;
-    reviewed_by: Attribute.String;
     base_registry_entries: Attribute.Relation<
       'api::person.person',
       'manyToMany',
@@ -1588,18 +1586,17 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'api::project.project'
     >;
     risk_urls: Attribute.Component<'project.risk-urls', true>;
-    mirror_url: Attribute.String;
     twitter_img: Attribute.String;
+    mirror_url: Attribute.String;
     twitter_banner: Attribute.String;
     tag: Attribute.Relation<'api::project.project', 'manyToOne', 'api::tag.tag'>;
     lores: Attribute.Relation<'api::project.project', 'manyToMany', 'api::lore.lore'>;
     farcaster_handle: Attribute.String;
     created_by: Attribute.String;
-    reviewed_by: Attribute.String;
     attestation_uid: Attribute.String;
     skills: Attribute.Relation<'api::project.project', 'manyToMany', 'api::skill.skill'>;
     sponsors_tag: Attribute.Relation<'api::project.project', 'manyToMany', 'api::tag.tag'>;
-    chain: Attribute.Relation<'api::project.project', 'manyToMany', 'api::chain.chain'>;
+    owns_chain: Attribute.Relation<'api::project.project', 'manyToMany', 'api::chain.chain'>;
     base_registry_entries: Attribute.Relation<
       'api::project.project',
       'oneToMany',
