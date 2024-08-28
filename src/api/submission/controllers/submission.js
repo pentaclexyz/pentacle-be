@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 /**
- *  submission controller
+ *  project-submission controller
  */
 
-const { createCoreController } = require("@strapi/strapi").factories;
+const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController("api::submission.submission");
+module.exports = createCoreController('api::submission.submission');
