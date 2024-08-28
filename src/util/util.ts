@@ -1,13 +1,15 @@
-import { SocialDataToolsUser } from '../../types/social-data-tools-types';
 import { BaseEcosystemTag } from '../../types/base-ecosystem';
+import { SocialDataToolsUser } from '../../types/social-data-tools-types';
 
 export const getHandleFromTwitterUrl = (str = '') =>
   (str || '')
     .replace('https://x.com/', '')
     .replace('http://x.com/', '')
     .replace('http://wwww.x.com/', '')
+    .replace('https://wwww.x.com/', '')
     .replace('https://twitter.com/', '')
     .replace('http://twitter.com/', '')
+    .replace('http://www.twitter.com/', '')
     .replace('https://www.twitter.com/', '');
 
 //TODO: Get Github return types and type response
@@ -57,6 +59,61 @@ export const fetchFarcasterProfile = async (handle: string) => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const getAttestationBody = ({ refUID, attester }: { refUID: string; attester: string }) => {
+  const body = {
+    operationName: 'Attestations',
+    variables: {
+      where: {
+        refUID: {
+          equals: refUID,
+        },
+        schemaId: {
+          equals: process.env.EAS_SCHEMA_UID,
+        },
+      },
+    },
+    query:
+      'query Attestations($where: AttestationWhereInput) {\n  attestations(take: 100, orderBy: {time: desc}, where: $where) {\n    attester\n    decodedDataJson\n    expirationTime\n    id\n    ipfsHash\n    isOffchain\n    recipient\n    refUID\n    revoked\n    schemaId\n    time\n    timeCreated\n    txid\n    __typename\n  }\n}',
+  } as {
+    operationName: string;
+    variables: {
+      where: {
+        refUID: {
+          equals: string;
+        };
+        schemaId: {
+          equals: string;
+        };
+        attester?: {
+          equals: string;
+        };
+      };
+    };
+    query: string;
+  };
+  if (attester) {
+    body.variables.where.attester = { equals: attester };
+  }
+  return body;
+};
+
+export const mapAttestation = (data: {
+  data: {
+    attestations: {
+      decodedData: any;
+      decodedDataJson: string;
+    }[];
+  };
+}) => {
+  data.data.attestations = data.data.attestations.map(
+    (attestation: { decodedData: any; decodedDataJson: string }) => {
+      attestation.decodedData = JSON.parse(attestation.decodedDataJson);
+      return attestation;
+    },
+  );
+  return data;
 };
 
 export const mapBaseEcosystemTagToWoTag = (tag: BaseEcosystemTag) => {

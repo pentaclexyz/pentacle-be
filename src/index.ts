@@ -1,7 +1,8 @@
+import { Strapi } from '@strapi/strapi';
 import _ from 'lodash';
 import { verifyMessage } from 'viem';
+import { PROJECT_ATTESTATION_OVERRIDE } from './api/project/util/project-attestation-override';
 import { getHandleFromTwitterUrl } from './util/util';
-import { Strapi } from '@strapi/strapi';
 
 type SocialDataResponse = {
   id: number;
@@ -36,23 +37,26 @@ export default {
       .plugin('documentation')
       .service('override')
       // TODO: update list
-      .excludeFromGeneration([
-        'defi-safety-report',
-        'section',
-        'lore',
-        'tweet',
-        'term',
-        'helper',
-        'homepage',
-        'connect',
-        'auth',
-        'governance-discussion',
-        'governance-proposal',
-        'global',
-        'content-type',
-        'audit',
-        'about',
-      ]);
+      .registerOverride(PROJECT_ATTESTATION_OVERRIDE, {
+        excludeFromGeneration: [
+          'api-usage',
+          'defi-safety-report',
+          'section',
+          'lore',
+          'tweet',
+          'term',
+          'helper',
+          'homepage',
+          'connect',
+          'auth',
+          'governance-discussion',
+          'governance-proposal',
+          'global',
+          'content-type',
+          'audit',
+          'about',
+        ],
+      });
   },
 
   /**

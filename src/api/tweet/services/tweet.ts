@@ -67,7 +67,9 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
       console.log(
         `no person or project found for ${username}. Check casing and make sure the twitter url is correct`,
       );
-      return;
+      return {
+        error: `no person or project found for ${username}. Check casing and make sure the twitter url is correct`,
+      };
     }
 
     const needsUpdate = await Promise.all([
@@ -84,7 +86,9 @@ module.exports = createCoreService('api::tweet.tweet', ({ strapi }) => ({
 
     if (!response) {
       console.warn('Could not fetch twitter profile', username);
-      return;
+      return {
+        error: 'Could not fetch twitter profile ' + username,
+      };
     }
 
     if (people) {
