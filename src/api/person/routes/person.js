@@ -11,7 +11,7 @@ const { customRouter } = require("../../../util/custom-router");
 const myExtraRoutes = [
   {
     method: "POST",
-    path: "/projects/create-submission",
+    path: "/person/create-submission",
     handler: "api::person.person.createSubmission",
   },
 ];

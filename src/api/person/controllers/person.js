@@ -1,8 +1,5 @@
 "use strict";
-
-/**
- *  person controller
- */
+import {verifyMessage} from 'viem';
 
 const { createCoreController } = require("@strapi/strapi").factories;
 
@@ -34,6 +31,7 @@ module.exports = createCoreController("api::person.person", ({ strapi }) => ({
       message: "Sign this message to submit a person",
       signature,
     });
+    console.log('Signature validation result:', isValid);
 
     if (!isValid) {
       ctx.throw(400, "Invalid signature");
