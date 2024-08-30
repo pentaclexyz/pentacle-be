@@ -1,5 +1,28 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ProjectRiskUrls extends Schema.Component {
+  collectionName: 'components_project_risk_urls';
+  info: {
+    displayName: 'risk_urls';
+    icon: 'ad';
+  };
+  attributes: {
+    risk_url: Attribute.String;
+  };
+}
+
+export interface ProjectProjectSummary extends Schema.Component {
+  collectionName: 'components_project_project_summaries';
+  info: {
+    displayName: 'projectSummary';
+    icon: 'adjust';
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.String;
+  };
+}
+
 export interface SharedTreasuryWallet extends Schema.Component {
   collectionName: 'components_shared_treasury_wallets';
   info: {
@@ -86,40 +109,17 @@ export interface SharedAudits extends Schema.Component {
   };
 }
 
-export interface ProjectRiskUrls extends Schema.Component {
-  collectionName: 'components_project_risk_urls';
-  info: {
-    displayName: 'risk_urls';
-    icon: 'ad';
-  };
-  attributes: {
-    risk_url: Attribute.String;
-  };
-}
-
-export interface ProjectProjectSummary extends Schema.Component {
-  collectionName: 'components_project_project_summaries';
-  info: {
-    displayName: 'projectSummary';
-    icon: 'adjust';
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'project.risk-urls': ProjectRiskUrls;
+      'project.project-summary': ProjectProjectSummary;
       'shared.treasury-wallet': SharedTreasuryWallet;
       'shared.seo': SharedSeo;
       'shared.nav': SharedNav;
       'shared.logo': SharedLogo;
       'shared.card-large': SharedCardLarge;
       'shared.audits': SharedAudits;
-      'project.risk-urls': ProjectRiskUrls;
-      'project.project-summary': ProjectProjectSummary;
     }
   }
 }

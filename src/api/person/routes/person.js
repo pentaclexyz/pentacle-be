@@ -1,19 +1,20 @@
-"use strict";
+'use strict';
 
-/**
- * person router.
- */
+const { createCoreRouter } = require('@strapi/strapi').factories;
 
-const { createCoreRouter } = require("@strapi/strapi").factories;
+module.exports = createCoreRouter('api::person.person');
 
-const defaultRouter = createCoreRouter("api::person.person");
-const { customRouter } = require("../../../util/custom-router");
-const myExtraRoutes = [
-  {
-    method: "POST",
-    path: "/person/create-submission",
-    handler: "api::person.person.createSubmission",
-  },
-];
-
-module.exports = customRouter(defaultRouter, myExtraRoutes);
+module.exports = {
+  routes: [
+    {
+      method: 'POST',
+      path: '/person/create-submission',
+      handler: 'person.createSubmission',
+      config: {
+        policies: [],
+        middlewares: [],
+        auth: false, // Set to true if authentication is required
+      },
+    }
+  ],
+};
