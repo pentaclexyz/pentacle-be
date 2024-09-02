@@ -1474,6 +1474,8 @@ export interface ApiPersonSubmissionPersonSubmission extends Schema.CollectionTy
     farcaster_handle: Attribute.String;
     eth_address: Attribute.String;
     status: Attribute.String;
+    profile_img: Attribute.String;
+    profile_banner: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

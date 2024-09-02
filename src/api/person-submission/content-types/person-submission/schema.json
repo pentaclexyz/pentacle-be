@@ -54,6 +54,12 @@
     },
     "status": {
       "type": "string"
+    },
+    "profile_img": {
+      "type": "string"
+    },
+    "profile_banner": {
+      "type": "string"
     }
   }
 }
