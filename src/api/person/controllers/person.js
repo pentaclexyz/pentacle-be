@@ -1,5 +1,6 @@
 "use strict";
 
+const {verifyMessage} = require("viem");
 const { createCoreController } = require("@strapi/strapi").factories;
 
 if (!process.env.WHITELISTED_ADDRESSES) {
