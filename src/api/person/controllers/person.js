@@ -1,9 +1,6 @@
 "use strict";
 
-/**
- *  person controller
- */
-
+const {verifyMessage} = require("viem");
 const { createCoreController } = require("@strapi/strapi").factories;
 
 if (!process.env.WHITELISTED_ADDRESSES) {
@@ -11,10 +8,37 @@ if (!process.env.WHITELISTED_ADDRESSES) {
 }
 
 const WHITELIST = process.env.WHITELISTED_ADDRESSES.split(",")
-  .filter(Boolean)
-  .map((address) => address.toLowerCase());
+    .filter(Boolean)
+    .map((address) => address.toLowerCase());
+
 module.exports = createCoreController("api::person.person", ({ strapi }) => ({
-  // @TODO: move this into submission service
+  // Standard CRUD operations
+  async find(ctx) {
+    const { data, meta } = await super.find(ctx);
+    return { data, meta };
+  },
+
+  async findOne(ctx) {
+    const { data, meta } = await super.findOne(ctx);
+    return { data, meta };
+  },
+
+  async create(ctx) {
+    const { data, meta } = await super.create(ctx);
+    return { data, meta };
+  },
+
+  async update(ctx) {
+    const { data, meta } = await super.update(ctx);
+    return { data, meta };
+  },
+
+  async delete(ctx) {
+    const { data, meta } = await super.delete(ctx);
+    return { data, meta };
+  },
+
+  // Custom createSubmission method
   async createSubmission() {
     const ctx = strapi.requestContext.get();
     const {

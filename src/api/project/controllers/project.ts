@@ -1,6 +1,6 @@
 'use strict';
 import { factories } from '@strapi/strapi';
-import { verifyMessage } from 'viem';
+import {verifyMessage} from 'viem';
 
 /**
  *  project controller

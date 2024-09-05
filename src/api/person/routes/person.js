@@ -1,19 +1,34 @@
-"use strict";
+'use strict';
 
-/**
- * person router.
- */
+const { createCoreRouter } = require('@strapi/strapi').factories;
 
-const { createCoreRouter } = require("@strapi/strapi").factories;
+const defaultRouter = createCoreRouter('api::person.person');
 
-const defaultRouter = createCoreRouter("api::person.person");
-const { customRouter } = require("../../../util/custom-router");
-const myExtraRoutes = [
+// Customize the default router
+const customRouter = (innerRouter, extraRoutes = []) => {
+  let routes;
+  return {
+    get prefix() {
+      return innerRouter.prefix;
+    },
+    get routes() {
+      if (!routes) routes = innerRouter.routes.concat(extraRoutes);
+      return routes;
+    },
+  };
+};
+
+const extraRoutes = [
   {
-    method: "POST",
-    path: "/projects/create-submission",
-    handler: "api::person.person.createSubmission",
+    method: 'POST',
+    path: '/person/create-submission',
+    handler: 'person.createSubmission',
+    config: {
+      policies: [],
+      middlewares: [],
+      auth: false, // Set to true if authentication is required
+    },
   },
 ];
 
-module.exports = customRouter(defaultRouter, myExtraRoutes);
+module.exports = customRouter(defaultRouter, extraRoutes);
