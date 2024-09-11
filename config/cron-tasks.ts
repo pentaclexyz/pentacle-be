@@ -50,7 +50,6 @@ export default {
     task: async ({ strapi }: { strapi: Strapi }) => {
       try {
         console.log('CRON: START fetchMissingTwitterProfileData');
-        await strapi.service('api::tweet.tweet').getAndSetAllProfiles();
         await strapi.service('api::tweet.tweet').syncTwitterMedia();
         console.log('CRON: FINISH fetchMissingTwitterProfileData');
       } catch (e) {

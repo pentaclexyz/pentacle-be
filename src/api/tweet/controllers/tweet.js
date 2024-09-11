@@ -6,13 +6,6 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::tweet.tweet", ({ strapi }) => ({
-  async getAndSetAllProfiles() {
-    const data = await strapi
-      .service("api::tweet.tweet")
-      .getAndSetAllProfiles();
-
-    return data;
-  },
   async allToLowercase() {
     const data = await strapi.service("api::tweet.tweet").allToLowercase();
 
