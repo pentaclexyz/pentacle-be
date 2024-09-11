@@ -800,8 +800,8 @@ export interface ApiBaseRegistryBaseRegistryEntry extends Schema.CollectionType 
     category: Attribute.Enumeration<['Games', 'Social', 'Creators', 'Finance', 'Media']> &
       Attribute.Required;
     title: Attribute.String & Attribute.Required;
-    short_description: Attribute.String;
-    full_description: Attribute.String;
+    short_description: Attribute.Text;
+    full_description: Attribute.Text;
     image_url: Attribute.String;
     target_url: Attribute.String;
     cta_text: Attribute.String;

@@ -60,6 +60,10 @@ type StrapiRelation = {
   };
 };
 
+export const sleep = async (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 /**
  * Try to find related records in our database based on some Base Registry Entry fields
  * @param baseRegistryEntryResponseItems
@@ -279,10 +283,15 @@ const baseRegistryService = createCoreService(
             const createdIds = await strapi.db
               ?.query('api::base-registry.base-registry-entry')
               .createMany({
-                data: entriesToCreate.map((c) => ({ ...c, publishedAt: new Date() })),
+                data: entriesToCreate.map((c) => ({
+                  ...c,
+                  publishedAt: new Date(),
+                })),
               });
 
             savedIds = savedIds.concat(createdIds?.ids ?? []);
+
+            await sleep(500);
           }
 
           // Update existing entries with the new data
