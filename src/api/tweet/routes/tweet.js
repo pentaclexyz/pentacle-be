@@ -27,14 +27,6 @@ const myExtraRoutes = [
   },
   {
     method: "GET",
-    path: "/tweet/get-and-set-all-images",
-    handler: "api::tweet.tweet.getAndSetAllProfiles",
-    config: {
-      auth: false,
-    },
-  },
-  {
-    method: "GET",
     path: "/tweet/all-to-lowercase",
     handler: "api::tweet.tweet.allToLowercase",
     config: {
