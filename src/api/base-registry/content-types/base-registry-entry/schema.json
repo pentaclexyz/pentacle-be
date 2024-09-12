@@ -36,10 +36,10 @@
       }
     },
     "short_description": {
-      "type": "string"
+      "type": "text"
     },
     "full_description": {
-      "type": "string"
+      "type": "text"
     },
     "image_url": {
       "type": "string"
